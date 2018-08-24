@@ -46,25 +46,26 @@ class Map:
             for j in range(3):
                 x_new, y_new = x-1+i, y-1+j
                 index_new = self.cor2index(x_new, y_new)
-                if self.is_valid([x_new, y_new]) == False or  index_new not in stored:
+                if self.is_valid([x_new, y_new]) == False or index_new not in stored:
                     continue
                 indexs.append(index_new)
                 add_value = ((i - 1) ** 2 + (j - 1) ** 2) ** 0.5
                 distances.append(add_value)
-        return indexs,distances
+        return indexs, distances
 
-    def get_dis(self,index1,index2):
-        x1,y1 = self.index2cor(index1)
-        x2,y2 = self.index2cor(index2)
+    def get_dis(self, index1, index2):
+        x1, y1 = self.index2cor(index1)
+        x2, y2 = self.index2cor(index2)
         return ((x1-x2)**2+(y1-y2)**2)**0.5
 
-    def get_path(self,path):
+    def get_path(self, path):
         if path[-1] == True or path[-1] == False:
             path = path[:-1]
         paths = []
         for i in range(len(path)):
             paths.append([*self.index2cor(path[i])])
         return paths
+
 
 map_data = get_data(40, 40, 0.1)
 start_point = [0, 0]
@@ -87,7 +88,6 @@ lengthbest = np.zeros(itermax)  # 迭代,存放每次迭代后，最佳路径长
 pathbest = []
 
 
-
 for iter in range(itermax):
     # 迭代总数
     pathtable = []
@@ -105,15 +105,15 @@ for iter in range(itermax):
             if visiting == end_index:
                 pathtable[ant].append(True)
                 break
-            next_indexs,distances = map.feasible_points(visiting,unvisited)
+            next_indexs, distances = map.feasible_points(visiting, unvisited)
             next_len = len(next_indexs)
             if next_len == 0:
                 pathtable[ant].append(False)
                 break
-            probtrans = np.zeros(next_len) # 每次循环都初始化转移概率矩阵
+            probtrans = np.zeros(next_len)  # 每次循环都初始化转移概率矩阵
             for k in range(next_len):
                 probtrans[k] = np.power(pheromonetable[visiting][next_indexs[k]], alpha) \
-                           * np.power(1.0/(distances[k]), alpha)
+                    * np.power(1.0/(distances[k]), alpha)
             cumsumprobtrans = (probtrans / sum(probtrans)).cumsum()
             cumsumprobtrans -= np.random.rand()
             k = list(cumsumprobtrans >= 0).index(True)
@@ -147,13 +147,10 @@ for iter in range(itermax):
         if MissionCom == True:
             num += 1
             for j in range(len(path)-1):
-                    changepheromonetable[path[j],path[j+1]] += Q*10 / lengths[i]
+                changepheromonetable[path[j], path[j+1]] += Q*10 / lengths[i]
     pheromonetable = (1 - rho) * pheromonetable + changepheromonetable
     print(num)
 
 path = np.array(map.get_path(pathtable[-1]))
 map.plot_map(path)
 plt.show()
-
-
-

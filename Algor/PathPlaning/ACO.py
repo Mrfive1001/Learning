@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sys
+import os
 from get_map import Map
 sns.set(style='dark')
 np.random.seed(200)
@@ -22,12 +24,12 @@ class Ant:
 
     def __init__(self, my_map):
         self.map = my_map
-        self.numant = 60  # 蚂蚁个数
+        self.numant = 100  # 蚂蚁个数
         self.numcity = self.map.shape[0]*self.map.shape[1]  # 点的数量
         self.alpha = 1  # 信息素重要程度因子
         self.beta = 5  # 启发函数重要程度因子
         self.rho = 0.05  # 信息素的挥发速度
-        self.Q = 1  # 完成率
+        self.Q = 0.5  # 完成率
         self.itermax = 150  # 迭代总数
         self.pheromonetable = np.ones((self.numcity, self.numcity))  # 信息素矩阵
         self.lengthaver = []  # 迭代,存放每次迭代后，路径的平均长度
@@ -35,8 +37,10 @@ class Ant:
         self.pathbest = []
         self.pathbest_length = None
 
-    def find_path(self):
-        for iter in range(self.itermax):
+    def find_path(self,iterations = None):
+        if iterations is None:
+            iterations = self.itermax
+        for iter in range(iterations):
             # 迭代itermax轮
             paths = []  # 本轮每个蚂蚁走过的路径
             path_valid = []  # 蚂蚁路径是否到达终点
@@ -121,8 +125,23 @@ class Ant:
         path = []
         for index in self.pathbest:
             path.append(self.map.index2cor(index))
+        fig = plt.figure()
         self.map.plot_map(np.array(path))
+        dir = sys.path[0]
+        plt.savefig(os.path.join(dir,'Results\ACO_path.png'))
 
+    def plot_process(self):
+        # 画出蚁群算法的训练过程中的路径长度变化
+        sns.set()
+        fig = plt.figure()
+        ax = fig.add_subplot(1,1,1)
+        ax.plot(self.lengthaver,label = 'Average')
+        ax.plot(self.lengthbest,label = 'Best')
+        ax.set_xlabel('Iterations')
+        ax.set_ylabel('Length')
+        ax.legend()
+        dir = sys.path[0]
+        plt.savefig(os.path.join(dir,'Results\ACO_process.png'))
 
 def main():
     # 1 生成数据
@@ -136,8 +155,9 @@ def main():
     # 3 定义算法
     aco = Ant(my_map)
     # 4 运行和显示结果
-    aco.find_path()
+    aco.find_path(400)
     aco.plot_map()
+    aco.plot_process()
     plt.show()
 
 

@@ -113,10 +113,11 @@ class Ant:
                         changepheromonetable[path[j],
                                              path[j+1]] += self.Q*10 / lengths[i]
                 print('Iterations:%d,feasible_path:%d,ave_length:%.2f,best_length:%.2f,global best:%.2f' %
-                  (iter+1,len(lengths),self.lengthaver[-1],self.lengthbest[-1],self.pathbest_length))
+                      (iter+1, len(lengths), self.lengthaver[-1], self.lengthbest[-1], self.pathbest_length))
             self.pheromonetable = (1 - self.rho) * \
                 self.pheromonetable + changepheromonetable
-    def plot_path(self):
+
+    def plot_map(self):
         path = []
         for index in self.pathbest:
             path.append(self.map.index2cor(index))
@@ -124,16 +125,21 @@ class Ant:
 
 
 def main():
-    # 生成数据
+    # 1 生成数据
     map_data = get_data(40, 40, 0.1)
-    # 定义起始点和目标点生成图
+    # 2 定义起始点和目标点生成图
     start_point = [0, 0]
-    end_point = [27, 23]
+    end_point = [38, 34]
     my_map = Map(map_data, start_point, end_point)
+    # my_map.plot_map()
+    # plt.show()
+    # 3 定义算法
     aco = Ant(my_map)
+    # 4 运行和显示结果
     aco.find_path()
-    aco.plot_path()
+    aco.plot_map()
     plt.show()
+
 
 if __name__ == '__main__':
     main()

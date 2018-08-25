@@ -3,7 +3,7 @@ import sys
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-
+# 对原始图像进行处理
 
 class ImageProcess:
     # 定义处理图函数

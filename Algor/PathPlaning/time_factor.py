@@ -3,7 +3,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+# 分析影响时间的因素
 
 a_factor = np.array([[20088, 386378, 253699, 420046, 498945, 3527373],
                      [1, 21, 14, 23, 29, 209]])

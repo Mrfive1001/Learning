@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import sys
-
+# 定义地图对象
 
 class Map:
     '''
@@ -80,6 +80,37 @@ class Map:
                     results.append([x_new,y_new])
         return results
 
+    def plot_precess(self,filename,plot_numbers = 5000):
+        '''
+        画出寻路过程
+        输入包含寻路过程的文件,一次性画图的点数量
+        '''
+        # 画出原始图
+        fig = plt.figure()
+        sns.set(style='dark')
+        ax = fig.add_subplot(1, 1, 1)
+        ax.imshow(self.data)
+        plt.xticks([])
+        plt.yticks([])
+        # 读取规划出来的路线
+        path = np.load(filename)
+        final_path, explore_path = path['final'], path['explore']   
+        len_explore = len(explore_path)
+        plot_numbers = 1000
+        # 每隔一段时间画出一些点的散点图
+        for i in range(int(len_explore / plot_numbers)+1):
+            ax.scatter(explore_path[plot_numbers * i:plot_numbers * (i + 1), 1],
+                    explore_path[plot_numbers * i:plot_numbers * (i + 1), 0], s=2, c='g', alpha=0.5)
+            if i % 5 == 0 or i == len_explore:
+                # 画出起点终点
+                ax.scatter(final_path[0, 1], final_path[0, 0],
+                        s=40, marker='*', c='r')
+                ax.scatter(final_path[-1, 1],
+                        final_path[-1, 0], s=40, marker='*', c='r')
+            plt.pause(0.00001)
+        # 画出最终路径
+        ax.plot(final_path[1:-1, 1], final_path[1:-1, 0], 'r')
+        plt.show()
 
 def main():
     # 选择number m深度的海域进行测试

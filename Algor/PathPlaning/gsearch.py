@@ -6,6 +6,7 @@ import multiprocessing
 import pickle
 import seaborn as sns
 from get_map import Map
+from aco import get_data
 import os
 import time
 import sys
@@ -357,8 +358,8 @@ def report(final_path, explore_path, info, my_map, case_number, algorithm, time0
     file_mode = 'a+'
     if case_number == 1:
         file_mode = 'w+'
-    # with open(filename, file_mode) as f:
-    #     f.write(text)
+    with open(filename, file_mode) as f:
+        f.write(text)
 
     fig = plt.figure()
     my_map.plot_map(final_path)
@@ -395,7 +396,13 @@ if __name__ == '__main__':
     start_position = read_position[read][: 2]
     end_position = read_position[read][2:]
     my_map = Map(map_data, start_position, end_position)
-
+    '''
+    # 与蚁群算法对比
+    map_data = get_data(40, 40, 0.1)
+    start_point = [0, 0]
+    end_point = [38, 34]
+    my_map = Map(map_data, start_point, end_point)
+    '''
     # 3 定义算法
     model = GraphSearch(my_map, alg='A', mode=3)
 
@@ -403,7 +410,8 @@ if __name__ == '__main__':
     time0 = time.time()
     print('起始点(%d,%d)，目标点(%d,%d)，开始规划：' % (*start_position, *end_position))
     final_path, explore_path, info = model.find_path()
-    print(info)
+    model.map.plot_map(final_path)
+    plt.show()
         # 对每个情况进行画图保存
         # text = report(final_path, explore_path, info,
                     #   my_map, read_tem + 1, algorithm, time0)

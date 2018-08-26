@@ -1,2 +1,4 @@
 *.pyc
 workspace.xml
+True.npz
+False.npz

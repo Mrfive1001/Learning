@@ -1,0 +1,1260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c8bd4c28-8589-4d0c-a9f3-b04157625a3f" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Balabala$mos.coverage" NAME="mos Coverage Results" MODIFIED="1528508470015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/TestHelp" />
+    <SUITE FILE_PATH="coverage/Balabala$jiebala.coverage" NAME="jiebala Coverage Results" MODIFIED="1528019178163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$learn.coverage" NAME="learn Coverage Results" MODIFIED="1532760863496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Lianliankan" />
+    <SUITE FILE_PATH="coverage/Balabala$Astar.coverage" NAME="Astar Coverage Results" MODIFIED="1531194594509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/02_Experiment/PathPlaning" />
+    <SUITE FILE_PATH="coverage/Balabala$123.coverage" NAME="123 Coverage Results" MODIFIED="1528508563222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/TestHelp" />
+    <SUITE FILE_PATH="coverage/Learning$visualization.coverage" NAME="visualization Coverage Results" MODIFIED="1534841349774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/PathPlaning" />
+    <SUITE FILE_PATH="coverage/Balabala$game__2_.coverage" NAME="game (2) Coverage Results" MODIFIED="1528598355226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_4" />
+    <SUITE FILE_PATH="coverage/balabala$main.coverage" NAME="main Coverage Results" MODIFIED="1525764082440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/quad4" />
+    <SUITE FILE_PATH="coverage/Balabala$Conv_code2.coverage" NAME="Conv_code2 Coverage Results" MODIFIED="1533641605091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Balabala$MinistSolver_tensor.coverage" NAME="MinistSolver_tensor Coverage Results" MODIFIED="1533637772960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/02_Experiment/ImageClass" />
+    <SUITE FILE_PATH="coverage/Balabala$word_pre.coverage" NAME="word_pre Coverage Results" MODIFIED="1532602105231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Word_process" />
+    <SUITE FILE_PATH="coverage/Balabala$01Wall.coverage" NAME="01Wall Coverage Results" MODIFIED="1528180041889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_analysis" />
+    <SUITE FILE_PATH="coverage/balabala$main__2_.coverage" NAME="main (2) Coverage Results" MODIFIED="1525762219839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/quad3" />
+    <SUITE FILE_PATH="coverage/Balabala$inference.coverage" NAME="inference Coverage Results" MODIFIED="1527777508102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
+    <SUITE FILE_PATH="coverage/Learning$ACO.coverage" NAME="ACO Coverage Results" MODIFIED="1535030734257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/ACO/PathPlan" />
+    <SUITE FILE_PATH="coverage/Balabala$byes.coverage" NAME="byes Coverage Results" MODIFIED="1530880597948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/MLearning" />
+    <SUITE FILE_PATH="coverage/Balabala$FaceClass.coverage" NAME="FaceClass Coverage Results" MODIFIED="1533644348102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/02_Experiment/ImageClass" />
+    <SUITE FILE_PATH="coverage/Balabala$writefile.coverage" NAME="writefile Coverage Results" MODIFIED="1530076892242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/04_Temp" />
+    <SUITE FILE_PATH="coverage/Balabala$FinalProjectApp__1_.coverage" NAME="FinalProjectApp (1) Coverage Results" MODIFIED="1532671051102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Lianliankan" />
+    <SUITE FILE_PATH="coverage/Balabala$textsolve.coverage" NAME="textsolve Coverage Results" MODIFIED="1533457911183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/04_Temp" />
+    <SUITE FILE_PATH="coverage/Balabala$tensor1examples.coverage" NAME="tensor1examples Coverage Results" MODIFIED="1526200230029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$jj.coverage" NAME="jj Coverage Results" MODIFIED="1526694985522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$bulang.coverage" NAME="bulang Coverage Results" MODIFIED="1528158145327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Learning$Astar.coverage" NAME="Astar Coverage Results" MODIFIED="1534841918908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/PathPlaning" />
+    <SUITE FILE_PATH="coverage/Balabala$data_process.coverage" NAME="data_process Coverage Results" MODIFIED="1526605123942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataAnalysis" />
+    <SUITE FILE_PATH="coverage/Balabala$dump.coverage" NAME="dump Coverage Results" MODIFIED="1527773706620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
+    <SUITE FILE_PATH="coverage/Balabala$.coverage" NAME="公民收入预测 Coverage Results" MODIFIED="1529236491807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Income_predict" />
+    <SUITE FILE_PATH="coverage/Balabala$save_csv.coverage" NAME="save_csv Coverage Results" MODIFIED="1531027248230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$data_classification.coverage" NAME="data_classification Coverage Results" MODIFIED="1532353043919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Income_predict" />
+    <SUITE FILE_PATH="coverage/Balabala$fortt.coverage" NAME="fortt Coverage Results" MODIFIED="1530968810766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$Som.coverage" NAME="Som Coverage Results" MODIFIED="1528116573828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MyDemo" />
+    <SUITE FILE_PATH="coverage/Balabala$Dijkstra.coverage" NAME="Dijkstra Coverage Results" MODIFIED="1528075679094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$classification__1_.coverage" NAME="classification (1) Coverage Results" MODIFIED="1530017578685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/satisfaction_classification" />
+    <SUITE FILE_PATH="coverage/Balabala$nnn.coverage" NAME="nnn Coverage Results" MODIFIED="1530880567232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/MLearning" />
+    <SUITE FILE_PATH="coverage/Balabala$HW3.coverage" NAME="HW3 Coverage Results" MODIFIED="1532571365877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Houseprice" />
+    <SUITE FILE_PATH="coverage/Balabala$main.coverage" NAME="main Coverage Results" MODIFIED="1532759594174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Lianliankan" />
+    <SUITE FILE_PATH="coverage/Balabala$visualization.coverage" NAME="visualization Coverage Results" MODIFIED="1530775123648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Data_plo" />
+    <SUITE FILE_PATH="coverage/Balabala$yearmonth2rate.coverage" NAME="yearmonth2rate Coverage Results" MODIFIED="1531010860569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$MinistSolve.coverage" NAME="MinistSolve Coverage Results" MODIFIED="1533566590495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/02_Experiment/ImageClass" />
+    <SUITE FILE_PATH="coverage/Learning$ACO_example.coverage" NAME="ACO_example Coverage Results" MODIFIED="1534992538187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/ACO/TSP" />
+    <SUITE FILE_PATH="coverage/Learning$time_factor.coverage" NAME="time_factor Coverage Results" MODIFIED="1534844365121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/PathPlaning" />
+    <SUITE FILE_PATH="coverage/Balabala$easyone.coverage" NAME="easyone Coverage Results" MODIFIED="1528079646297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hmm" />
+    <SUITE FILE_PATH="coverage/Balabala$gibbs.coverage" NAME="gibbs Coverage Results" MODIFIED="1527777082841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
+    <SUITE FILE_PATH="coverage/Balabala$network.coverage" NAME="network Coverage Results" MODIFIED="1531035662944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$auto_try.coverage" NAME="auto_try Coverage Results" MODIFIED="1533280535077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Balabala$auto_try2.coverage" NAME="auto_try2 Coverage Results" MODIFIED="1533280708760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Balabala$login.coverage" NAME="login Coverage Results" MODIFIED="1529496564954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01_Learning/Qtbala" />
+    <SUITE FILE_PATH="coverage/Balabala$Position_analysis__1_.coverage" NAME="Position_analysis (1) Coverage Results" MODIFIED="1531025105466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$agent__1_.coverage" NAME="agent (1) Coverage Results" MODIFIED="1527757613151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/balabala$mainddpg.coverage" NAME="mainddpg Coverage Results" MODIFIED="1525764513407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/quad4" />
+    <SUITE FILE_PATH="coverage/Balabala$D3QN.coverage" NAME="D3QN Coverage Results" MODIFIED="1528811385875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/DQN" />
+    <SUITE FILE_PATH="coverage/Balabala$image_process.coverage" NAME="image_process Coverage Results" MODIFIED="1531026571633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$Position_analysis.coverage" NAME="Position_analysis Coverage Results" MODIFIED="1531030047710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Nanji" />
+    <SUITE FILE_PATH="coverage/Balabala$image.coverage" NAME="image Coverage Results" MODIFIED="1532353424300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Optimization" />
+    <SUITE FILE_PATH="coverage/Balabala$fortry.coverage" NAME="fortry Coverage Results" MODIFIED="1533437549981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Balabala$Conv_code.coverage" NAME="Conv_code Coverage Results" MODIFIED="1533563525778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Balabala$game.coverage" NAME="game Coverage Results" MODIFIED="1528612607312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_4" />
+    <SUITE FILE_PATH="coverage/Balabala$likelyhood.coverage" NAME="likelyhood Coverage Results" MODIFIED="1527773416521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
+    <SUITE FILE_PATH="coverage/Balabala$exam.coverage" NAME="exam Coverage Results" MODIFIED="1532615385241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Examination" />
+    <SUITE FILE_PATH="coverage/Balabala$Gibbsp.coverage" NAME="Gibbsp Coverage Results" MODIFIED="1527777335463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
+    <SUITE FILE_PATH="coverage/Balabala$exam2.coverage" NAME="exam2 Coverage Results" MODIFIED="1532615945218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Examination" />
+    <SUITE FILE_PATH="coverage/Balabala$FinalProjectApp.coverage" NAME="FinalProjectApp Coverage Results" MODIFIED="1532760876492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Lianliankan" />
+    <SUITE FILE_PATH="coverage/Balabala$pachongTest.coverage" NAME="pachongTest Coverage Results" MODIFIED="1530771750369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Data_plo" />
+    <SUITE FILE_PATH="coverage/Balabala$ttt.coverage" NAME="ttt Coverage Results" MODIFIED="1528459468009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/04_Temp" />
+    <SUITE FILE_PATH="coverage/Balabala$tensor3.coverage" NAME="tensor3 Coverage Results" MODIFIED="1526270315202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$classification.coverage" NAME="classification Coverage Results" MODIFIED="1531109016816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/satisfaction_classification_copy" />
+    <SUITE FILE_PATH="coverage/Balabala$process.coverage" NAME="process Coverage Results" MODIFIED="1530863114794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/MLearning" />
+    <SUITE FILE_PATH="coverage/balabala$scipybala.coverage" NAME="scipybala Coverage Results" MODIFIED="1524902202467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/balabala$main_2_.coverage" NAME="main(2) Coverage Results" MODIFIED="1525762127607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/quad3" />
+    <SUITE FILE_PATH="coverage/Balabala$main_DQN.coverage" NAME="main_DQN Coverage Results" MODIFIED="1528811438990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/DQN" />
+    <SUITE FILE_PATH="coverage/Learning$textsolve.coverage" NAME="textsolve Coverage Results" MODIFIED="1534777382560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tech" />
+    <SUITE FILE_PATH="coverage/Balabala$pyqtbala.coverage" NAME="pyqtbala Coverage Results" MODIFIED="1529398596365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01_Learning" />
+    <SUITE FILE_PATH="coverage/Balabala$deleteenter.coverage" NAME="deleteenter Coverage Results" MODIFIED="1527664438022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Balabala$iter.coverage" NAME="iter Coverage Results" MODIFIED="1529414288525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Iteration" />
+    <SUITE FILE_PATH="coverage/Balabala$tensor2.coverage" NAME="tensor2 Coverage Results" MODIFIED="1532317027183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/tensorflow_piandao" />
+    <SUITE FILE_PATH="coverage/Learning$image_example.coverage" NAME="image_example Coverage Results" MODIFIED="1534752717290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/PathPlaning/Discussion" />
+    <SUITE FILE_PATH="coverage/Balabala$numpybala.coverage" NAME="numpybala Coverage Results" MODIFIED="1529045235500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01_Learning" />
+    <SUITE FILE_PATH="coverage/Balabala$game__1_.coverage" NAME="game (1) Coverage Results" MODIFIED="1528442949251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_2" />
+    <SUITE FILE_PATH="coverage/balabala$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1525762649737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/quad2" />
+    <SUITE FILE_PATH="coverage/Balabala$agent.coverage" NAME="agent Coverage Results" MODIFIED="1527757583471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Tencent Files/354114980/FileRecv/src(1)/src" />
+    <SUITE FILE_PATH="coverage/Balabala$loader.coverage" NAME="loader Coverage Results" MODIFIED="1528598467819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_4" />
+  </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="ACO_example.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/Algor/ACO/TSP/ACO_example.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="205">
+                    <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
+                    <folding>
+                      <element signature="e#0#9#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="ACO.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Algor/ACO/PathPlan/ACO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1593">
+              <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>end_point</find>
+      <find>start_position</find>
+      <find>position</find>
+      <find>node</find>
+      <find>node.x</find>
+      <find>cal_g</find>
+      <find>sess</find>
+      <find>id</find>
+      <find>path_data</find>
+      <find>Ui_form</find>
+      <find>53.00元</find>
+      <find>皇冠出版社</find>
+      <find>南海出版公司</find>
+      <find>东野圭吾</find>
+      <find>curlabel</find>
+      <find>ax2</find>
+      <find>use_rates</find>
+      <find>X1</find>
+      <find>X2</find>
+      <find>Y</find>
+      <find>border_mode</find>
+      <find>731 84</find>
+      <find>704 352</find>
+      <find>(349, 550)</find>
+      <find>351 550</find>
+      <find>349 550</find>
+      <find>cal_f</find>
+      <find>cal_f()</find>
+      <find>read</find>
+      <find>lengths</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="test" />
+      </map>
+    </option>
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Algor/ACO/PathPlan/ACO.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/README.md" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Algor/ACO/TSP/ACO_example.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/03_Help/MLearning/nnn.py" />
+        <option value="$PROJECT_DIR$/03_Help/MLearning/byes.py" />
+        <option value="$PROJECT_DIR$/03_Help/MLearning/network.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/fortt.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/yearmonth2rate.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/network.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/result/Position_analysis.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/image_process.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/save_csv.py" />
+        <option value="$PROJECT_DIR$/03_Help/Nanji/Position_analysis.py" />
+        <option value="$PROJECT_DIR$/03_Help/satisfaction_classification_copy/classification.py" />
+        <option value="$PROJECT_DIR$/01_Learning/Qtbala/train.csv" />
+        <option value="$PROJECT_DIR$/03_Help/Titannic/dataMining.py" />
+        <option value="$PROJECT_DIR$/03_Help/Titannic/Mining.py" />
+        <option value="$PROJECT_DIR$/02_Experiment/PathPlaning/Astar.py" />
+        <option value="$PROJECT_DIR$/02_Experiment/PathPlaning/image_process.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/04_Temp/DFS.py" />
+        <option value="$PROJECT_DIR$/03_Help/Data_read/glimse.py" />
+        <option value="$PROJECT_DIR$/03_Help/tensorflow_piandao/tensor2.py" />
+        <option value="$PROJECT_DIR$/03_Help/Word_process/word_pre.py" />
+        <option value="$PROJECT_DIR$/03_Help/Examination/exam.py" />
+        <option value="$PROJECT_DIR$/03_Help/Houseprice/HW3.py" />
+        <option value="$PROJECT_DIR$/03_Help/Lianliankan/FinalProjectApp.py" />
+        <option value="$PROJECT_DIR$/03_Help/Lianliankan/pong.ky" />
+        <option value="$PROJECT_DIR$/03_Help/Lianliankan/main.py" />
+        <option value="$PROJECT_DIR$/03_Help/Lianliankan/learn.py" />
+        <option value="$PROJECT_DIR$/03_Help/README.md" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/auto_try.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/Refer/autoencoder.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/auto_try2.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/fortry.py" />
+        <option value="$PROJECT_DIR$/04_Temp/textsolve.py" />
+        <option value="$PROJECT_DIR$/01_Learning/.ipynb_checkpoints/KNN.py" />
+        <option value="$PROJECT_DIR$/01_Learning/.ipynb_checkpoints/LinearRegression.py" />
+        <option value="$PROJECT_DIR$/01_Learning/.ipynb_checkpoints/LogisticRegression.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/dec_dim.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/Conv_code.py" />
+        <option value="$PROJECT_DIR$/02_Experiment/ImageClass/MinistSolve.py" />
+        <option value="$PROJECT_DIR$/02_Experiment/ImageClass/MinistSolver_tensor.py" />
+        <option value="$PROJECT_DIR$/03_Help/ConvAuto/Conv_code2.py" />
+        <option value="$PROJECT_DIR$/02_Experiment/ImageClass/FaceClass.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/image_process.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/Discussion/image_example.py" />
+        <option value="$PROJECT_DIR$/Tech/textsolve.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/visualization.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/Astar.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/cal_av.py" />
+        <option value="$PROJECT_DIR$/Algor/PathPlaning/time_factor.py" />
+        <option value="$PROJECT_DIR$/Algor/ACO/TSP/ACO_example.py" />
+        <option value="$PROJECT_DIR$/Algor/ACO/PathPlan/ACO.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="886" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Probable bugsCSS</id>
+          </State>
+          <State>
+            <id>RELAX NG</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Learning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Algor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Algor" type="462c0819:PsiDirectoryNode" />
+              <item name="ACO" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Algor" type="462c0819:PsiDirectoryNode" />
+              <item name="ACO" type="462c0819:PsiDirectoryNode" />
+              <item name="PathPlan" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="Balabala" sdk-home="C:\Users\zhouc\AppData\Local\Programs\Python\Python35\python.exe">
+        <option name="mySdkHome" value="C:\Users\zhouc\AppData\Local\Programs\Python\Python35\python.exe" />
+        <option name="myModuleName" value="Balabala" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MrFive\Documents\Code\Balabala\01_Learning" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\Lianliankan" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\Houseprice\Reference" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\Houseprice" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\Nanji" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MrFive\Documents\Code\Learning\Algor\PathPlaning\Discussion" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\02_Experiment\ImageClass" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\01_Learning\.ipynb_checkpoints" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\ConvAuto\Refer" />
+      <recent name="D:\MrFive\Documents\Code\Balabala\03_Help\ConvAuto\Data" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.ACO">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+    </configuration>
+    <configuration name="ACO" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/ACO/PathPlan" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/ACO/PathPlan/ACO.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="ACO_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/ACO/TSP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/ACO/TSP/ACO_example.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="Astar" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/PathPlaning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/PathPlaning/Astar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="cal_av" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/PathPlaning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/PathPlaning/cal_av.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="time_factor" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/PathPlaning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/PathPlaning/time_factor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="balabala" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Astar" />
+      <item itemvalue="Python.time_factor" />
+      <item itemvalue="Python.cal_av" />
+      <item itemvalue="Python.ACO_example" />
+      <item itemvalue="Python.ACO" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ACO" />
+        <item itemvalue="Python.ACO" />
+        <item itemvalue="Python.ACO" />
+        <item itemvalue="Python.ACO_example" />
+        <item itemvalue="Python.cal_av" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\zhouc\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8bd4c28-8589-4d0c-a9f3-b04157625a3f" name="Default" comment="" />
+      <created>1524878197444</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1524878197444</updated>
+    </task>
+    <task id="LOCAL-00082" summary="修改分类">
+      <created>1530869656807</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1530869656807</updated>
+    </task>
+    <task id="LOCAL-00083" summary="将数据分类">
+      <created>1530874095830</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1530874095830</updated>
+    </task>
+    <task id="LOCAL-00084" summary="自己写了一份，但是效果不好">
+      <created>1530878728804</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1530878728804</updated>
+    </task>
+    <task id="LOCAL-00085" summary="增加两个贝叶斯测试">
+      <created>1530880676007</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1530880676007</updated>
+    </task>
+    <task id="LOCAL-00086" summary="增加画图函数">
+      <created>1530949438690</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1530949438691</updated>
+    </task>
+    <task id="LOCAL-00087" summary="增加图片处理函数">
+      <created>1530973418667</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1530973418667</updated>
+    </task>
+    <task id="LOCAL-00088" summary="增加画图，并输出基本单元">
+      <created>1531011213136</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1531011213136</updated>
+    </task>
+    <task id="LOCAL-00089" summary="保存多张图的格式">
+      <created>1531015755406</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1531015755406</updated>
+    </task>
+    <task id="LOCAL-00090" summary="增加保存函数">
+      <created>1531016457202</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1531016457202</updated>
+    </task>
+    <task id="LOCAL-00091" summary="增加输出结果">
+      <created>1531016518000</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1531016518000</updated>
+    </task>
+    <task id="LOCAL-00092" summary="增加神经网络数据">
+      <created>1531017037329</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1531017037329</updated>
+    </task>
+    <task id="LOCAL-00093" summary="增加神经网络的训练">
+      <created>1531019955535</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1531019955535</updated>
+    </task>
+    <task id="LOCAL-00094" summary="修改图片名称">
+      <created>1531024952766</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1531024952766</updated>
+    </task>
+    <task id="LOCAL-00095" summary="将基本数据单元来源修改">
+      <created>1531026845773</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1531026845773</updated>
+    </task>
+    <task id="LOCAL-00096" summary="分开添加">
+      <created>1531027417031</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1531027417031</updated>
+    </task>
+    <task id="LOCAL-00097" summary="增加每一年不同月份的海冰覆盖图">
+      <created>1531031471776</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1531031471776</updated>
+    </task>
+    <task id="LOCAL-00098" summary="增加泰坦尼克号数据">
+      <created>1531141907063</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1531141907063</updated>
+    </task>
+    <task id="LOCAL-00099" summary="增加泰坦尼克号数据">
+      <created>1531142177815</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1531142177815</updated>
+    </task>
+    <task id="LOCAL-00100" summary="增加原始图像">
+      <created>1531450731380</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1531450731380</updated>
+    </task>
+    <task id="LOCAL-00101" summary="增加BFS与DFS">
+      <created>1531470175176</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1531470175176</updated>
+    </task>
+    <task id="LOCAL-00102" summary="增加参考文件">
+      <created>1533382319021</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1533382319021</updated>
+    </task>
+    <task id="LOCAL-00103" summary="经过降维之后的到0.5的准确率">
+      <created>1533438361753</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1533438361753</updated>
+    </task>
+    <task id="LOCAL-00104" summary="经过卷积层进行降维">
+      <created>1533439859868</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1533439859868</updated>
+    </task>
+    <task id="LOCAL-00105" summary="增加机器学习几个例子">
+      <created>1533537139717</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1533537139717</updated>
+    </task>
+    <task id="LOCAL-00106" summary="增加注释">
+      <created>1533537347661</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1533537347661</updated>
+    </task>
+    <task id="LOCAL-00107" summary="修改训练代数">
+      <created>1533555535407</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1533555535407</updated>
+    </task>
+    <task id="LOCAL-00108" summary="增加无预处理的自编码">
+      <created>1533557296769</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1533557296770</updated>
+    </task>
+    <task id="LOCAL-00109" summary="增加用Keras做手写数字的识别">
+      <created>1533567055656</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1533567055656</updated>
+    </task>
+    <task id="LOCAL-00110" summary="增加tensorflow的卷积神经网络">
+      <created>1533637548641</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1533637548642</updated>
+    </task>
+    <task id="LOCAL-00111" summary="增加tensorflow的卷积神经网络">
+      <created>1533641639143</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1533641639145</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Init Commit">
+      <created>1533723951527</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1533723951528</updated>
+    </task>
+    <task id="LOCAL-00113" summary="增加A*算法的调试">
+      <created>1534557736038</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1534557736039</updated>
+    </task>
+    <task id="LOCAL-00114" summary="找到之前的错误了，是因为保存的节点的父节点太多">
+      <created>1534600120311</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1534600120311</updated>
+    </task>
+    <task id="LOCAL-00115" summary="增加多线程模式，发现效果还可以">
+      <created>1534674572115</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1534674572115</updated>
+    </task>
+    <task id="LOCAL-00116" summary="修改多进程模式，使用共享内存，接下来可以修改不使用读取文件的操作">
+      <created>1534748098142</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1534748098143</updated>
+    </task>
+    <task id="LOCAL-00117" summary="多进程模式基本成功，能够缩短四分之一的时间">
+      <created>1534748754762</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1534748754762</updated>
+    </task>
+    <task id="LOCAL-00118" summary="实现多进程功能，并且对多进程和多线程进行了总结">
+      <created>1534751981531</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1534751981531</updated>
+    </task>
+    <task id="LOCAL-00119" summary="删除不需要的文件">
+      <created>1534754341450</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1534754341451</updated>
+    </task>
+    <task id="LOCAL-00120" summary="增加报告所需要的输出结果函数">
+      <created>1534819880074</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1534819880074</updated>
+    </task>
+    <task id="LOCAL-00121" summary="运行得到各个算法在不同路径下的典型任务图">
+      <created>1534832706762</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1534832706762</updated>
+    </task>
+    <task id="LOCAL-00122" summary="得到各个任务下的探索图">
+      <created>1534837951802</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1534837951802</updated>
+    </task>
+    <task id="LOCAL-00123" summary="之前的Git记录太大了，没法上传。">
+      <created>1534938847590</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1534938847590</updated>
+    </task>
+    <task id="LOCAL-00124" summary="之前的Git记录太大了，没法上传。">
+      <created>1534944720028</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1534944720028</updated>
+    </task>
+    <task id="LOCAL-00125" summary="增加技术学习部分">
+      <created>1534944788705</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1534944788705</updated>
+    </task>
+    <task id="LOCAL-00126" summary="增加概念学习部分">
+      <created>1534944879691</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1534944879691</updated>
+    </task>
+    <task id="LOCAL-00127" summary="增加算法学习">
+      <created>1534945063131</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1534945063131</updated>
+    </task>
+    <task id="LOCAL-00128" summary="增加图片分类">
+      <created>1534950004815</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1534950004815</updated>
+    </task>
+    <task id="LOCAL-00129" summary="增加蚁群算法解决TSP问题">
+      <created>1534992860894</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1534992860895</updated>
+    </task>
+    <task id="LOCAL-00130" summary="增加解决问题流程">
+      <created>1534995618130</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1534995618130</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1616" height="886" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
+      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50429183" side_tool="true" weight="0.6048951" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.039889958" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.5213205" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.50982964" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.31086656" />
+      <window_info anchor="right" id="Remote Host" order="7" weight="0.3636977" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.025259068" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" auto_hide="true" x="122" y="66" width="1218" height="762" id="SciView" order="5" show_stripe_button="false" type="FLOATING" weight="0.38465664" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49570817" weight="0.5203146" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="6" weight="0.15718885" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="14" visible="true" weight="0.33287483" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32599726" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3289941" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="经过卷积层进行降维" />
+    <MESSAGE value="增加机器学习几个例子" />
+    <MESSAGE value="增加注释" />
+    <MESSAGE value="修改训练代数" />
+    <MESSAGE value="增加无预处理的自编码" />
+    <MESSAGE value="增加用Keras做手写数字的识别" />
+    <MESSAGE value="增加tensorflow的卷积神经网络" />
+    <MESSAGE value="Init Commit" />
+    <MESSAGE value="增加A*算法的调试" />
+    <MESSAGE value="找到之前的错误了，是因为保存的节点的父节点太多" />
+    <MESSAGE value="增加多线程模式，发现效果还可以" />
+    <MESSAGE value="修改多进程模式，使用共享内存，接下来可以修改不使用读取文件的操作" />
+    <MESSAGE value="多进程模式基本成功，能够缩短四分之一的时间" />
+    <MESSAGE value="实现多进程功能，并且对多进程和多线程进行了总结" />
+    <MESSAGE value="删除不需要的文件" />
+    <MESSAGE value="增加报告所需要的输出结果函数" />
+    <MESSAGE value="运行得到各个算法在不同路径下的典型任务图" />
+    <MESSAGE value="得到各个任务下的探索图" />
+    <MESSAGE value="之前的Git记录太大了，没法上传。" />
+    <MESSAGE value="增加技术学习部分" />
+    <MESSAGE value="增加概念学习部分" />
+    <MESSAGE value="增加算法学习" />
+    <MESSAGE value="增加图片分类" />
+    <MESSAGE value="增加蚁群算法解决TSP问题" />
+    <MESSAGE value="增加解决问题流程" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加解决问题流程" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="323" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/03_Help/ConvAuto/auto_try2.py" />
+    <entry file="file://$PROJECT_DIR$/02_Experiment/ImageClass/MinistSolver_tensor.py" />
+    <entry file="file://$PROJECT_DIR$/03_Help/ConvAuto/Conv_code2.py" />
+    <entry file="file://$PROJECT_DIR$/02_Experiment/ImageClass/FaceClass.py" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="24">
+            <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="310" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/multiprocessing/queues.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="240" column="8" lean-forward="true" selection-start-line="240" selection-start-column="8" selection-end-line="240" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/multiprocessing/reduction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/multiprocessing/process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/multiprocessing/managers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="731" selection-start-line="731" selection-end-line="731" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Discussion/image_example.py" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/image_process.py" />
+    <entry file="file://$PROJECT_DIR$/Tech/textsolve.py" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case2.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case3.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case5.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/BFS_Case1.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case6.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/Dijstra_Case5.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/Dijstra_Case4.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/Dijstra_Case6.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/BFS_Case2.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case1.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/Dijstra.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/BFS.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case6.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A_Case1_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case3_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case2_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case1_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A_Case1.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/visualization.py" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B.txt" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case3_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case2_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case1_explor.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case1.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case2.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case3.png" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Astar.py" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/cal_av.py" />
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/time_factor.py" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/ACO/TSP/Average_Best.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/ACO/TSP/Best Path.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/ACO/PathPlan/ACO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1593">
+          <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/ACO/TSP/ACO_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.203" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

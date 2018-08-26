@@ -101,7 +101,7 @@ class GraphSearch:
         self.mid_node = None
         self.go_on = True
         # 从头尾两个方面进行探索
-        if mode == 2:
+        if self.mode == 2:
             # 多进程处理
             end = multiprocessing.Value('i', 1)
             curN = multiprocessing.Array('i', [start_nodeN.x, start_nodeN.y])
@@ -134,7 +134,7 @@ class GraphSearch:
             result = setP[range(len(setP) - 2, -1, -1)]
             result = np.vstack((result, setN))
             explore_path = np.vstack((explore_pathP, explore_pathN))
-        elif mode == 3:
+        elif self.mode == 3:
             # 多线程处理
             self.lock = threading.Lock()
             # 方式1
@@ -391,13 +391,13 @@ if __name__ == '__main__':
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read = 1  # 规划数据，选择对那一组测试
+    read = 0  # 规划数据，选择对那一组测试
     start_position = read_position[read][: 2]
     end_position = read_position[read][2:]
-    my_map = Map(map_data, start_position, start_position)
+    my_map = Map(map_data, start_position, end_position)
 
     # 3 定义算法
-    model = GraphSearch(my_map, alg='A', mode=0)
+    model = GraphSearch(my_map, alg='A', mode=3)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()

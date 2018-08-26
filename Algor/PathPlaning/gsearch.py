@@ -35,8 +35,9 @@ class GraphSearch:
         self.alg = alg
         self.mode = mode
         self.data_dir = os.path.join(sys.path[0], 'Data')  # 存放中间变量
+        self.result_dir = os.path.join(sys.path[0], 'Results')  # 存放结果
 
-    def get_f(self,node):
+    def get_f(self, node):
         # 设置Node的f值
         # 传入Node对象
         if self.alg == 'A':
@@ -54,7 +55,7 @@ class GraphSearch:
         '''
         if self.mode >= 2:
             # 多任务搜索路径
-            return self.multi_path()
+            result_path, explore_path, info = self.multi_path()
         else:
             if self.mode == 1:
                 # 起点终点交换
@@ -85,7 +86,10 @@ class GraphSearch:
                 curNode = curNode.father
             result_path = np.array(result_path)
             result_path = result_path[range(len(result_path) - 1, 0, -1)]
-            return result_path, np.array(explore_path), info
+            explore_path = np.array(explore_path)
+        np.savez(os.path.join(self.result_dir, 'result.npz'),
+                 final=result_path, explore=explore_path,length = info['total_length'])
+        return result_path, explore_path, info
 
     def multi_path(self):
         # 双向任务搜索
@@ -313,6 +317,39 @@ class GraphSearch:
                  explore=np.array(explore_path))
         print('Write %s done!' % inverse)
 
+    def plot_process(self):
+        '''
+        画出路径动态图
+        '''
+        filename = os.path.join(self.result_dir, 'result.npz')
+        self.map.plot_precess(filename)
+
+    def report(self, time0, name):
+        # 对规划的每一个路径进行汇总结果
+        path = np.load(os.path.join(self.result_dir, 'result.npz'))
+        final_path, explore_path, length = path['final'], path['explore'], path['length']
+        filename = os.path.join(sys.path[0], 'Results\%s.txt' % name)
+        text = '总时间：%ds,路径总长度：%d,探索点个数：%d\n' % (int(time.time() - time0),
+                                                int(length), int(len(explore_path)))
+        print(text)
+        # 保存路径规划结果
+        with open(filename, 'w+') as f:
+            f.write(text)
+        # 保存路径规划图像
+        self.map.plot_map(final_path)
+        plt.savefig(os.path.join(sys.path[0], 'Results\%s.png' % name))
+        # 保存探索结果
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.imshow(map_data)
+        # 画出探索路径
+        ax.scatter(explore_path[:, 1], explore_path[:, 0], s=2, c='g', alpha=0.5)
+        # 画出最终路径
+        ax.plot(final_path[:, 1], final_path[:, 0], 'r')
+        # 画出起始点和终点
+        ax.scatter(final_path[0, 1], final_path[0, 0], s=40, marker='*', c='r')
+        ax.scatter(final_path[-1, 1], final_path[-1, 0], s=40, marker='*', c='r')
+
 
 class Node:
     '''
@@ -349,39 +386,6 @@ def get_hash(x, y):
     '''
     return str(x * 20000 + y)
 
-
-def report(final_path, explore_path, info, my_map, case_number, algorithm, time0):
-    filename = os.path.join(sys.path[0], 'Results\%s.txt' % algorithm)
-    text = '任务%d,总时间：%ds,路径总长度：%d,探索点个数：%d\n' % \
-           (case_number, int(time.time() - time0),
-            int(info['total_length']), int(len(explore_path)))
-    file_mode = 'a+'
-    if case_number == 1:
-        file_mode = 'w+'
-    with open(filename, file_mode) as f:
-        f.write(text)
-
-    fig = plt.figure()
-    my_map.plot_map(final_path)
-    plt.savefig(os.path.join(
-        sys.path[0], 'Results\%s_Case%s.png' % (algorithm, case_number)))
-    plt.close()
-    return text
-
-
-def plot_explore(map_data, final_path, explore_path):
-    fig = plt.figure()
-    ax = fig.add_subplot(1, 1, 1)
-    ax.imshow(map_data)
-    # 画出探索路径
-    ax.scatter(explore_path[:, 1], explore_path[:, 0], s=2, c='g', alpha=0.5)
-    # 画出最终路径
-    ax.plot(final_path[:, 1], final_path[:, 0], 'r')
-    # 画出起始点和终点
-    ax.scatter(final_path[0, 1], final_path[0, 0], s=40, marker='*', c='r')
-    ax.scatter(final_path[-1, 1], final_path[-1, 0], s=40, marker='*', c='r')
-
-
 if __name__ == '__main__':
     # 1 读取数据
     number = 4650
@@ -404,23 +408,13 @@ if __name__ == '__main__':
     my_map = Map(map_data, start_point, end_point)
     '''
     # 3 定义算法
-    model = GraphSearch(my_map, alg='A', mode=3)
+    model = GraphSearch(my_map, alg='A', mode=2)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()
     print('起始点(%d,%d)，目标点(%d,%d)，开始规划：' % (*start_position, *end_position))
     final_path, explore_path, info = model.find_path()
-    model.map.plot_map(final_path)
+    # model.map.plot_map(final_path)
+    # model.plot_process()
+    model.report(time0, 'play')
     plt.show()
-        # 对每个情况进行画图保存
-        # text = report(final_path, explore_path, info,
-                    #   my_map, read_tem + 1, algorithm, time0)
-
-        # 将规划结果进行保存
-        # dir = sys.path[0]
-        # np.savez(os.path.join(dir, 'result.npz'),
-        #          final=final_path, explore=explore_path)
-        # plot_explore(map_data, final_path, explore_path)
-        # plt.savefig(os.path.join(sys.path[0], 'Results\%s_Case%s_explor.png' % (algorithm, read_tem+1)))
-        # plt.close()
-        # plt.show()

@@ -33,6 +33,7 @@ class Map:
         # 画出地图，如果规划的路径不为空的话，将其画出来
         # 注意地图中x与y是反过来的，横坐标是y
         sns.set(style='dark')
+        plt.figure()
         plt.imshow(self.data)
         plt.xticks([])
         plt.yticks([])
@@ -107,7 +108,7 @@ class Map:
                         s=40, marker='*', c='r')
                 ax.scatter(final_path[-1, 1],
                         final_path[-1, 0], s=40, marker='*', c='r')
-            plt.pause(0.00001)
+            plt.pause(0.0000001)
         # 画出最终路径
         ax.plot(final_path[1:-1, 1], final_path[1:-1, 0], 'r')
         plt.show()

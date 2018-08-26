@@ -31,12 +31,13 @@ class Ant:
         self.rho = 0.05  # 信息素的挥发速度
         self.Q = 0.5  # 完成率
         self.itermax = 150  # 迭代总数
-        self.pheromonetable = np.ones((self.numcity, self.numcity))  # 信息素矩阵
+        self.pheromonetable = np.ones((self.numcity, 8))  # 信息素矩阵
         self.lengthaver = []  # 迭代,存放每次迭代后，路径的平均长度
         self.lengthbest = []  # 迭代,存放每次迭代后，最佳路径长度
         self.pathbest = []
         self.pathbest_length = None
 
+    # TODO 将信息素维度降低
     def find_path(self,iterations = None):
         if iterations is None:
             iterations = self.itermax
@@ -144,18 +145,33 @@ class Ant:
         plt.savefig(os.path.join(dir,'Results\ACO_process.png'))
 
 def main():
-    # 1 生成数据
-    map_data = get_data(40, 40, 0.1)
-    # 2 定义起始点和目标点生成图
-    start_point = [0, 0]
-    end_point = [38, 34]
-    my_map = Map(map_data, start_point, end_point)
-    # my_map.plot_map()
-    # plt.show()
+    # # 1 生成数据
+    # map_data = get_data(40, 40, 0.1)
+    # # 2 定义起始点和目标点生成图
+    # start_point = [0, 0]
+    # end_point = [38, 34]
+    # my_map = Map(map_data, start_point, end_point)
+
+    # 读取大文件数据
+    # 1 读取数据
+    number = 4650
+    data_dir = os.path.join(sys.path[0], 'Data')
+    map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+
+    # 2 定义起点终点，然后生成图
+    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # 起点终点备选
+    read = 0  # 规划数据，选择对那一组测试
+    start_position = read_position[read][: 2]
+    end_position = read_position[read][2:]
+    my_map = Map(map_data, start_position, end_position)
+
+
     # 3 定义算法
     aco = Ant(my_map)
     # 4 运行和显示结果
-    aco.find_path(400)
+    aco.find_path(100)
     aco.plot_map()
     aco.plot_process()
     plt.show()

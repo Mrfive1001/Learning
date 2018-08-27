@@ -31,14 +31,13 @@ class Ant:
         self.rho = 0.05  # 信息素的挥发速度
         self.Q = 0.5  # 完成率
         self.itermax = 150  # 迭代总数
-        self.pheromonetable = np.ones((self.numcity, 8))  # 信息素矩阵
+        self.pheromonetable = np.ones((self.numcity, 9))  # 信息素矩阵
         self.lengthaver = []  # 迭代,存放每次迭代后，路径的平均长度
         self.lengthbest = []  # 迭代,存放每次迭代后，最佳路径长度
         self.pathbest = []
         self.pathbest_length = None
 
-    # TODO 将信息素维度降低
-    def find_path(self,iterations = None):
+    def find_path(self, iterations=None):
         if iterations is None:
             iterations = self.itermax
         for iter in range(iterations):
@@ -76,7 +75,8 @@ class Ant:
                     # 根据概率选择下个要探索的点
                     probtrans = np.zeros(next_len)  # 每次循环都初始化转移概率矩阵
                     for k in range(next_len):
-                        probtrans[k] = np.power(self.pheromonetable[visiting][next_indexs[k]], self.alpha) \
+                        next_position = self.map.index2hash(visiting,next_indexs[k])
+                        probtrans[k] = np.power(self.pheromonetable[visiting][next_position], self.alpha) \
                             * np.power(1.0/(distances[k]), self.alpha)
                     # 利用轮盘赌来找到需要探索的点
                     cumsumprobtrans = (probtrans / sum(probtrans)).cumsum()
@@ -97,7 +97,7 @@ class Ant:
             path_valid = np.array(path_valid)
             lengths = lengths[path_valid == True]
             paths = paths[path_valid == True]
-            changepheromonetable = np.zeros((self.numcity, self.numcity))
+            changepheromonetable = np.zeros((self.numcity, 9))
             # 需要改变的信息素矩阵
             if len(lengths) != 0:
                 # 至少有一只蚂蚁找到终点
@@ -115,8 +115,9 @@ class Ant:
                 for i in range(len(paths)):  # 更新所有的蚂蚁
                     path = paths[i]
                     for j in range(len(path)-1):
+                        next_position = self.map.index2hash(path[j],path[j+1]) # 转化为numcity*9矩阵中的信息素元素
                         changepheromonetable[path[j],
-                                             path[j+1]] += self.Q*10 / lengths[i]
+                                             next_position] += self.Q*10 / lengths[i]
                 print('Iterations:%d,feasible_path:%d,ave_length:%.2f,best_length:%.2f,global best:%.2f' %
                       (iter+1, len(lengths), self.lengthaver[-1], self.lengthbest[-1], self.pathbest_length))
             self.pheromonetable = (1 - self.rho) * \
@@ -126,47 +127,48 @@ class Ant:
         path = []
         for index in self.pathbest:
             path.append(self.map.index2cor(index))
-        fig = plt.figure()
         self.map.plot_map(np.array(path))
         dir = sys.path[0]
-        plt.savefig(os.path.join(dir,'Results\ACO_path.png'))
+        plt.savefig(os.path.join(dir, 'Results\ACO_path.png'))
 
     def plot_process(self):
         # 画出蚁群算法的训练过程中的路径长度变化
         sns.set()
         fig = plt.figure()
-        ax = fig.add_subplot(1,1,1)
-        ax.plot(self.lengthaver,label = 'Average')
-        ax.plot(self.lengthbest,label = 'Best')
+        ax = fig.add_subplot(1, 1, 1)
+        ax.plot(self.lengthaver, label='Average')
+        ax.plot(self.lengthbest, label='Best')
         ax.set_xlabel('Iterations')
         ax.set_ylabel('Length')
         ax.legend()
         dir = sys.path[0]
-        plt.savefig(os.path.join(dir,'Results\ACO_process.png'))
+        plt.savefig(os.path.join(dir, 'Results\ACO_process.png'))
+
 
 def main():
-    # # 1 生成数据
-    # map_data = get_data(40, 40, 0.1)
-    # # 2 定义起始点和目标点生成图
-    # start_point = [0, 0]
-    # end_point = [38, 34]
-    # my_map = Map(map_data, start_point, end_point)
+    # 1 生成数据
+    map_data = get_data(40, 40, 0.1)
+    # 2 定义起始点和目标点生成图
+    start_point = [0, 0]
+    end_point = [38, 34]
+    my_map = Map(map_data, start_point, end_point)
 
-    # 读取大文件数据
-    # 1 读取数据
-    number = 4650
-    data_dir = os.path.join(sys.path[0], 'Data')
-    map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+    '''
+    # # 读取大文件数据
+    # # 1 读取数据
+    # number = 4650
+    # data_dir = os.path.join(sys.path[0], 'Data')
+    # map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
 
-    # 2 定义起点终点，然后生成图
-    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
-                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
-    # 起点终点备选
-    read = 0  # 规划数据，选择对那一组测试
-    start_position = read_position[read][: 2]
-    end_position = read_position[read][2:]
-    my_map = Map(map_data, start_position, end_position)
-
+    # # 2 定义起点终点，然后生成图
+    # read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+    #                  [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # # 起点终点备选
+    # read = 0  # 规划数据，选择对那一组测试
+    # start_position = read_position[read][: 2]
+    # end_position = read_position[read][2:]
+    # my_map = Map(map_data, start_position, end_position)
+    '''
 
     # 3 定义算法
     aco = Ant(my_map)

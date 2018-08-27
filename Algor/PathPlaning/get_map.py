@@ -5,6 +5,7 @@ import os
 import sys
 # 定义地图对象
 
+
 class Map:
     '''
     定义地图对象
@@ -78,10 +79,34 @@ class Map:
                     index_new = self.cor2index(x_new, y_new)
                     results.append(index_new)
                 else:
-                    results.append([x_new,y_new])
+                    results.append([x_new, y_new])
         return results
 
-    def plot_precess(self,filename,plot_numbers = 5000):
+    def index2hash(self, curindex, index):
+        # 将index值转化为0~7之间的唯一值
+        col = self.data.shape[1]
+        err = curindex - index
+        if abs(err) == 1:
+            # 同一行
+            return -int(4+err)+8
+        elif err < 0:
+            return -((abs(err)+7) % col)+14
+        else:
+            return -((err+1) % col)+2
+
+    def hash2index(self, curindex, has):
+        # 将当前点对应的index值返回
+        col = self.data.shape[1]
+        if has < 3:
+            # 上面一列
+            return curindex-col-1+has
+        elif has < 6:
+            # 当前列
+            return curindex+has-4
+        else:
+            return curindex+col+has-7
+
+    def plot_precess(self, filename, plot_numbers=5000):
         '''
         画出寻路过程
         输入包含寻路过程的文件,一次性画图的点数量
@@ -95,23 +120,24 @@ class Map:
         plt.yticks([])
         # 读取规划出来的路线
         path = np.load(filename)
-        final_path, explore_path = path['final'], path['explore']   
+        final_path, explore_path = path['final'], path['explore']
         len_explore = len(explore_path)
         plot_numbers = 1000
         # 每隔一段时间画出一些点的散点图
         for i in range(int(len_explore / plot_numbers)+1):
             ax.scatter(explore_path[plot_numbers * i:plot_numbers * (i + 1), 1],
-                    explore_path[plot_numbers * i:plot_numbers * (i + 1), 0], s=2, c='g', alpha=0.5)
+                       explore_path[plot_numbers * i:plot_numbers * (i + 1), 0], s=2, c='g', alpha=0.5)
             if i % 5 == 0 or i == len_explore:
                 # 画出起点终点
                 ax.scatter(final_path[0, 1], final_path[0, 0],
-                        s=40, marker='*', c='r')
+                           s=40, marker='*', c='r')
                 ax.scatter(final_path[-1, 1],
-                        final_path[-1, 0], s=40, marker='*', c='r')
+                           final_path[-1, 0], s=40, marker='*', c='r')
             plt.pause(0.0000001)
         # 画出最终路径
         ax.plot(final_path[1:-1, 1], final_path[1:-1, 0], 'r')
         plt.show()
+
 
 def main():
     # 选择number m深度的海域进行测试

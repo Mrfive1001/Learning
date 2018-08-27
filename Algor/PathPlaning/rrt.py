@@ -21,7 +21,7 @@ class RRT:
 
     def __init__(self, my_map):
         self.map = my_map
-        self.expandDis = 20
+        self.expandDis = 10
         self.goalSampleRate = 0.2  # 选择终点的概率是0.05
         self.nodeList = [Node(*self.map.start)]  # 定义节点的列表
         self.nodeCorList = np.array([self.map.start])   # 保存所有节点的坐标
@@ -119,10 +119,10 @@ class Node:
 
 def main():
     # # 1 生成数据
-    # map_data = get_data(40, 40, 0.1)
+    # map_data = get_data(400, 400, 0.05)
     # # 2 定义起始点和目标点生成图
     # start_point = [0, 0]
-    # end_point = [38, 34]
+    # end_point = [307, 324]
     # my_map = Map(map_data, start_point, end_point)
 
 
@@ -140,6 +140,8 @@ def main():
     start_position = read_position[read][: 2]
     end_position = read_position[read][2:]
     my_map = Map(map_data, start_position, end_position)
+
+
 
     # 3 定义算法
     time0 = time.time()

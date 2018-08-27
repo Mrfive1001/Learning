@@ -64,6 +64,18 @@ class RRT:
                 print("Goal!!")
                 break
     
+    def plot_final(self):
+        '''
+        将最终得到的路径进行显示
+        '''
+        curnode = self.nodeList[-1]
+        paths = []
+        while curnode.parent is not None:
+            paths.append([curnode.x,curnode.y])
+            curnode = self.nodeList[int(curnode.parent)]
+        self.map.plot_map(paths)
+        plt.show()
+
 
     def random_node(self):
         '''
@@ -135,6 +147,7 @@ def main():
     # 4 运行和显示结果
     rrt.find_path()
     print(time.time()-time0)
+    rrt.plot_final()
 
 
 if __name__ == '__main__':

@@ -79,6 +79,30 @@ class RRT:
         self.map.plot_map(paths)
         return length
 
+    def plot_process(self):
+        '''
+        画出树枝生长的过程
+        '''
+        # 画出生长树
+        self.map.plot_map()
+        for node in self.nodeList:
+            if node.parent is not None:
+                plt.plot([node.y, self.nodeList[node.parent].y], [
+                         node.x, self.nodeList[node.parent].x], "-g")
+            plt.pause(0.01)
+        # 画出最终路径
+        curnode = self.nodeList[-1]
+        paths = []
+        length = 0
+        while curnode.parent is not None:
+            length += self.expandDis
+            paths.append([curnode.x,curnode.y])
+            curnode = self.nodeList[int(curnode.parent)]
+        paths = np.array(paths)
+        plt.plot(paths[:, 1], paths[:, 0], 'r')
+        plt.scatter([self.map.start[1], self.map.end[1]],
+                        [self.map.start[0], self.map.end[0]], s=40, marker='*', c='r')
+        return length
 
     def random_node(self):
         '''
@@ -121,28 +145,28 @@ class Node:
 
 
 def main():
-    # # 1 生成数据
-    # map_data = get_data(400, 400, 0.05)
-    # # 2 定义起始点和目标点生成图
-    # start_point = [0, 0]
-    # end_point = [307, 324]
-    # my_map = Map(map_data, start_point, end_point)
+    # 1 生成数据
+    map_data = get_data(1000, 1000, 0.01)
+    # 2 定义起始点和目标点生成图
+    start_point = [86, 870]
+    end_point = [849, 324]
+    my_map = Map(map_data, start_point, end_point)
 
 
-    # 读取大文件数据
-    # 1 读取数据
-    number = 4650
-    data_dir = os.path.join(sys.path[0], 'Data')
-    map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+    # # 读取大文件数据
+    # # 1 读取数据
+    # number = 4650
+    # data_dir = os.path.join(sys.path[0], 'Data')
+    # map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
 
-    # 2 定义起点终点，然后生成图
-    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
-                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
-    # 起点终点备选
-    read = 5  # 规划数据，选择对那一组测试
-    start_position = read_position[read][: 2]
-    end_position = read_position[read][2:]
-    my_map = Map(map_data, start_position, end_position)
+    # # 2 定义起点终点，然后生成图
+    # read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+    #                  [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # # 起点终点备选
+    # read = 5  # 规划数据，选择对那一组测试
+    # start_position = read_position[read][: 2]
+    # end_position = read_position[read][2:]
+    # my_map = Map(map_data, start_position, end_position)
 
 
 
@@ -152,7 +176,8 @@ def main():
     # 4 运行和显示结果
     rrt.find_path()
     print(time.time()-time0)
-    print(rrt.plot_final())
+    # print(rrt.plot_final())
+    print(rrt.plot_process())
     plt.show()
 
 

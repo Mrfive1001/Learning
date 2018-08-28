@@ -87,7 +87,7 @@ class RRT:
         self.map.plot_map()
         plt.scatter([self.map.start[1], self.map.end[1]],
                         [self.map.start[0], self.map.end[0]], s=40, marker='*', c='r')
-        plt.pause(7)    # 录像方便
+        # plt.pause(7)    # 录像方便
         for node in self.nodeList:
             if node.parent is not None:
                 plt.plot([node.y, self.nodeList[node.parent].y], [
@@ -166,7 +166,7 @@ def main():
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read = 2  # 规划数据，选择对那一组测试
+    read = 5  # 规划数据，选择对那一组测试
     start_position = read_position[read][: 2]
     end_position = read_position[read][2:]
     my_map = Map(map_data, start_position, end_position)

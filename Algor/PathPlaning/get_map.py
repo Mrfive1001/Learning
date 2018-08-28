@@ -119,7 +119,7 @@ class Map:
         ax.imshow(self.data)
         plt.xticks([])
         plt.yticks([])
-        plt.pause(10)
+        # plt.pause(10)
         # 读取规划出来的路线
         path = np.load(filename)
         final_path, explore_path = path['final'], path['explore']

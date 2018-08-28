@@ -322,7 +322,7 @@ class GraphSearch:
         画出路径动态图
         '''
         filename = os.path.join(self.result_dir, 'result.npz')
-        self.map.plot_precess(filename)
+        self.map.plot_precess(filename,10000)
 
     def report(self, time0, name):
         # 对规划的每一个路径进行汇总结果
@@ -387,36 +387,36 @@ def get_hash(x, y):
     return str(x * 20000 + y)
 
 if __name__ == '__main__':
-    # # 1 读取数据
-    # number = 4650
-    # data_dir = os.path.join(sys.path[0], 'Data')
-    # map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+    # 1 读取数据
+    number = 4650
+    data_dir = os.path.join(sys.path[0], 'Data')
+    map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
 
-    # # 2 定义起点终点，然后生成图
-    # read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
-    #                  [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
-    # # 起点终点备选
-    # read = 2  # 规划数据，选择对那一组测试
-    # start_point = read_position[read][: 2]
-    # end_point = read_position[read][2:]
-    # my_map = Map(map_data, start_point, end_point)
-
-
-    # 与蚁群算法对比
-    map_data = get_data(1000, 1000, 0.01)
-    # 2 定义起始点和目标点生成图
-    start_point = [86, 870]
-    end_point = [849, 324]
+    # 2 定义起点终点，然后生成图
+    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # 起点终点备选
+    read =  3 # 规划数据，选择对那一组测试
+    start_point = read_position[read][: 2]
+    end_point = read_position[read][2:]
     my_map = Map(map_data, start_point, end_point)
 
+
+    # # 与蚁群算法对比
+    # map_data = get_data(1000, 1000, 0.01)
+    # # 2 定义起始点和目标点生成图
+    # start_point = [849, 324]
+    # end_point = [86, 870]
+    # my_map = Map(map_data, start_point, end_point)
+
     # 3 定义算法
-    model = GraphSearch(my_map, alg='A', mode=1)
+    model = GraphSearch(my_map, alg='A', mode=2)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()
     print('起始点(%d,%d)，目标点(%d,%d)，开始规划：' % (*start_point, *end_point))
     final_path, explore_path, info = model.find_path()
     # model.map.plot_map(final_path)
-    # model.plot_process()
-    model.report(time0, 'play')
+    model.plot_process()
+    # model.report(time0, 'play')
     plt.show()

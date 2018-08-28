@@ -123,7 +123,6 @@ class Map:
         path = np.load(filename)
         final_path, explore_path = path['final'], path['explore']
         len_explore = len(explore_path)
-        plot_numbers = 1000
         # 每隔一段时间画出一些点的散点图
         for i in range(int(len_explore / plot_numbers)+1):
             ax.scatter(explore_path[plot_numbers * i:plot_numbers * (i + 1), 1],
@@ -134,7 +133,7 @@ class Map:
                            s=40, marker='*', c='r')
                 ax.scatter(final_path[-1, 1],
                            final_path[-1, 0], s=40, marker='*', c='r')
-            plt.pause(0.0000001)
+            plt.pause(0.000001)
         # 画出最终路径
         ax.plot(final_path[1:-1, 1], final_path[1:-1, 0], 'r')
         plt.show()

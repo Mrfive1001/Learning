@@ -21,7 +21,7 @@ class RRT:
 
     def __init__(self, my_map):
         self.map = my_map
-        self.expandDis = 10
+        self.expandDis = 20
         self.goalSampleRate = 0.2  # 选择终点的概率是0.05
         self.nodeList = [Node(*self.map.start)]  # 定义节点的列表
         self.nodeCorList = np.array([self.map.start])   # 保存所有节点的坐标
@@ -85,11 +85,14 @@ class RRT:
         '''
         # 画出生长树
         self.map.plot_map()
+        plt.scatter([self.map.start[1], self.map.end[1]],
+                        [self.map.start[0], self.map.end[0]], s=40, marker='*', c='r')
+        plt.pause(7)    # 录像方便
         for node in self.nodeList:
             if node.parent is not None:
                 plt.plot([node.y, self.nodeList[node.parent].y], [
-                         node.x, self.nodeList[node.parent].x], "-g")
-            plt.pause(0.01)
+                         node.x, self.nodeList[node.parent].x], "r")
+            plt.pause(0.000001)
         # 画出最终路径
         curnode = self.nodeList[-1]
         paths = []
@@ -99,7 +102,7 @@ class RRT:
             paths.append([curnode.x,curnode.y])
             curnode = self.nodeList[int(curnode.parent)]
         paths = np.array(paths)
-        plt.plot(paths[:, 1], paths[:, 0], 'r')
+        plt.plot(paths[:, 1], paths[:, 0], 'g')
         plt.scatter([self.map.start[1], self.map.end[1]],
                         [self.map.start[0], self.map.end[0]], s=40, marker='*', c='r')
         return length
@@ -145,30 +148,28 @@ class Node:
 
 
 def main():
-    # 1 生成数据
-    map_data = get_data(1000, 1000, 0.01)
-    # 2 定义起始点和目标点生成图
-    start_point = [86, 870]
-    end_point = [849, 324]
-    my_map = Map(map_data, start_point, end_point)
+    # # 1 生成数据
+    # map_data = get_data(1000, 1000, 0.01)
+    # # 2 定义起始点和目标点生成图
+    # start_point = [86, 870]
+    # end_point = [849, 324]
+    # my_map = Map(map_data, start_point, end_point)
 
 
-    # # 读取大文件数据
-    # # 1 读取数据
-    # number = 4650
-    # data_dir = os.path.join(sys.path[0], 'Data')
-    # map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+    # 读取大文件数据
+    # 1 读取数据
+    number = 4650
+    data_dir = os.path.join(sys.path[0], 'Data')
+    map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
 
-    # # 2 定义起点终点，然后生成图
-    # read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
-    #                  [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
-    # # 起点终点备选
-    # read = 5  # 规划数据，选择对那一组测试
-    # start_position = read_position[read][: 2]
-    # end_position = read_position[read][2:]
-    # my_map = Map(map_data, start_position, end_position)
-
-
+    # 2 定义起点终点，然后生成图
+    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # 起点终点备选
+    read = 2  # 规划数据，选择对那一组测试
+    start_position = read_position[read][: 2]
+    end_position = read_position[read][2:]
+    my_map = Map(map_data, start_position, end_position)
 
     # 3 定义算法
     time0 = time.time()

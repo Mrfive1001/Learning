@@ -82,8 +82,7 @@ class AntTsp:
                     for j in range(len(path)-1):
                         changepheromonetable[path[j], path[j+1]] +=  self.Q*10 / self.distances[path[j],path[j+1]]
             print('Iterations:%d,ave_length:%.2f,best_length:%.2f,global best:%.2f' % (iter+1, self.lengthaver[-1], self.lengthbest[-1], self.pathbest_length))
-            self.pheromonetable=(1 - self.rho) * \
-                self.pheromonetable + changepheromonetable
+            self.pheromonetable=(1 - self.rho) * self.pheromonetable + changepheromonetable
 
     def get_dis(self):
         '''
@@ -98,7 +97,7 @@ class AntTsp:
                     # 计算过就不用算了
                     distances[i, j]=distances[j, i]
                 else:
-                    distances[i, j]=np.linalg.norm(self.tsp.cities[i]-self.tsp.cities[j])+1
+                    distances[i, j]=np.linalg.norm(self.tsp.cities[i]-self.tsp.cities[j])+1e-2
         return distances
 
     def plot_result(self):

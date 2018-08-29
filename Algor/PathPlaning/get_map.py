@@ -152,6 +152,15 @@ class Map:
         ax.plot(final_path[1:-1, 1], final_path[1:-1, 0], 'r')
         plt.show()
 
+    def get_fitness(self,path):
+        '''
+        输入一维索引或者二维路径，得到规划路径的适应值
+        '''
+        path = np.array(path)
+        fitness = 0
+        for i in range(len(path)-1):
+            fitness += np.linalg.norm(path[i,:]-path[i+1,:])
+        return fitness
 
 def main():
     # 选择number m深度的海域进行测试

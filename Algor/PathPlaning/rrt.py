@@ -63,7 +63,7 @@ class RRT:
             dy = new_node.y - self.map.end[1]
             d = math.sqrt(dx**2+dy**2)
             if d <= self.expandDis:
-                print("Goal!!")
+                print("Find Goal!!")
                 break
         return self.get_final()
 

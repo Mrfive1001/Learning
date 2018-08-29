@@ -8,6 +8,33 @@ from aco import get_data
 from get_map import Map
 from rrt import RRT
 
+class RrtGa:
+    '''
+    结合RRT和GA算法来解决路径规划问题
+    输入图，遗传算法的一些参数
+    '''
+    def __init__(self,my_map):
+        self.map = my_map
+        self.pop_num = 20   # 种群数量
+        self.rrt = RRT(self.map)
+        self.mutate_rate = 0.0001 # 突变概率
+        self.iterations = 100
+        self.cross_rate = 0.9
+
+
+    def init_pop(self):
+        paths = []
+        for _ in range(self.pop_num):
+            path = self.rrt.find_path()
+            paths.append(path)
+        return paths
+
+    def find_path(self):
+        self.pop = self.init_pop() # 生成初始种群
+        self.fits = [self.map.get_fitness(path) for path in self.pop] # 计算初始种群的fitness值
+        for iteration in range(self.iterations):
+            print(self.fits)
+        
 
 def main():
     # 1 生成数据
@@ -27,24 +54,15 @@ def main():
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read = 5  # 规划数据，选择对那一组测试
+    read = 0 # 规划数据，选择对那一组测试
     start_position = read_position[read][: 2]
     end_position = read_position[read][2:]
     my_map = Map(map_data, start_position, end_position)
 
-
-
-
     # 3 定义算法
-    rrt = RRT(my_map)
+    rrtga = RrtGa(my_map)
     # 4 运行和显示结果
-    num_path = 10
-    paths = []
-    for i in range(num_path):
-        path = rrt.find_path()
-        paths.append(path)
-    rrt.map.plot_multi(paths)
-    plt.show()
+    rrtga.find_path()
 
 
 if __name__ == '__main__':

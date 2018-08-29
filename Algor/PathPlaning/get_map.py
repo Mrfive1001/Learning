@@ -43,6 +43,19 @@ class Map:
             plt.plot(path[:, 1], path[:, 0], 'r')
             plt.scatter([self.start[1], self.end[1]],
                         [self.start[0], self.end[0]], s=40, marker='*', c='r')
+    
+    def plot_multi(self,paths):
+        # 画出地图，画出多条路径
+        sns.set(style='dark')
+        plt.figure()
+        plt.imshow(self.data)
+        plt.xticks([])
+        plt.yticks([])
+        for path_ in paths:
+            path = np.array(path_)
+            plt.plot(path[:, 1], path[:, 0])
+        plt.scatter([self.start[1], self.end[1]],
+                    [self.start[0], self.end[0]], s=40, marker='*', c='r')
 
     def index2cor(self, index):
         # 输入index转化为坐标

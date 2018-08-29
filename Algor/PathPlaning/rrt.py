@@ -27,6 +27,8 @@ class RRT:
         self.nodeCorList = np.array([self.map.start])   # 保存所有节点的坐标
 
     def find_path(self):
+        self.nodeList = [Node(*self.map.start)]  # 定义节点的列表
+        self.nodeCorList = np.array([self.map.start])   # 保存所有节点的坐标
         while True:
             # 产生随机顶点
             if random.random() > self.goalSampleRate:
@@ -63,7 +65,20 @@ class RRT:
             if d <= self.expandDis:
                 print("Goal!!")
                 break
-    
+        return self.get_final()
+
+    def get_final(self):
+        '''
+        得到最终路径
+        '''
+        curnode = self.nodeList[-1]
+        paths = []
+        while curnode.parent is not None:
+            paths.append([curnode.x,curnode.y])
+            curnode = self.nodeList[int(curnode.parent)]
+        return np.array(paths)
+
+
     def plot_final(self):
         '''
         将最终得到的路径进行显示

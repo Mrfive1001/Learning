@@ -15,7 +15,7 @@ class TSP:
     def __init__(self, data_type='small'):
         self.dir = sys.path[0]
         self.cities = np.load(os.path.join(
-            self.dir, 'Data\%s_tsp.npy' % data_type))
+            self.dir, 'Data/%s_tsp.npy' % data_type))
 
     def plot_map(self, path=None):
         '''

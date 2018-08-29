@@ -10,19 +10,21 @@ from tsp import TSP
 class AntTsp:
     def __init__(self, data_type='small'):
         self.tsp = TSP(data_type)
+        self.data_type = data_type
         self.numant = 100  # 蚂蚁个数
         self.numcity = len(self.tsp.cities)  # 点的数量
         self.alpha = 1  # 信息素重要程度因子
         self.beta = 5  # 启发函数重要程度因子
         self.rho = 0.1  # 信息素的挥发速度
         self.Q = 1  # 完成率
-        self.itermax = 70  # 迭代总数
+        self.itermax = 100  # 迭代总数
         self.pheromonetable = np.ones((self.numcity, self.numcity))  # 信息素矩阵
         self.distances = self.get_dis()
         self.lengthaver = []  # 迭代,存放每次迭代后，路径的平均长度
         self.lengthbest = []  # 迭代,存放每次迭代后，最佳路径长度
         self.pathbest = []
         self.pathbest_length = None
+        self.result_dir = os.path.join(sys.path[0],'Results')
 
     def find_path(self, iterations=None):
         if iterations is None:
@@ -103,11 +105,15 @@ class AntTsp:
     def plot_result(self):
         self.tsp.plot_map(self.pathbest)
 
+    def save_result(self):
+        self.tsp.plot_map(self.pathbest)
+        plt.savefig(os.path.join(self.result_dir,'ACO_%s.png'%self.data_type))
+        
 
 def main():
     ants = AntTsp('middle')
     ants.find_path()
-    ants.plot_result()
+    ants.save_result()
     plt.show()
 
 if __name__ == '__main__':

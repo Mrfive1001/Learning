@@ -14,19 +14,19 @@ np.random.seed(100)
 class PRM:
     '''
     利用PRM算法将二维数据图像数据进行离散网格化
-    输入：二维图像，起始点，目标点
+    输入：二维图像，起始点，目标点， 离散点的数量，半径大小
     最终一个图像可以用nodelist corlist和num_points 来表示
     '''
 
-    def __init__(self, map_data, start_position, end_position, num_points=200):
+    def __init__(self, map_data, start_position, end_position, num_points=200,radius = 200):
         self.map = Map(map_data, start_position, end_position)
         self.num_points = num_points
         self.node_lists = []
         self.cor_lists = []
         self.get_nodes()
-        self.get_neighbors()
+        self.get_neighbors(radius)
 
-    def get_neighbors(self, radius=200):
+    def get_neighbors(self, radius):
         '''
         得到点周围一定范围的neighbors
         '''
@@ -63,7 +63,11 @@ class PRM:
         '''
         生成一定数量的有效点
         '''
-        for _ in range(self.num_points):
+        # 加入起点
+        node = Node(*self.map.start)
+        self.node_lists.append(node)
+        self.cor_lists.append(self.map.start)
+        for _ in range(self.num_points-2):
             while True:
                 position = self.random_node()
                 if self.map.is_valid(position):
@@ -71,6 +75,10 @@ class PRM:
             node = Node(*position)
             self.node_lists.append(node)
             self.cor_lists.append(position)
+        # 加入终点
+        node = Node(*self.map.end)
+        self.node_lists.append(node)
+        self.cor_lists.append(self.map.end)
         self.cor_lists = np.array(self.cor_lists)
 
     def random_node(self):
@@ -82,27 +90,26 @@ class PRM:
         y = random.randint(0, n)
         return [x, y]
 
-    def plot(self,lines_plot = False):
+    def plot(self, lines_plot=False):
         '''
         画出散点图
         是否画出点的连线
         '''
         self.map.plot_map()
         plt.scatter(self.cor_lists[:, 1], self.cor_lists[:, 0], s=10)
+        plt.scatter([self.map.start[1], self.map.end[1]],
+                        [self.map.start[0], self.map.end[0]], s=20, marker='*', c='r')
         if lines_plot:
             for node in self.node_lists:
                 paths = []
                 for neigh in node.neighbors:
                     neigh_node = self.node_lists[neigh]
-                    paths.append([node.x,node.y])
-                    paths.append([neigh_node.x,neigh_node.y])
+                    paths.append([node.x, node.y])
+                    paths.append([neigh_node.x, neigh_node.y])
                 if paths:
-                    paths = np.array(paths)        
-                    plt.plot(paths[:,1],paths[:,0],c = 'g')
+                    paths = np.array(paths)
+                    plt.plot(paths[:, 1], paths[:, 0], c='g')
                     plt.pause(0.0000001)
-                
-                    
-
 
 
 class Node:
@@ -117,11 +124,21 @@ class Node:
 
 
 def main():
-    # 选择number m深度的海域进行测试
+    # 1 读取数据
     number = 4650
     data_dir = os.path.join(sys.path[0], 'Data')
     map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
-    prm = PRM(map_data, None, None,num_points=500)
+
+    # 2 定义起点终点，然后生成图
+    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
+    # 起点终点备选
+    read =  5 # 规划数据，选择对那一组测试
+    start_point = read_position[read][: 2]
+    end_point = read_position[read][2:]
+
+    
+    prm = PRM(map_data, start_point, end_point, num_points=500)
     prm.plot(lines_plot=True)
     plt.show()
 

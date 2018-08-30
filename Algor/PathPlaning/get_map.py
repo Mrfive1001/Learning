@@ -1,8 +1,10 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import os
 import sys
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
 # 定义地图对象
 
 
@@ -24,7 +26,9 @@ class Map:
 
     def is_valid(self, position):
         # 判断点是否有效，是否在边界内
-        if position[0] < 0 or position[0] >= self.data.shape[0] or position[1] < 0 or position[1] >= self.data.shape[1]:
+        # 增加strip，防止里边界过近
+        strip = 20
+        if position[0] < strip+0 or position[0] >= self.data.shape[0]-strip or position[1] < strip+0 or position[1] >= self.data.shape[1]-strip:
             return False
         if self.data[position[0], position[1]] == 0:
             return False

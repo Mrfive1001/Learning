@@ -8,19 +8,22 @@ from tsp import TSP
 np.random.seed(10)
 
 class GaTsp:
+    '''
+    利用遗传算法解决TSP问题
+    输入数据类型
+    '''
     def __init__(self, data_type='small'):
         self.tsp = TSP(data_type)
-        # self.tsp.cities = np.random.rand(52,2)
         self.data_type = data_type
-        self.cross_rate = 0.5  # 交叉概率，如果不交叉的话直接继承父代的特性
-        self.mutate_rate = 0.02  # 变异概率
+        self.cross_rate = 0.2  # 交叉概率 不能太大
+        self.mutate_rate = 0.02  # 变异概率 选择两个点进行互换位置
         self.numcity = len(self.tsp.cities)  # 点的数量
         self.pop_size = 500  # 种群数量
-        self.itermax = 1000
-        self.pop = np.vstack([np.random.permutation(self.numcity)
-                              for _ in range(self.pop_size)])  # pop_size*numcity
-        self.distances = np.array([self.tsp.get_fitness(pop) for pop in self.pop])
-        self.fit = np.exp(self.numcity*5000/(self.distances))
+        self.itermax = 1000  # 迭代轮数
+        self.pop = np.vstack([np.random.permutation(self.numcity) for _ in range(self.pop_size)])  # 整个种群
+        self.scale = None # 对距离缩放的尺度
+        self.update_fitness()
+        # 存放最优路径和最优路径对应的长度
         self.lengthaver = []  # 迭代,存放每次迭代后，路径的平均长度
         self.lengthbest = []  # 迭代,存放每次迭代后，最佳路径长度
         self.pathbest = []
@@ -35,6 +38,7 @@ class GaTsp:
             iterations = self.itermax
         for iter in range(iterations):
             # 迭代itermax轮
+            # 交叉、配对、变异
             pop = self.select()
             pop_copy = pop.copy()
             for parent in pop:  # for every parent
@@ -42,8 +46,7 @@ class GaTsp:
                 child = self.mutate(child)
                 parent[:] = child
             self.pop = pop
-            self.distances = np.array([self.tsp.get_fitness(pop) for pop in self.pop])
-            self.fit = np.exp(self.numcity * 5000 / (self.distances))
+            self.update_fitness()
             # 保存最优值
             min_index = self.fit.argmax()
             self.lengthbest.append(self.distances.min())
@@ -95,19 +98,36 @@ class GaTsp:
                 child[point], child[swap_point] = swapB, swapA
         return child
 
+    def update_fitness(self):
+        '''
+        得到当前种群的评价
+        距离和适应值
+        '''
+        self.distances = np.array([self.tsp.get_fitness(pop) for pop in self.pop])
+        if self.scale is None:
+            self.scale = self.distances.max()
+        self.fit = self.get_fitness(self.distances)
+    
+    def get_fitness(self,dis):
+        '''
+        将距离转化为适应值
+        '''
+        return np.exp(self.scale*3/(dis))
+
     def plot_result(self):
+        
         self.tsp.plot_map(self.pathbest)
 
     def save_result(self):
         self.tsp.plot_map(self.pathbest)
         plt.savefig(os.path.join(self.result_dir,
-                                 'ACO_%s.png' % self.data_type))
+                                 'GA_%s.png' % self.data_type))
 
 
 def main():
     ga = GaTsp('small')
     ga.find_path()
-    ga.plot_result()
+    ga.save_result()
     plt.show()
 
 

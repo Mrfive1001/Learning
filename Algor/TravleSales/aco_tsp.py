@@ -79,10 +79,10 @@ class AntTsp:
                 if self.pathbest_length > lengths[min_index]:
                     self.pathbest_length=lengths[min_index]
                     self.pathbest=paths[min_index].copy()
-                for i in range(len(paths)):  # 更新所有的蚂蚁
-                    path=paths[i]
-                    for j in range(len(path)-1):
-                        changepheromonetable[path[j], path[j+1]] +=  self.Q*10 / self.distances[path[j],path[j+1]]
+            for i in range(len(paths)):  # 更新所有的蚂蚁
+                path=paths[i]
+                for j in range(len(path)-1):
+                    changepheromonetable[path[j], path[j+1]] +=  self.Q*10 / self.distances[path[j],path[j+1]]
             print('Iterations:%d,ave_length:%.2f,best_length:%.2f,global best:%.2f' % (iter+1, self.lengthaver[-1], self.lengthbest[-1], self.pathbest_length))
             self.pheromonetable=(1 - self.rho) * self.pheromonetable + changepheromonetable
 
@@ -111,9 +111,9 @@ class AntTsp:
         
 
 def main():
-    ants = AntTsp('middle')
+    ants = AntTsp('small')
     ants.find_path()
-    ants.save_result()
+    ants.plot_result()
     plt.show()
 
 if __name__ == '__main__':

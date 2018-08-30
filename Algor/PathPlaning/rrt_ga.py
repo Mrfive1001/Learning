@@ -10,7 +10,8 @@ from rrt import RRT
 
 class RrtGa:
     '''
-    结合RRT和GA算法来解决路径规划问题
+    结合RRT和GA算法来
+    解决路径规划问题
     输入图，遗传算法的一些参数
     '''
     def __init__(self,my_map):
@@ -33,7 +34,7 @@ class RrtGa:
         self.pop = self.init_pop() # 生成初始种群
         self.fits = [self.map.get_fitness(path) for path in self.pop] # 计算初始种群的fitness值
         for iteration in range(self.iterations):
-            print(self.fits)
+            pass
         
 
 def main():

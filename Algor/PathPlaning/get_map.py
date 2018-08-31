@@ -171,8 +171,20 @@ def main():
     number = 4650
     data_dir = os.path.join(sys.path[0], 'Data')
     map_data = np.load(os.path.join(data_dir, str(number) + 'm_small.npy'))
+
+    # 2 定义起点终点，然后生成图
+    read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
+                     [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 50, 2355, 2430]]
+
     map = Map(map_data, None, None)
     map.plot_map()
+    for index in range(len(read_position)):
+        start_point = read_position[index][: 2]
+        end_point = read_position[index][2:]
+        plt.scatter([start_point[1], end_point[1]],
+                        [start_point[0], end_point[0]], s=40, label = 'Case%d'%(index+1))
+    plt.legend()
+
     plt.show()
 
 

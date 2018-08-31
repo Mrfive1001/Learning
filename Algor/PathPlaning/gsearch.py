@@ -396,7 +396,7 @@ if __name__ == '__main__':
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read =  5 # 规划数据，选择对那一组测试
+    read =  4 # 规划数据，选择对那一组测试
     start_point = read_position[read][: 2]
     end_point = read_position[read][2:]
     my_map = Map(map_data, start_point, end_point)
@@ -410,7 +410,7 @@ if __name__ == '__main__':
     # my_map = Map(map_data, start_point, end_point)
 
     # 3 定义算法
-    model = GraphSearch(my_map, alg='B', mode=2)
+    model = GraphSearch(my_map, alg='B', mode=1)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()

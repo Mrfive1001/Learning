@@ -15,13 +15,13 @@ class PRM:
     '''
     利用PRM算法将二维数据图像数据进行离散网格化
     输入：二维图像，起始点，目标点， 离散点的数量，半径大小
-    最终一个图像可以用nodelist corlist和num_points 来表示
+    最终一个图像可以用nodelist来表示，将二维图像变成了无向有权图
     '''
 
     def __init__(self, map_data, start_position, end_position, num_points=200,radius = 200):
         self.map = Map(map_data, start_position, end_position)
         self.num_points = num_points
-        self.node_lists = []
+        self.node_lists = []   # 最终有用的就是这个列表
         self.cor_lists = []
         self.get_nodes()
         self.get_neighbors(radius)
@@ -138,7 +138,7 @@ def main():
     end_point = read_position[read][2:]
 
     
-    prm = PRM(map_data, start_point, end_point, num_points=500)
+    prm = PRM(map_data, start_point, end_point, num_points=500,radius=240)
     prm.plot(lines_plot=True)
     plt.show()
 

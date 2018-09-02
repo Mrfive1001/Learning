@@ -4,3 +4,4 @@ True.npz
 False.npz
 *.pdf
 result.npz
+*checkpoint.ipynb

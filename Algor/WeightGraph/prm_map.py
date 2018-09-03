@@ -1,10 +1,12 @@
 import math
 import os
+import pickle
 import random
 import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 from get_map import Map
 
@@ -29,6 +31,7 @@ class PRM:
     def get_neighbors(self, radius):
         '''
         得到点周围一定范围的neighbors
+        neighbors用dict来表示
         '''
         for index in range(self.num_points):
             dis = np.linalg.norm(
@@ -41,7 +44,10 @@ class PRM:
                 if index_temp == index:
                     continue
                 result.append(index_temp)
-            self.node_lists[index].neighbors = result
+            if result:
+                self.node_lists[index].neighbors = {}
+                for res in result:
+                    self.node_lists[index].neighbors[res] = dis[res]
 
     def cross_obstacle(self, node1, node2):
         '''
@@ -96,20 +102,29 @@ class PRM:
         是否画出点的连线
         '''
         self.map.plot_map()
+        sns.set(style='dark')
         plt.scatter(self.cor_lists[:, 1], self.cor_lists[:, 0], s=10)
         plt.scatter([self.map.start[1], self.map.end[1]],
                         [self.map.start[0], self.map.end[0]], s=20, marker='*', c='r')
         if lines_plot:
             for node in self.node_lists:
                 paths = []
-                for neigh in node.neighbors:
-                    neigh_node = self.node_lists[neigh]
-                    paths.append([node.x, node.y])
-                    paths.append([neigh_node.x, neigh_node.y])
-                if paths:
+                if node.neighbors:
+                    for key in node.neighbors.keys():
+                        neigh_node = self.node_lists[key]
+                        paths.append([node.x, node.y])
+                        paths.append([neigh_node.x, neigh_node.y])
                     paths = np.array(paths)
                     plt.plot(paths[:, 1], paths[:, 0], c='g')
                     plt.pause(0.0000001)
+
+    def save(self, name):
+        '''
+        将nodelists保存到Data下的name文件里面
+        '''
+        dir = os.path.join(sys.path[0], 'Data')
+        with open(os.path.join(dir,name),'wb') as f:
+            pickle.dump(self.node_lists,f)
 
 
 class Node:
@@ -139,7 +154,8 @@ def main():
 
     
     prm = PRM(map_data, start_point, end_point, num_points=500,radius=240)
-    print(prm.node_lists)
+    prm.save('graph1.pk')
+    # print(prm.node_lists)
     # prm.plot(lines_plot=True)
     # plt.show()
 

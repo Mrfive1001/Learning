@@ -9,6 +9,7 @@ import numpy as np
 import seaborn as sns
 
 from get_map import Map
+from prm_map import Node
 
 
 class WeightGraph:
@@ -20,11 +21,11 @@ class WeightGraph:
     x,y,neighbors(None 或者 dict 表示下个节点的索引和其对应的距离)
     '''
 
-    def __init__(self, node_lists=None):
+    def __init__(self, node_lists=None,data_resoure = 1):
         if node_lists:
             self.node_lists= node_lists
         else:
-            self.node_lists = self.load_data('graph1.pk')
+            self.node_lists = self.load_data('graph%d.pk'%data_resoure)
 
     def load_data(self, name):
         '''
@@ -39,14 +40,16 @@ class WeightGraph:
             nodes = pickle.load(f)
         return nodes 
     
-    def plot_nodes(self,lines_plot=False):
+    def plot_nodes(self,lines_plot=False,paths = None,dynamic = True):
         '''
         画出散点图
         是否画出点的连线
+        是否动态显示
+        是否输入路径
         '''
-        self.map.plot_map()
+        self.map.plot_map(paths)
         for node in self.node_lists:
-            plt.scatter(node.y,node.x,c= 'r',s = 10)
+            plt.scatter(node.y,node.x,c= 'w',s = 10)
             paths = []
             if node.neighbors:
                 for key in node.neighbors.keys():
@@ -56,18 +59,10 @@ class WeightGraph:
                 if lines_plot:
                     paths = np.array(paths)
                     plt.plot(paths[:, 1], paths[:, 0], c='g')
-                plt.pause(0.0000001)
+                if dynamic:
+                    plt.pause(0.0000001)
 
 
-class Node:
-    '''
-    定义读取文件所需要的点类
-    '''
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.neighbors = None
 
 def main():
     wg = WeightGraph()

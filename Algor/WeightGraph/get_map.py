@@ -45,8 +45,12 @@ class Map:
         if path is not None:
             path = np.array(path)
             plt.plot(path[:, 1], path[:, 0], 'r')
-            plt.scatter([self.start[1], self.end[1]],
-                        [self.start[0], self.end[0]], s=40, marker='*', c='r')
+            try:
+                plt.scatter([self.start[1], self.end[1]],
+                            [self.start[0], self.end[0]], s=40, marker='*', c='r')
+            except Exception:
+                plt.scatter([path[0, 1], path[-1,1]],
+                            [path[0, 0], path[-1,0]], s=40, marker='*', c='r')
     
     def plot_multi(self,paths):
         # 画出地图，画出多条路径

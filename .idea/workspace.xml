@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8bd4c28-8589-4d0c-a9f3-b04157625a3f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Algor/PathPlaning/Results/result.npz" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/PathPlaning/Results/result.npz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algor/PathPlaning/gsearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/PathPlaning/gsearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algor/WeightGraph/Data/graph1.pk" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/WeightGraph/Data/graph1.pk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algor/WeightGraph/get_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/WeightGraph/get_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algor/WeightGraph/prm_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/WeightGraph/prm_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algor/WeightGraph/weight_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Algor/WeightGraph/weight_map.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,6 +76,7 @@
     <SUITE FILE_PATH="coverage/Balabala$image.coverage" NAME="image Coverage Results" MODIFIED="1532353424300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Optimization" />
     <SUITE FILE_PATH="coverage/Balabala$fortry.coverage" NAME="fortry Coverage Results" MODIFIED="1533437549981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
     <SUITE FILE_PATH="coverage/Balabala$Conv_code.coverage" NAME="Conv_code Coverage Results" MODIFIED="1533563525778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/ConvAuto" />
+    <SUITE FILE_PATH="coverage/Learning$gsearch__1_.coverage" NAME="gsearch (1) Coverage Results" MODIFIED="1536028578866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Algor/WeightGraph" />
     <SUITE FILE_PATH="coverage/Balabala$game.coverage" NAME="game Coverage Results" MODIFIED="1528612607312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_4" />
     <SUITE FILE_PATH="coverage/Balabala$likelyhood.coverage" NAME="likelyhood Coverage Results" MODIFIED="1527773416521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM" />
     <SUITE FILE_PATH="coverage/Balabala$exam.coverage" NAME="exam Coverage Results" MODIFIED="1532615385241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Examination" />
@@ -100,57 +104,18 @@
     <SUITE FILE_PATH="coverage/Balabala$agent.coverage" NAME="agent Coverage Results" MODIFIED="1527757583471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Tencent Files/354114980/FileRecv/src(1)/src" />
     <SUITE FILE_PATH="coverage/Balabala$loader.coverage" NAME="loader Coverage Results" MODIFIED="1528598467819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/03_Help/Rover256_4" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="gsearch.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/gsearch.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="372">
-                    <caret line="405" column="32" lean-forward="true" selection-start-line="405" selection-start-column="32" selection-end-line="405" selection-end-column="32" />
-                    <folding>
-                      <element signature="e#0#18#0" expanded="true" />
-                      <element signature="e#6338#8968#0" />
-                      <element signature="e#9014#10056#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="get_map.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/get_map.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="gsearch.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Algor/WeightGraph/gsearch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+            <state relative-caret-position="339">
+              <caret line="134" column="11" selection-end-line="144" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="B_Case1_explor.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case1_explor.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file leaf-file-name="B_Case3_explor.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case3_explor.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file leaf-file-name="D_Case1_explor.png" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case1_explor.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -215,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/03_Help/Nanji/save_csv.py" />
         <option value="$PROJECT_DIR$/03_Help/Nanji/Position_analysis.py" />
         <option value="$PROJECT_DIR$/03_Help/satisfaction_classification_copy/classification.py" />
         <option value="$PROJECT_DIR$/01_Learning/Qtbala/train.csv" />
@@ -266,6 +230,7 @@
         <option value="$PROJECT_DIR$/Algor/TravleSales/ga_tsp.py" />
         <option value="$PROJECT_DIR$/Algor/PathPlaning/get_map.py" />
         <option value="$PROJECT_DIR$/Algor/PathPlaning/gsearch.py" />
+        <option value="$PROJECT_DIR$/Algor/WeightGraph/gsearch.py" />
       </list>
     </option>
   </component>
@@ -279,7 +244,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-19" />
+    <option name="x" value="-20" />
     <option name="y" value="-10" />
     <option name="width" value="2525" />
     <option name="height" value="1105" />
@@ -317,6 +282,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,14 +305,12 @@
               <item name="Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Learning" type="462c0819:PsiDirectoryNode" />
               <item name="Algor" type="462c0819:PsiDirectoryNode" />
-              <item name="PathPlaning" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="WeightGraph" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -397,7 +361,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gsearch">
+  <component name="RunManager" selected="Python.gsearch (1)">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <module name="balabala" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -440,25 +404,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="ADDITIONAL_ARGS" value="" />
-    </configuration>
-    <configuration name="TSP_GA" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Learning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/sdfa" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/sdfa/TSP_GA.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -531,6 +476,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/TravleSales/ga_tsp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="gsearch (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algor/WeightGraph" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algor/WeightGraph/gsearch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -651,19 +615,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list>
-      <item itemvalue="Python.TSP_GA" />
       <item itemvalue="Python.ga_tsp" />
       <item itemvalue="Python.aco_tsp" />
       <item itemvalue="Python.ga_example" />
       <item itemvalue="Python.gsearch" />
+      <item itemvalue="Python.gsearch (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.gsearch (1)" />
         <item itemvalue="Python.gsearch" />
         <item itemvalue="Python.ga_tsp" />
         <item itemvalue="Python.ga_example" />
         <item itemvalue="Python.aco_tsp" />
-        <item itemvalue="Python.TSP_GA" />
       </list>
     </recent_temporary>
   </component>
@@ -1040,58 +1004,58 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50429183" side_tool="true" weight="0.6048951" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.5103164" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.37551582" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.5213205" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.5034388" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.31086656" />
       <window_info anchor="right" id="Remote Host" order="7" weight="0.1997301" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19365722" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20040485" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" auto_hide="true" x="122" y="66" width="1218" height="762" id="SciView" order="5" show_stripe_button="false" type="FLOATING" weight="0.38465664" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49570817" weight="0.70151305" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3289941" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.5034388" />
       <window_info anchor="right" id="Data View" order="6" weight="0.15718885" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49570817" weight="0.70151305" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.5103164" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32599726" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3289941" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.26409903" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.32462174" />
       <window_info anchor="right" id="Remote Host" order="7" weight="0.1997301" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Data View" order="6" weight="0.15718885" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.5103164" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32599726" />
-      <window_info anchor="right" id="Data View" order="6" weight="0.15718885" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29892036" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49570817" visible="true" weight="0.49931225" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.31086656" />
-      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50429183" side_tool="true" weight="0.6048951" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32911393" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.31086656" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32599726" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29892036" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49570817" visible="true" weight="0.49931225" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" auto_hide="true" x="122" y="66" width="1218" height="762" id="SciView" order="5" show_stripe_button="false" type="FLOATING" weight="0.38465664" />
+      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50429183" side_tool="true" weight="0.6048951" />
+      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.5103164" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3289941" />
+      <window_info anchor="right" auto_hide="true" x="122" y="66" width="1218" height="762" id="SciView" order="5" show_stripe_button="false" type="FLOATING" weight="0.38465664" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.5213205" />
     </layout-to-restore>
   </component>
@@ -1181,7 +1145,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case5.png" />
     <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/BFS_Case1.png" />
     <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/A星_Case6.png" />
     <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/Dijstra_Case5.png" />
@@ -1265,9 +1228,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/gsearch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="405" column="32" selection-start-line="405" selection-start-column="32" selection-end-line="405" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case1_explor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case3_explor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case1_explor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/get_map.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="24">
           <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -1275,26 +1254,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case1_explor.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/B_Case3_explor.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/gsearch.py">
+    <entry file="file://$PROJECT_DIR$/Algor/WeightGraph/gsearch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="405" column="32" lean-forward="true" selection-start-line="405" selection-start-column="32" selection-end-line="405" selection-end-column="32" />
+        <state relative-caret-position="339">
+          <caret line="134" column="11" selection-end-line="144" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6338#8968#0" />
-            <element signature="e#9014#10056#0" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algor/PathPlaning/Results/D_Case1_explor.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">

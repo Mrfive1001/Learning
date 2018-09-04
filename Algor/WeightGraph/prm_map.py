@@ -104,8 +104,7 @@ class PRM:
         self.map.plot_map()
         sns.set(style='dark')
         plt.scatter(self.cor_lists[:, 1], self.cor_lists[:, 0], s=10)
-        plt.scatter([self.map.start[1], self.map.end[1]],
-                        [self.map.start[0], self.map.end[0]], s=20, marker='*', c='r')
+        
         if lines_plot:
             for node in self.node_lists:
                 paths = []
@@ -148,16 +147,16 @@ def main():
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read =  5 # 规划数据，选择对那一组测试
-    start_point = read_position[read][: 2]
-    end_point = read_position[read][2:]
-
-    
-    prm = PRM(map_data, start_point, end_point, num_points=500,radius=240)
-    prm.save('graph1.pk')
+    for read in range(5,6):
+    # read =  0 # 规划数据，选择对那一组测试
+        start_point = read_position[read][: 2]
+        end_point = read_position[read][2:]        
+        prm = PRM(map_data, start_point, end_point, num_points=2000,radius=240)
+        prm.save('graph%d.pk'%(read+1))
+        print('Graph %d: done!'%(read+1))
     # print(prm.node_lists)
-    # prm.plot(lines_plot=True)
-    # plt.show()
+    prm.plot(lines_plot=True)
+    plt.show()
 
 
 if __name__ == '__main__':

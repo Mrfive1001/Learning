@@ -134,7 +134,7 @@ class GNode:
 
 def main():
     wg_map = WeightGraph(data_resoure=6)
-    gs_alg = GSearch(wg_map, 'A')
+    gs_alg = GSearch(wg_map, 'D')
     gs_alg.find_path()
     gs_alg.plot()
     plt.show()

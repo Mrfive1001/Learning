@@ -103,8 +103,15 @@ class GSearch:
         self.result_path = np.array(self.result_path)
         self.explore_path = np.array(self.explore_path)
 
-    def plot(self):
+    def plot(self,explore = False):
         self.map.plot_nodes(paths=self.result_path, dynamic=False)
+        # for i in range(len(self.explore_path)):
+        plot_numbers = 2
+        for i in range(int(len(self.explore_path) / plot_numbers)+1):
+            plt.plot(self.explore_path[plot_numbers * i:plot_numbers * (i + 1), 1],
+                       self.explore_path[plot_numbers * i:plot_numbers * (i + 1), 0], c='g', alpha=0.5)
+            plt.pause(0.0001)
+
 
     def get_f(self, g, h):
         # 设置Node的f值
@@ -133,10 +140,10 @@ class GNode:
 
 
 def main():
-    wg_map = WeightGraph(data_resoure=6)
+    wg_map = WeightGraph(data_resoure=2)
     gs_alg = GSearch(wg_map, 'D')
     gs_alg.find_path()
-    gs_alg.plot()
+    gs_alg.plot(explore=True)
     plt.show()
 
 

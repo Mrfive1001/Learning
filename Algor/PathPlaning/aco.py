@@ -24,7 +24,7 @@ class Ant:
 
     def __init__(self, my_map):
         self.map = my_map
-        self.numant = 100  # 蚂蚁个数
+        self.numant = 400  # 蚂蚁个数
         self.numcity = self.map.shape[0]*self.map.shape[1]  # 点的数量
         self.alpha = 1  # 信息素重要程度因子
         self.beta = 5  # 启发函数重要程度因子

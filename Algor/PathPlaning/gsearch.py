@@ -1,15 +1,19 @@
-import numpy as np
+import multiprocessing
+import os
+import pickle
+import sys
+import threading
+import time
+
 import matplotlib
 import matplotlib.pyplot as plt
-import threading
-import multiprocessing
-import pickle
+import numpy as np
 import seaborn as sns
-from get_map import Map
+
 from aco import get_data
-import os
-import time
-import sys
+from get_map import Map
+
+np.random.seed(200)
 '''
 图搜索的三种算法实现路径规划
 '''
@@ -402,15 +406,16 @@ if __name__ == '__main__':
     my_map = Map(map_data, start_point, end_point)
 
 
-    # # 与蚁群算法对比
-    # map_data = get_data(1000, 1000, 0.01)
-    # # 2 定义起始点和目标点生成图
-    # start_point = [849, 324]
-    # end_point = [86, 870]
-    # my_map = Map(map_data, start_point, end_point)
+    # 与蚁群算法对比
+    # 1 生成数据
+    map_data = get_data(40, 40, 0.1)
+    # 2 定义起始点和目标点生成图
+    start_point = [0, 0]
+    end_point = [38, 34]
+    my_map = Map(map_data, start_point, end_point)
 
     # 3 定义算法
-    model = GraphSearch(my_map, alg='B', mode=1)
+    model = GraphSearch(my_map, alg='D', mode=1)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()

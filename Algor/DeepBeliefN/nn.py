@@ -18,7 +18,7 @@ class NN(object):
         self.b_list = []
         self._learning_rate =  1.0
         self._momentum = 0.0
-        self._epoches = 10
+        self._epoches = 100
         self._batchsize = 100
         input_size = X.shape[1]
 
@@ -74,6 +74,7 @@ class NN(object):
                     sess.run(train_op, feed_dict={_a[0]: self._X[start:end], y: self._Y[start:end]})
                 for j in range(len(self._sizes) + 1):
                     self.w_list[j] = sess.run(_w[j])
+                    self.b_list[j] = sess.run(_b[j])
                     self.b_list[j] = sess.run(_b[j])
                 print("Accuracy rating for epoch " + str(i) + ": " + str(np.mean(np.argmax(self._Y, axis=1) ==
                               sess.run(predict_op, feed_dict={_a[0]: self._X, y: self._Y}))))

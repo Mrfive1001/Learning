@@ -5,6 +5,7 @@ import tensorflow as tf
 class RBM:
     '''
     定义RBM模型并进行训练
+    可以认为是降维
     '''
     def __init__(self, input_size, output_size):
         self._input_size = input_size  

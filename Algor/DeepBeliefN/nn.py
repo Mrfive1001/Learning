@@ -24,7 +24,7 @@ class NN(object):
 
         # 初始循环
         for size in self._sizes + [Y.shape[1]]:
-            # 定义上限
+            # 定义RBM层数加1层输出层参数
             max_range = 4 * math.sqrt(6. / (input_size + size))
 
             # 通过随机分布来初始化
@@ -35,8 +35,9 @@ class NN(object):
             input_size = size
 
     def load_from_rbms(self, dbn_sizes,rbm_list):
-        # 冲rbms中读取数据
+        # 从rbms中读取数据
         for i in range(len(self._sizes)):
+            # 将前n-1组的权重赋值
             self.w_list[i] = rbm_list[i].w
             self.b_list[i] = rbm_list[i].hb
 

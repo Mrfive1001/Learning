@@ -54,7 +54,7 @@ class DNN:
             net5 = tf.layers.dense(
                 net4, self.units, name='l5', activation=my_actiivation)
 
-            self.apre = tf.layers.dense(net5, self.a_dim, name='apre')  # 输出线性
+            self.apre = tf.layers.dense(net5, self.a_dim, name='apre',activation=my_actiivation)  # 输出线性
 
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(
@@ -85,9 +85,9 @@ class DNN:
             samples = self.memory[indexs, :]
             X_samples = samples[:, :self.s_dim]
             Y_samples = samples[:, self.s_dim:]
-            _, loss, mae = self.sess.run([self.train_op, self.loss, self.mae],
+            _, loss = self.sess.run([self.train_op, self.loss],
                                          feed_dict={self.s: X_samples, self.areal: Y_samples})
-            return loss, mae
+            return loss
 
     def store_sample(self, X, Y):
         '''

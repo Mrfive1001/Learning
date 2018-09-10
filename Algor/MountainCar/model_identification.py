@@ -9,7 +9,7 @@ def get_my_dot(X, u, net):
     :param net:  神经网络，可以进行预测
     :return: 返回与X维度相同的导数,和神经网络预测结果
     '''
-    B = np.array([0, 0.0015])
+    B = np.array([0.0015])
     d1 = net.predict(X)[0]
     d2 = B * u
     return d1 + d2, d1
@@ -27,7 +27,7 @@ def step_my(X, u, net):
     dot, d = get_my_dot(X, u, net)
     v = v + simulation_step * dot[0]
     v = min(max(v, -0.07), 0.07)
-    x = x + simulation_step * dot[1]
+    x = x + simulation_step * v
     x = min(max(x, -1.2), 0.6)
     X = np.array([x, v])
     return X, d
@@ -40,15 +40,15 @@ def get_error(error, X1, X2, k=0.1):
     dot = k * (X1 - X2)
     simulation_step = 1  # 仿真步长
     error = error + simulation_step * dot
-    return error
+    return error[0]
 
 
 env = gym.make("MountainCarContinuous-v0")
-net = DNN(2, 2, 20, name='MyModel', train=1, memory_size=200)
-for w in range(100000):
+net = DNN(2, 1, 20, name='MyModel', train=1, memory_size=200)
+for w in range(200):
     error = 0
     observation = env.reset()
-    for epi in range(100):
+    for epi in range(500):
         u = env.action_space.sample()
         my_observation, d = step_my(observation, u, net)
         observation, reward, done, info = env.step(u)
@@ -56,5 +56,7 @@ for w in range(100000):
         y = d + error
         net.store_sample(observation, y)
         result = net.learn()
+        if epi % 50 == 0:
+            error = 0
         if result:
             print(w, result)

@@ -1,7 +1,9 @@
 import numpy as np
 import gym
 from dnn import DNN
-
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 
 def get_my_dot(X, u, net):
     '''
@@ -44,19 +46,39 @@ def get_error(error, X1, X2, k=0.1):
 
 
 env = gym.make("MountainCarContinuous-v0")
-net = DNN(2, 1, 20, name='MyModel', train=1, memory_size=200)
-for w in range(200):
-    error = 0
-    observation = env.reset()
-    for epi in range(500):
-        u = env.action_space.sample()
-        my_observation, d = step_my(observation, u, net)
-        observation, reward, done, info = env.step(u)
-        error = get_error(error, observation, my_observation)
-        y = d + error
-        net.store_sample(observation, y)
-        result = net.learn()
-        if epi % 50 == 0:
-            error = 0
-        if result:
-            print(w, result)
+train = 1
+net = DNN(2, 1, 20, name='MyModel', train=train, memory_size=200)
+true_x = []
+pre_x = []
+if train:
+    for w in range(200):
+        error = 0
+        observation = env.reset()
+        for epi in range(500):
+            u = env.action_space.sample()
+            my_observation, d = step_my(observation, u, net)
+            observation, reward, done, info = env.step(u)
+            error = get_error(error, observation, my_observation)
+            y = d + error
+            net.store_sample(observation, y)
+            result = net.learn()
+            if epi % 50 == 0:
+                error = 0
+            if result:
+                print(w, result)
+    net.store_net()
+true_x = []
+pre_x = []
+observation = env.reset()
+for epi in range(500):
+    u = env.action_space.sample()
+    my_observation, d = step_my(observation, u, net)
+    observation, reward, done, info = env.step(u)
+    true_x.append(observation[0])
+    pre_x.append(my_observation[0])
+    result = net.learn()
+    if result:
+        print(w, result)
+plt.plot(true_x,'r')
+plt.plot(pre_x,'g')
+plt.show()

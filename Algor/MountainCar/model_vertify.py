@@ -4,7 +4,7 @@ from dnn import DNN
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
-
+np.random.seed(10)
 sns.set()
 
 
@@ -30,7 +30,7 @@ def step_my(X, u, mu):
     return X
 
 
-def get_mu(mu, X1, X2, k=1):
+def get_mu(mu, X1, X2, k=5):
     '''
     通过两个状态得到导数之间的误差
     '''

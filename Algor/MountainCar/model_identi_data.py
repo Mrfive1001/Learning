@@ -18,7 +18,7 @@ def step_my(X, u, net):
     u = min(max(u, -1.0), 1.0)
     x, v = X
 
-    dot = get_dot(X)/ratio
+    dot = get_dot(X)
     # 预测导数
     v_dot = 0.0015 * u + dot[0]
     v = v + v_dot * simulation_step
@@ -33,7 +33,7 @@ def step_my(X, u, net):
 
 
 def get_dot(X):
-    return net.predict(X)[0]
+    return net.predict(X)[0]/ratio
 
 
 def get_target(X, X_new, u):
@@ -67,11 +67,12 @@ if train:
     net.store_net()
 observation = env.reset()
 my_observation = observation
-for epi in range(20000):
+for epi in range(50000):
     u = env.action_space.sample()
     my_observation = step_my(my_observation, u, net)
     observation, reward, done, info = env.step(u)
     # 保存得到的结果
+    print(epi,my_observation,observation)
     record_mu_tru.append(-math.cos(observation[0] * 3) * 0.0025)
     record_mu.append(get_dot(my_observation))
     record_tru.append(observation)
@@ -85,10 +86,12 @@ fig = plt.figure()
 axis = 0
 plt.plot(x_, record_tru[:, axis], label='x_tru')
 plt.plot(x_, record_pre[:, axis], label='x_pre')
+plt.legend()
 fig = plt.figure()
 axis = 1
 plt.plot(x_, record_tru[:, axis], label='v_tru')
 plt.plot(x_, record_pre[:, axis], label='v_pre')
+plt.legend()
 fig = plt.figure()
 plt.plot(x_, record_mu, label='mu_pre')
 plt.plot(x_, record_mu_tru, label='mu_tru')

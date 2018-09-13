@@ -54,6 +54,9 @@ observation = env.reset()
 my_observation = observation
 mu = 0
 if train:
+    # 进行训练
+    # 通过x_old和x_new来计算出来x导数
+    # 然后利用神经网络来进行学习
     for _ in range(5):
         observation = env.reset()
         my_observation = observation
@@ -69,6 +72,9 @@ if train:
                 if result:
                     print(epi, result)
     net.store_net()
+
+# 进行测试
+# 画出三组对比图
 observation = env.reset()
 my_observation = observation
 for epi in range(5000):

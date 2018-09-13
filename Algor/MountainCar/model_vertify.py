@@ -6,7 +6,9 @@ import seaborn as sns
 import math
 np.random.seed(10)
 sns.set()
-
+'''
+验证在不加神经网络的情况下eso的反馈情况
+'''
 
 def step_my(X, u, mu):
     '''
@@ -18,7 +20,7 @@ def step_my(X, u, mu):
     x, v = X
 
     # 预测导数
-    v_dot = 0.0015 * u + mu
+    v_dot = 0.0015 * u+mu
     v = v + v_dot * simulation_step
     v = min(max(v, -0.07), 0.07)
 
@@ -30,32 +32,40 @@ def step_my(X, u, mu):
     return X
 
 
-def get_mu(mu, X1, X2, k=5):
+def get_mu(mu, X1, X2, k=0.001):
     '''
     通过两个状态得到导数之间的误差
     '''
-    dot = k * (X1 - X2)
+    dot = (k * (X1 - X2))[1]
     simulation_step = 0.1  # 仿真步长
     mu = mu + simulation_step * dot
     return mu
 
-
+# 定义环境和要保存画图的变量
 env = gym.make("MountainCarContinuous-v0")
 record_tru = []
 record_pre = []
 record_mu = []
 record_mu_tru = []
+# 初始化
 observation = env.reset()
-mu = [0,0]
-for epi in range(50000):
+my_observation = observation
+# 误差
+mu = 0
+for epi in range(10000):
+    # 随机取动作
+    # env.render()
     u = env.action_space.sample()
-    my_observation = step_my(observation, u, mu[1])
+    # 自己环境和原始环境分别进行仿真
+    my_observation = step_my(my_observation, u, mu)
     observation, reward, done, info = env.step(u)
+    # 得到误差
     mu = get_mu(mu, observation, my_observation)
+    # 保存得到的结果
     record_mu_tru.append(-math.cos(observation[0] * 3) * 0.0025)
     record_tru.append(observation)
     record_pre.append(my_observation)
-    record_mu.append(list(mu))
+    record_mu.append(mu)
     print(epi, observation, my_observation)
     if done:
         break
@@ -75,7 +85,7 @@ plt.plot(x_, record_tru[:, axis], label='v_tru')
 plt.plot(x_, record_pre[:, axis], label='v_pre')
 plt.legend()
 fig = plt.figure()
-plt.plot(x_, record_mu[:, 1], label='mu_pre')
+plt.plot(x_, record_mu, label='mu_pre')
 plt.plot(x_, record_mu_tru, label='mu_tru')
 plt.legend()
 plt.show()

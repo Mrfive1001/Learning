@@ -3,6 +3,7 @@ import sys
 
 import numpy as np
 import tensorflow as tf
+from sklearn import preprocessing
 
 
 class DNN:
@@ -71,6 +72,7 @@ class DNN:
             self.sess.run(tf.global_variables_initializer())
         else:
             self.actor_saver.restore(self.sess, self.model_path)
+        self.s_scale = None
 
     def learn(self):
         '''
@@ -80,11 +82,16 @@ class DNN:
             # 未存储够足够的记忆池的容量
             return
         else:
+            if self.s_scale is None:
+                self.s_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
+                self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
+                self.s_scale.fit(self.memory[:,:self.s_dim])
+                self.a_scale.fit(self.memory[:,self.s_dim:])
             # 随机选取样本进行训练
             indexs = np.random.choice(self.memory_size, size=self.batch_size)
             samples = self.memory[indexs, :]
-            X_samples = samples[:, :self.s_dim]
-            Y_samples = samples[:, self.s_dim:]
+            X_samples = self.s_scale.transform(samples[:, :self.s_dim])
+            Y_samples = self.a_scale.transform(samples[:, self.s_dim:])
             _, loss = self.sess.run([self.train_op, self.loss],
                                          feed_dict={self.s: X_samples, self.areal: Y_samples})
             return loss
@@ -111,10 +118,17 @@ class DNN:
         :return (n,a_dim)
         '''
         try:
-            temp = X.shape[1]
+            # 判断是否是二维向量
+            _ = X.shape[1]
         except Exception:
             X = np.array(X).reshape((-1,self.s_dim))
-        return self.sess.run(self.apre, feed_dict={self.s: X})
+        if self.s_scale:
+            X = self.s_scale.inverse_transform(X)
+        y = self.sess.run(self.apre, feed_dict={self.s: X})
+        if self.s_scale:
+            return self.a_scale.inverse_transform(y)
+        else:
+            return y
 
 
 if __name__ == '__main__':

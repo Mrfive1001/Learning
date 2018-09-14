@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import math
 sns.set()
+'''
+利用eso来逼近真实模型，但是效果不太好
+'''
 # 神经网络系数
 ratio = 1e3
 simulation_step = 0.1  # 仿真步长

@@ -7,10 +7,10 @@ from sklearn import preprocessing
 
 
 class DNN:
-    '''
+    """
     定义神经网络并且获得网络结构
     输入维度、输出维度、单元数、是否训练、名字
-    '''
+    """
 
     def __init__(self, s_dim, a_dim, units, batch_size=100, memory_size=1000, train=0, name=None, graph=None):
         self.s_dim = s_dim
@@ -68,15 +68,19 @@ class DNN:
                 self.sess = tf.Session(graph=self.graph)
             self.actor_saver = tf.train.Saver()
         if self.train == 1:
+            self.a_scale = None
             self.sess.run(tf.global_variables_initializer())
         else:
+            self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
+            memory = np.load(os.path.join(self.model_path0,'memory_init.npy'))
+            self.a_scale.fit(memory[:,self.s_dim:])
             self.actor_saver.restore(self.sess, self.model_path)
-        self.a_scale = None
+        
 
     def learn(self):
-        '''
+        """
         随机选取记忆池中batch_size样本进行学习
-        '''
+        """
         if self.pointer < self.memory_size:
             # 未存储够足够的记忆池的容量
             return
@@ -84,6 +88,7 @@ class DNN:
             if self.a_scale is None:
                 self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
                 self.a_scale.fit(self.memory[:,self.s_dim:])
+                np.save(os.path.join(self.model_path0,'memory_init.npy'),self.memory)
             # 随机选取样本进行训练
             indexs = np.random.choice(self.memory_size, size=self.batch_size)
             samples = self.memory[indexs, :]
@@ -95,26 +100,26 @@ class DNN:
             return loss
 
     def store_sample(self, X, Y):
-        '''
+        """
         存储X,Y到记忆池
-        '''
+        """
         transition = np.hstack((X, Y))
         index = self.pointer % self.memory_size
         self.memory[index, :] = transition
         self.pointer += 1
 
     def store_net(self):
-        '''
+        """
         将网络进行存储
-        '''
+        """
         self.actor_saver.save(self.sess, self.model_path)
 
     def predict(self, X):
-        '''
+        """
         X维度是(n,s_dim)或者(s_dim,)
         进行预测
         :return (n,a_dim)
-        '''
+        """
         try:
             # 判断是否是二维向量
             _ = X.shape[1]

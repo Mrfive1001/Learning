@@ -16,7 +16,7 @@ record_mu_tru = []
 
 
 my_state = env.reset()
-for epi in range(50000):
+for epi in range(20000):
     u = env.action_sample()
     my_state, _, _, _ = env.step(u)
     state, _, _, _ = env.env.step(u)

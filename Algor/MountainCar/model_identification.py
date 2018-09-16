@@ -5,18 +5,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import math
 sns.set()
-'''
+"""
 利用eso来逼近真实模型，但是效果不太好
-'''
+"""
 # 神经网络系数
 ratio = 1e3
 simulation_step = 0.1  # 仿真步长
 
 def step_my(X, u, net, mu = 0):
-    '''
+    """
     输入状态量、控制量、误差和网络
     返回下一个状态
-    '''
+    """
 
     u = min(max(u, -1.0), 1.0)
     x, v = X
@@ -37,9 +37,9 @@ def step_my(X, u, net, mu = 0):
 
 
 def get_mu(mu, X1, X2, k=0.001):
-    '''
+    """
     通过两个状态得到导数之间的误差
-    '''
+    """
     dot = k * (X1 - X2)[1]
     mu = mu + simulation_step * dot
     return mu

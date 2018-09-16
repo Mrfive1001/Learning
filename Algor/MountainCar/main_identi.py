@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from model import MountainCar
-sns.set()
+sns.set() 
 
-train = 20
+train = 50
 env = MountainCar(train, name='New')
 
 record_tru = []

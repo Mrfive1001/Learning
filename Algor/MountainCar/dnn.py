@@ -60,8 +60,7 @@ class DNN:
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(
                 tf.squared_difference(self.areal, self.apre))  # loss函数
-            self.train_op = tf.train.AdamOptimizer(
-                0.0001).minimize(self.loss)  # 训练函数
+            self.train_op = tf.train.AdamOptimizer(0.0001).minimize(self.loss)  # 训练函数
             # 保存或者读取网络
             if self.graph is not None:
                 self.sess = tf.Session(graph=self.graph)
@@ -73,6 +72,7 @@ class DNN:
         else:
             self.actor_saver.restore(self.sess, self.model_path)
         self.s_scale = None
+        self.a_scale = None
 
     def learn(self):
         '''
@@ -82,16 +82,18 @@ class DNN:
             # 未存储够足够的记忆池的容量
             return
         else:
-            if self.s_scale is None:
+            if self.a_scale is None:
                 self.s_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
                 self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
-                self.s_scale.fit(self.memory[:,:self.s_dim])
+                # self.s_scale.fit(self.memory[:,:self.s_dim])
                 self.a_scale.fit(self.memory[:,self.s_dim:])
             # 随机选取样本进行训练
             indexs = np.random.choice(self.memory_size, size=self.batch_size)
             samples = self.memory[indexs, :]
-            X_samples = self.s_scale.transform(samples[:, :self.s_dim])
-            Y_samples = self.a_scale.transform(samples[:, self.s_dim:])
+            X_samples = samples[:, :self.s_dim]
+            Y_samples = samples[:, self.s_dim:]
+            # X_samples = self.s_scale.transform(X_samples)
+            # Y_samples = self.a_scale.transform(Y_samples)
             _, loss = self.sess.run([self.train_op, self.loss],
                                          feed_dict={self.s: X_samples, self.areal: Y_samples})
             return loss
@@ -122,13 +124,14 @@ class DNN:
             _ = X.shape[1]
         except Exception:
             X = np.array(X).reshape((-1,self.s_dim))
-        if self.s_scale:
-            X = self.s_scale.inverse_transform(X)
+        # if self.a_scale:
+        #     X = self.s_scale.inverse_transform(X)
         y = self.sess.run(self.apre, feed_dict={self.s: X})
-        if self.s_scale:
-            return self.a_scale.inverse_transform(y)
-        else:
-            return y
+        return y
+        # if self.a_scale:
+        #     return self.a_scale.inverse_transform(y)
+        # else:
+        #     return y
 
 
 if __name__ == '__main__':

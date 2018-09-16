@@ -18,10 +18,12 @@ class MountainCar:
         self.env = gym.make("MountainCarContinuous-v0")
         self.name = name
         self.simulation_step = 0.1
+        self.ratio = 1e4
         if train:
-            self.train_model(train)
-        self.net = DNN(2, 1, 20, name=self.name, train=1,
-                       memory_size=1000, batch_size=200)
+            self.net = self.train_model(train)
+        else:
+            self.net = DNN(2, 1, 20, name=self.name, train=0,memory_size=1000, batch_size=200)
+
 
     def train_model(self, big_epis):
         '''
@@ -31,17 +33,18 @@ class MountainCar:
         for big_epi in range(big_epis):
             # 初始化
             observation = self.reset()
-            for epi in range(20000):
+            for epi in range(50000):
                 u = self.action_sample()
-                state, _, _, _ = self.step(u, net)
+                observation_old = observation.copy()
                 observation, _, _, _ = self.env.step(u)
-                target = self._get_target(state, observation, u)
-                net.store_sample(state, target)
+                target = self._get_target(observation_old, observation, u)
+                net.store_sample(observation_old, target)
                 if epi % 100 == 0:
                     result = net.learn()
                     if result:
                         print(big_epi, epi, result)
         net.store_net()
+        return net
 
     def action_sample(self):
         '''
@@ -56,16 +59,14 @@ class MountainCar:
         self.state = self.env.reset()
         return self.state
 
-    def step(self, action, net=None):
+    def step(self, action):
         '''
         利用神经网络进行模型辨识
         '''
-        if net is None:
-            net = self.net
         action = min(max(action, -1.0), 1.0)
         x, v = self.state
         # 神经网络得到的导数
-        dot = self._get_dot(self.state, net)
+        dot = self._get_dot(self.state)
         v_dot = 0.0015 * action + dot[0]
         v = v + v_dot * self.simulation_step
         v = min(max(v, -0.07), 0.07)
@@ -83,13 +84,12 @@ class MountainCar:
         reward = {}
         return self.state, reward, done, info
 
-    def _get_dot(self, X, net=None):
-        if net is None:
-            net = self.net
-        return net.predict(X)[0]
+    def _get_dot(self, X):
+        return self.net.predict(X)[0]/self.ratio
 
-    def _get_target(self, X, X_real, u):
+    def _get_target(self, X, X_new, u):
         '''
         得到神经网络需要的真实值
+        首先求真实的导数，之后计算真实值
         '''
-        return ((X_real - X) / self.simulation_step)[1] - u * 0.0015
+        return (((X_new - X) / self.simulation_step)[1] - u * 0.0015)*self.ratio

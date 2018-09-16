@@ -6,8 +6,8 @@ import seaborn as sns
 from model import MountainCar
 sns.set() 
 
-train = 50
-env = MountainCar(train, name='New')
+train = 0
+env = MountainCar(train, name='Goodone')
 
 record_tru = []
 record_pre = []

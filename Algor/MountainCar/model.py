@@ -18,7 +18,7 @@ class MountainCar:
         self.env = gym.make("MountainCarContinuous-v0")
         self.name = name
         self.simulation_step = 0.1
-        self.ratio = 1e4
+        self.ratio = 1
         if train:
             self.net = self.train_model(train)
         else:

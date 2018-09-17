@@ -3,7 +3,9 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+
 from model import MountainCar
+
 sns.set() 
 
 train = 0

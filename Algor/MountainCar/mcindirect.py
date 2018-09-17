@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import odeint
 from scipy.optimize import minimize, root
+import seaborn as sns
 
+sns.set()
 
 class MountainCarIndirect:
     """
@@ -112,11 +114,34 @@ class MountainCarIndirect:
         if end:
             H_end = 1 + lambda_x*v + lambda_v*(b*u-a*math.cos(3*x))
             return H_end
-        return X_dot
+        return np.array(X_dot)
+
+
+    def choose_action(self,result_by_indirect,observation):
+        """
+        根据间接法计算得到的lambda来选择动作，并返回下一个lambda
+        """
+        try:
+            lambda_x,lambda_v,t_f = result_by_indirect
+        except Exception:
+            lambda_x, lambda_v = result_by_indirect
+        # 选择动作
+        u = 1
+        if lambda_v > 0:
+            u = -u
+        X = np.hstack((observation,lambda_x,lambda_v))
+        X_dot = self.motionequation(X,0)
+        X += X_dot*self.simulation_step
+        return np.array([u]),X[2:]
 
 
 if __name__ == '__main__':
+    """
+    测试下直接间接法的效果
+    """
     env = MountainCarIndirect()
+    observation = env.reset()
+    # 求出间接法的结果
     for i in range(100):
         lambda_n = np.random.randn(2)*10
         t_f = np.random.rand(1) * 100
@@ -124,14 +149,32 @@ if __name__ == '__main__':
         res = env.get_result(action)
         print('step', i, 'fun', res.fun, '\n', 'action', res.x)
         if res.success:
-            break
             print('sucess')
-    action = res.x
-    observation, ceq, done, info = env.step(action)
-    print('Result:',ceq)
+            break
+
+    # 应用到当前初始化的小车控制上
+    original_action = res.x
+    result_indirect = res.x
+    t = 0
+    while True:
+        env.env.render()
+        action,result_indirect = env.choose_action(result_indirect,observation)
+        t += env.simulation_step
+        observation,_,done,info = env.env.step(action)
+        if done:
+            break
+
+    observation, ceq, done, info = env.step(original_action)
+    print('Result:',ceq,'Time',t)
+
+    # 展示结果
     plt.figure(1)
     plt.plot(info['t'], info['X'][:, 0])
+    plt.xlabel('Time(s)')
+    plt.ylabel('Xposition')
+    plt.plot(0.45*np.ones(int(info['t'].max()+2)),'r')
     plt.figure(2)
     plt.plot(info['t'], info['X'][:, 1])
-
+    plt.xlabel('Time(s)')
+    plt.ylabel('Vspeed')
     plt.show()

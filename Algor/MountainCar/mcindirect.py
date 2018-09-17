@@ -7,9 +7,9 @@ from scipy.integrate import odeint
 from scipy.optimize import minimize, root
 
 
-class MoutainCarIndirect:
+class MountainCarIndirect:
     """
-    MoutainCar间接法来求解
+    MountainCar间接法来求解
     """
 
     def __init__(self, random=False):
@@ -62,6 +62,7 @@ class MoutainCarIndirect:
         t_f = action[-1]
         x_goal = 0.45
 
+        t_f = abs(t_f)
         # 微分方程
         X0 = np.hstack([self.state, lambda_0])
         t = np.linspace(0, t_f, 101)
@@ -115,22 +116,22 @@ class MoutainCarIndirect:
 
 
 if __name__ == '__main__':
-    env = MoutainCarIndirect()
+    env = MountainCarIndirect()
     for i in range(100):
-        lambda_n = np.random.randn(4)
-        t_f = np.random.rand(1) * 10
+        lambda_n = np.random.randn(2)*10
+        t_f = np.random.rand(1) * 100
         action = np.hstack([lambda_n, t_f])
         res = env.get_result(action)
         print('step', i, 'fun', res.fun, '\n', 'action', res.x)
         if res.success:
             break
             print('sucess')
-
-    # action = [ 0.88974051 ,-0.07939553 ,-0.04843978 ,-0.06693855 ,-0.03286776, -0.3049739 ,-0.63933857]
     action = res.x
     observation, ceq, done, info = env.step(action)
+    print('Result:',ceq)
     plt.figure(1)
-    plt.plot(info['X'][:, 0], info['X'][:, 1])
+    plt.plot(info['t'], info['X'][:, 0])
     plt.figure(2)
     plt.plot(info['t'], info['X'][:, 1])
+
     plt.show()

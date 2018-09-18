@@ -21,17 +21,18 @@ class MountainCar:
         self.name = name
         self.simulation_step = 0.1
         self.ratio = 1
+        self.units = 100
         if train:
             self.net = self.train_model(train)
         else:
-            self.net = DNN(2, 1, 40, name=self.name, train=0,memory_size=1000, batch_size=200)
+            self.net = DNN(2, 1, self.units, name=self.name, train=0,memory_size=1000, batch_size=200)
 
 
     def train_model(self, big_epis):
         """
         每一大轮循环20000代
         """
-        net = DNN(2, 1, 20, name=self.name, train=1, memory_size=1000, batch_size=200)
+        net = DNN(2, 1, self.units, name=self.name, train=1, memory_size=1000, batch_size=200)
         for big_epi in range(big_epis):
             # 初始化
             observation = self.reset()

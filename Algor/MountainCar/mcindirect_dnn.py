@@ -9,6 +9,7 @@ from scipy.optimize import minimize, root
 
 from dnn import DNN
 
+np.random.seed(10)
 sns.set()
 
 class MountainCarIndirect:
@@ -23,7 +24,7 @@ class MountainCarIndirect:
         self.x = None  # 内部积分变量
         self.simulation_step = 0.1  # 积分步长
         self.random = random  # 是否随机初始化
-        self.net = DNN(2, 1, 20, name='Goodone', train=0,memory_size=1000, batch_size=200)
+        self.net = DNN(2, 1, 100, name='Goodone', train=0,memory_size=1000, batch_size=200)
         self.reset()
         self.state_dim = len(self.state)
 
@@ -85,6 +86,8 @@ class MountainCarIndirect:
         info['X'] = X.copy()
         info['t'] = t.copy()
         info['ceq'] = ceq
+        print(ceq,action)
+
 
         return self.state.copy(), ceq, done, info
 
@@ -108,10 +111,12 @@ class MountainCarIndirect:
             u = -u
 
         # dynamic equation
-        pred_ = self.net.predict(X[:2])[0,0]
-        pred_dot = self.net.predict_dot(X[:2])[0,0]
-        # pred_ = -a*math.cos(3*x)
-        # pred_dot = 3*a*math.sin(3*x)
+        pred_ = float(self.net.predict(X[:2])[0,0])
+        pred_dot = float(self.net.predict_dot(X[:2])[0,0])
+
+        pred_ = -a*math.cos(3*x)
+        pred_dot = 3*a*math.sin(3*x)
+        # print(pred_dot,pred_dot1,pred_,pred_1)
         x_dot = v
         v_dot = b*u+pred_
         lambda_x_dot = -lambda_v*pred_dot

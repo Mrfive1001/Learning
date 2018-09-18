@@ -24,7 +24,7 @@ class MountainCar:
         if train:
             self.net = self.train_model(train)
         else:
-            self.net = DNN(2, 1, 20, name=self.name, train=0,memory_size=1000, batch_size=200)
+            self.net = DNN(2, 1, 40, name=self.name, train=0,memory_size=1000, batch_size=200)
 
 
     def train_model(self, big_epis):

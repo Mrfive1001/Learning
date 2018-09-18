@@ -50,12 +50,8 @@ class DNN:
                 net1, self.units, name='l2', activation=my_actiivation)
             net3 = tf.layers.dense(
                 net2, self.units, name='l3', activation=my_actiivation)
-            net4 = tf.layers.dense(
-                net3, self.units, name='l4', activation=my_actiivation)
-            net5 = tf.layers.dense(
-                net4, self.units, name='l5', activation=my_actiivation)
 
-            self.apre = tf.layers.dense(net5, self.a_dim, name='apre')  # 输出线性
+            self.apre = tf.layers.dense(net3, self.a_dim, name='apre')  # 输出线性
             self.get_dot = tf.gradients(self.apre,self.s)
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(

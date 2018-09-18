@@ -8,7 +8,7 @@ from model import MountainCar
 
 sns.set() 
 
-train = 0
+train = 50
 env = MountainCar(train, name='Goodone')
 
 record_tru = []

@@ -100,6 +100,7 @@ class MountainCarIndirect:
         lambda_x = X[2]
         lambda_v = X[3]
 
+        a = 0.0025
         b = 0.0015
 
         u = 1
@@ -109,9 +110,11 @@ class MountainCarIndirect:
         # dynamic equation
         pred_ = self.net.predict(X[:2])[0,0]
         pred_dot = self.net.predict_dot(X[:2])[0,0]
+        # pred_ = -a*math.cos(3*x)
+        # pred_dot = 3*a*math.sin(3*x)
         x_dot = v
         v_dot = b*u+pred_
-        lambda_x_dot = pred_dot
+        lambda_x_dot = -lambda_v*pred_dot
         lambda_v_dot = -lambda_x
 
         X_dot = [x_dot, v_dot, lambda_x_dot, lambda_v_dot]

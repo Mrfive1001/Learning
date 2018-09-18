@@ -56,7 +56,7 @@ class DNN:
                 net4, self.units, name='l5', activation=my_actiivation)
 
             self.apre = tf.layers.dense(net5, self.a_dim, name='apre')  # 输出线性
-
+            self.get_dot = tf.gradients(self.apre,self.s)
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(
                 tf.squared_difference(self.areal, self.apre))  # loss函数
@@ -131,6 +131,22 @@ class DNN:
         else:
             return y
 
+    def predict_dot(self,X):
+        """
+        X维度是(n,s_dim)或者(s_dim,)
+        预测输出对X的导数
+        :return array(dot)
+        """
+        try:
+            # 判断是否是二维向量
+            _ = X.shape[1]
+        except Exception:
+            X = np.array(X).reshape((-1,self.s_dim))
+        dot = self.sess.run(self.get_dot, feed_dict={self.s: X})[0]
+        if self.a_scale:
+            return self.a_scale.inverse_transform(dot)
+        else:
+            return dot
 
 if __name__ == '__main__':
     pass

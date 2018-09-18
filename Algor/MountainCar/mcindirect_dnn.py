@@ -23,6 +23,7 @@ class MountainCarIndirect:
         self.x = None  # 内部积分变量
         self.simulation_step = 0.1  # 积分步长
         self.random = random  # 是否随机初始化
+        self.net = DNN(2, 1, 20, name='Goodone', train=0,memory_size=1000, batch_size=200)
         self.reset()
         self.state_dim = len(self.state)
 
@@ -99,7 +100,6 @@ class MountainCarIndirect:
         lambda_x = X[2]
         lambda_v = X[3]
 
-        a = 0.0025
         b = 0.0015
 
         u = 1
@@ -107,14 +107,16 @@ class MountainCarIndirect:
             u = -u
 
         # dynamic equation
+        pred_ = self.net.predict(X[:2])[0,0]
+        pred_dot = self.net.predict_dot(X[:2])[0,0]
         x_dot = v
-        v_dot = b*u-a*math.cos(3*x)
-        lambda_x_dot = -3*a*lambda_v*math.sin(3*x)
+        v_dot = b*u+pred_
+        lambda_x_dot = pred_dot
         lambda_v_dot = -lambda_x
 
         X_dot = [x_dot, v_dot, lambda_x_dot, lambda_v_dot]
         if end:
-            H_end = 1 + lambda_x*v + lambda_v*(b*u-a*math.cos(3*x))
+            H_end = 1 + lambda_x*v + lambda_v*(b*u+pred_)
             return H_end
         return np.array(X_dot)
 
@@ -139,7 +141,7 @@ class MountainCarIndirect:
 
 if __name__ == '__main__':
     """
-    测试下直接间接法的效果
+    测试下模型辨识结合间接法得到的效果
     """
     env = MountainCarIndirect()
     observation = env.reset()

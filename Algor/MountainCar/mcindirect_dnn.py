@@ -25,7 +25,7 @@ class MountainCarIndirect:
         self.x = None  # 内部积分变量
         self.simulation_step = 0.1  # 积分步长
         self.random = random  # 是否随机初始化
-        self.net = DNN(2, 1, 100, name='Goodone', train=0,memory_size=1000, batch_size=200)
+        self.net = DNN(1, 1, 50, name='Goodone', train=0)
         self.reset()
         self.state_dim = len(self.state)
 
@@ -87,7 +87,7 @@ class MountainCarIndirect:
         info['X'] = X.copy()
         info['t'] = t.copy()
         info['ceq'] = ceq
-        # print(ceq,action)
+        print(ceq,action)
 
 
         return self.state.copy(), ceq, done, info
@@ -99,10 +99,11 @@ class MountainCarIndirect:
         输入t
         输入end 是否求最终的几个值 
         """
-        x = X[0]
-        v = X[1]
-        lambda_x = X[2]
-        lambda_v = X[3]
+        constant = 1e-50
+        x = 0 if abs(X[0]) < constant else X[0]
+        v = 0 if abs(X[1]) < constant else X[1]
+        lambda_x = 0 if abs(X[2]) < constant else X[2]
+        lambda_v = 0 if abs(X[3]) < constant else X[3]
 
         a = 0.0025
         b = 0.0015
@@ -112,11 +113,15 @@ class MountainCarIndirect:
             u = -u
 
         # dynamic equation
-        # pred_ = float(self.net.predict(X[:2])[0,0])
-        # pred_dot = float(self.net.predict_dot(X[:2])[0,0])
 
-        pred_ = -a*math.cos(3*x)
-        pred_dot = 3*a*math.sin(3*x)
+        pred_ = float(self.net.predict(X[:1])[0,0])
+        pred_dot = float(self.net.predict_dot(X[:1])[0,0])
+        pred_1 = -a*math.cos(3*x)
+        pred_dot1 = 3*a*math.sin(3*x)
+
+        if abs(pred_-pred_1) > 0.1:
+            print(111)
+
         # print(pred_dot,pred_dot1,pred_,pred_1)
         x_dot = v
         v_dot = b*u+pred_
@@ -169,7 +174,7 @@ if __name__ == '__main__':
     original_action = res.x
     result_indirect = res.x
     t = 0
-    env_net = MountainCar(0,name = 'Goodone',net = env.net)
+    env_net = MountainCar(train = 0,name = 'Goodone',net = env.net)
     observation_record = []
     observation_record2 = []
     env_net.state = observation

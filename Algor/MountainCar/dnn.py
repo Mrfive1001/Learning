@@ -12,7 +12,7 @@ class DNN:
     输入维度、输出维度、单元数、是否训练、名字
     """
 
-    def __init__(self, s_dim, a_dim, units, batch_size=100, memory_size=1000, train=0, name=None, graph=None):
+    def __init__(self, s_dim, a_dim, units, batch_size=512, memory_size=1000, train=0, name=None, graph=None):
         self.s_dim = s_dim
         self.a_dim = a_dim
         self.units = units
@@ -50,7 +50,9 @@ class DNN:
                 net1, self.units, name='l2', activation=my_actiivation)
             net3 = tf.layers.dense(
                 net2, self.units, name='l3', activation=my_actiivation)
-            self.apre = tf.layers.dense(net3, self.a_dim, name='apre')  # 输出线性
+            net4 = tf.layers.dense(
+                net3, self.units, name='l4', activation=my_actiivation)
+            self.apre = tf.layers.dense(net4, self.a_dim, name='apre')  # 输出线性
             self.get_dot = tf.gradients(self.apre,self.s)
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(
@@ -63,11 +65,10 @@ class DNN:
                 self.sess = tf.Session(graph=self.graph)
             self.actor_saver = tf.train.Saver()
         if self.train == 1:
-            self.a_scale = None
             self.sess.run(tf.global_variables_initializer())
         else:
             self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
-            memory = np.load(os.path.join(self.model_path0,'memory_init.npy'))
+            memory = np.load(os.path.join(self.model_path0,'memory.npy'))
             self.a_scale.fit(memory[:,self.s_dim:])
             self.actor_saver.restore(self.sess, self.model_path)
         
@@ -93,6 +94,21 @@ class DNN:
             _, loss = self.sess.run([self.train_op, self.loss],
                                          feed_dict={self.s: X_samples, self.areal: Y_samples})
             return loss
+
+    def learn_data(self,data,big_epis = 10000):
+        self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1, 1))
+        self.a_scale.fit(data[:, self.s_dim:])
+        total_size = len(data)
+        for epi in range(big_epis):
+        # 随机选取样本进行训练
+            indexs = np.random.choice(total_size, size=self.batch_size)
+            samples = data[indexs, :]
+            X_samples = samples[:, :self.s_dim]
+            Y_samples = samples[:, self.s_dim:]
+            Y_samples = self.a_scale.transform(Y_samples)
+            _, loss = self.sess.run([self.train_op, self.loss],
+                                feed_dict={self.s: X_samples, self.areal: Y_samples})
+            print(loss)
 
     def store_sample(self, X, Y):
         """

@@ -13,7 +13,7 @@ class MountainCar:
     定义预测出来的模型
     """
 
-    def __init__(self, train=0, name='Goodone'):
+    def __init__(self, train=0, name='Goodone',net = None):
         """
         train: 是否进行训练，如果训练的话也等于训练次数
         """
@@ -22,24 +22,30 @@ class MountainCar:
         self.simulation_step = 0.1
         self.ratio = 1
         self.units = 100
-        if train:
-            self.net = self.train_model(train)
+        if net:
+            self.net = net
         else:
-            self.net = DNN(2, 1, self.units, name=self.name, train=0,memory_size=1000, batch_size=200)
+            if train:
+                self.net = self.train_model(train)
+            else:
+                self.net = DNN(2, 1, self.units, name=self.name, train=0,memory_size=10000, batch_size=1000)
 
 
     def train_model(self, big_epis):
         """
         每一大轮循环20000代
         """
-        net = DNN(2, 1, self.units, name=self.name, train=1, memory_size=1000, batch_size=200)
+        net = DNN(2, 1, self.units, name=self.name, train=1, memory_size=10000, batch_size=1000)
         for big_epi in range(big_epis):
             # 初始化
+            # 为了能够达到目标点
+            change = 1
             observation = self.reset()
             for epi in range(30000):
-                u = self.action_sample()
+                if epi % change == 0:
+                    u = self.action_sample()
                 observation_old = observation.copy()
-                observation, _, _, _ = self.env.step(u)
+                observation, _, done, _ = self.env.step(u)
                 target = self._get_target(observation_old, observation, u)
                 net.store_sample(observation_old, target)
                 if epi % 100 == 0:
@@ -85,6 +91,8 @@ class MountainCar:
         info = {}
         done = {}
         reward = {}
+        if x >= 0.45:
+            done = True
         return self.state, reward, done, info
 
     def _get_dot(self, X):

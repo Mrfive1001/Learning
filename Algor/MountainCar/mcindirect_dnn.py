@@ -8,6 +8,7 @@ from scipy.integrate import odeint
 from scipy.optimize import minimize, root
 
 from dnn import DNN
+from model import MountainCar
 
 np.random.seed(10)
 sns.set()
@@ -86,7 +87,7 @@ class MountainCarIndirect:
         info['X'] = X.copy()
         info['t'] = t.copy()
         info['ceq'] = ceq
-        print(ceq,action)
+        # print(ceq,action)
 
 
         return self.state.copy(), ceq, done, info
@@ -111,8 +112,8 @@ class MountainCarIndirect:
             u = -u
 
         # dynamic equation
-        pred_ = float(self.net.predict(X[:2])[0,0])
-        pred_dot = float(self.net.predict_dot(X[:2])[0,0])
+        # pred_ = float(self.net.predict(X[:2])[0,0])
+        # pred_dot = float(self.net.predict_dot(X[:2])[0,0])
 
         pred_ = -a*math.cos(3*x)
         pred_dot = 3*a*math.sin(3*x)
@@ -168,25 +169,63 @@ if __name__ == '__main__':
     original_action = res.x
     result_indirect = res.x
     t = 0
+    env_net = MountainCar(0,name = 'Goodone',net = env.net)
+    observation_record = []
+    observation_record2 = []
+    env_net.state = observation
+    observation2 = observation
     while True:
-        env.env.render()
+        observation_record.append(observation)
+        observation_record2.append(observation2)
         action,result_indirect = env.choose_action(result_indirect,observation)
+        observation, _, done, info = env_net.step(action)
+        observation2, _, done2, info2 = env.env.step(action)
         t += env.simulation_step
-        observation,_,done,info = env.env.step(action)
-        if done:
+        print(observation,observation2)
+        if done2:
             break
-
-    observation, ceq, done, info = env.step(original_action)
-    print('Result:',ceq,'Time',t)
-
-    # 展示结果
+    observation_record = np.array(observation_record)
+    observation_record2 = np.array(observation_record2)
     plt.figure(1)
-    plt.plot(info['t'], info['X'][:, 0])
+    plt.plot(observation_record[:,0],label = 'pre')
+    plt.plot(observation_record2[:,0],label = 'ture')
+
     plt.xlabel('Time(s)')
     plt.ylabel('Xposition')
-    plt.plot(0.45*np.ones(int(info['t'].max()+2)),'r')
+    plt.plot(0.45*np.ones(len(observation_record)),'r')
+    plt.legend()
+
     plt.figure(2)
-    plt.plot(info['t'], info['X'][:, 1])
+    plt.plot((observation_record[:,1]),label = 'pre')
+    plt.plot((observation_record2[:,1]),label = 'ture')
     plt.xlabel('Time(s)')
     plt.ylabel('Vspeed')
+    plt.legend()
     plt.show()
+
+
+    # t = 0
+    # while True:
+    #     env.env.render()
+    #     action,result_indirect = env.choose_action(result_indirect,observation)
+    #     t += env.simulation_step
+    #     observation,_,done,info = env.env.step(action)
+    #     if done:
+    #         break
+    #
+    #
+    #
+    # observation, ceq, done, info = env.step(original_action)
+    # print('Result:',ceq,'Time',t)
+
+    # 展示结果
+    # plt.figure(1)
+    # plt.plot(info['t'], info['X'][:, 0])
+    # plt.xlabel('Time(s)')
+    # plt.ylabel('Xposition')
+    # plt.plot(0.45*np.ones(int(info['t'].max()+2)),'r')
+    # plt.figure(2)
+    # plt.plot(info['t'], info['X'][:, 1])
+    # plt.xlabel('Time(s)')
+    # plt.ylabel('Vspeed')
+    # plt.show()

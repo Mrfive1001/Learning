@@ -4,7 +4,13 @@ import sys
 import numpy as np
 import tensorflow as tf
 from sklearn import preprocessing
-
+'''
+定义神经网络 完成对文件中数据的学习预测
+包含功能：
+是否进行训练
+同时拥有多个网络在同一张图中
+保存网络的名字，便于多个网络的保存
+'''
 
 class DNN:
     """
@@ -12,18 +18,13 @@ class DNN:
     输入维度、输出维度、单元数、是否训练、名字
     """
 
-    def __init__(self, s_dim, a_dim, units, batch_size=512, memory_size=1000, train=0, name=None, graph=None):
+    def __init__(self, s_dim, a_dim, units, train=0, name=None, graph=None):
         self.s_dim = s_dim
         self.a_dim = a_dim
         self.units = units
         self.train = train
         self.name = name
         self.graph = graph
-        self.memory_size = memory_size
-        self.batch_size = batch_size
-        self.pointer = 0
-        self.memory = np.zeros(
-            (self.memory_size, s_dim + a_dim), dtype=np.float32)  # 存储s,a
         # 保存网络位置
         self.model_path0 = os.path.join(sys.path[0], 'DNN_Net')
         if not os.path.exists(self.model_path0):
@@ -37,7 +38,7 @@ class DNN:
         if self.graph is None:
             self.graph = tf.get_default_graph()
         with self.graph.as_default():
-            # 输入向量
+            # 构建网络
             my_actiivation = tf.nn.tanh
             self.s = tf.placeholder(tf.float32, [None, s_dim], name='s')
             self.areal = tf.placeholder(tf.float32, [None, a_dim], 'areal')
@@ -58,66 +59,29 @@ class DNN:
             self.loss = tf.reduce_mean(
                 tf.squared_difference(self.areal, self.apre))  # loss函数
             self.train_op = tf.train.AdamOptimizer(0.0001).minimize(self.loss)  # 训练函数
-            # 保存或者读取网络
-            if self.graph is not None:
-                self.sess = tf.Session(graph=self.graph)
-            else:
-                self.sess = tf.Session(graph=self.graph)
+            self.sess = tf.Session(graph=self.graph)
             self.actor_saver = tf.train.Saver()
         if self.train == 1:
+            # 保存或者读取网络
             self.sess.run(tf.global_variables_initializer())
         else:
-            self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
-            memory = np.load(os.path.join(self.model_path0,'memory.npy'))
-            self.a_scale.fit(memory[:,self.s_dim:])
+            # 从name的文件中读取网络
             self.actor_saver.restore(self.sess, self.model_path)
-        
 
-    def learn(self):
+    def learn_data(self,data,train_epi = 1000,batch_size = 200):
         """
-        随机选取记忆池中batch_size样本进行学习
+        对输入数据进行训练
+        传入的数据需要是经过归一化的
         """
-        if self.pointer < self.memory_size:
-            # 未存储够足够的记忆池的容量
-            return
-        else:
-            if self.a_scale is None:
-                self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1,1))
-                self.a_scale.fit(self.memory[:,self.s_dim:])
-                np.save(os.path.join(self.model_path0,'memory_init.npy'),self.memory)
-            # 随机选取样本进行训练
-            indexs = np.random.choice(self.memory_size, size=self.batch_size)
-            samples = self.memory[indexs, :]
-            X_samples = samples[:, :self.s_dim]
-            Y_samples = samples[:, self.s_dim:]
-            Y_samples = self.a_scale.transform(Y_samples)
-            _, loss = self.sess.run([self.train_op, self.loss],
-                                         feed_dict={self.s: X_samples, self.areal: Y_samples})
-            return loss
-
-    def learn_data(self,data,big_epis = 10000):
-        self.a_scale = preprocessing.MinMaxScaler(feature_range=(-1, 1))
-        self.a_scale.fit(data[:, self.s_dim:])
-        total_size = len(data)
+        X = data[:, :self.s_dim].copy()
+        Y = data[:, self.s_dim:].copy()
         for epi in range(big_epis):
         # 随机选取样本进行训练
             indexs = np.random.choice(total_size, size=self.batch_size)
-            samples = data[indexs, :]
-            X_samples = samples[:, :self.s_dim]
-            Y_samples = samples[:, self.s_dim:]
-            Y_samples = self.a_scale.transform(Y_samples)
-            _, loss = self.sess.run([self.train_op, self.loss],
-                                feed_dict={self.s: X_samples, self.areal: Y_samples})
+            X_samples = X[indexs, :]
+            Y_samples = Y[indexs, :]
+            _, loss = self.sess.run([self.train_op, self.loss],feed_dict={self.s: X_samples, self.areal: Y_samples})
             print(loss)
-
-    def store_sample(self, X, Y):
-        """
-        存储X,Y到记忆池
-        """
-        transition = np.hstack((X, Y))
-        index = self.pointer % self.memory_size
-        self.memory[index, :] = transition
-        self.pointer += 1
 
     def store_net(self):
         """
@@ -137,10 +101,7 @@ class DNN:
         except Exception:
             X = np.array(X).reshape((-1,self.s_dim))
         y = self.sess.run(self.apre, feed_dict={self.s: X})
-        if self.a_scale:
-            return self.a_scale.inverse_transform(y)
-        else:
-            return y
+        return y
 
     def predict_dot(self,X):
         """
@@ -154,10 +115,7 @@ class DNN:
         except Exception:
             X = np.array(X).reshape((-1,self.s_dim))
         dot = self.sess.run(self.get_dot, feed_dict={self.s: X})[0]
-        if self.a_scale:
-            return self.a_scale.inverse_transform(dot)
-        else:
-            return dot
+        return dot
 
 if __name__ == '__main__':
     pass

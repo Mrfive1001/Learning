@@ -18,7 +18,7 @@ class DNN:
     输入维度、输出维度、单元数、是否训练、名字
     """
 
-    def __init__(self, s_dim, a_dim, units, train=0, name=None, graph=None):
+    def __init__(self, s_dim, a_dim, units, train=1, name=None, graph=None):
         self.s_dim = s_dim
         self.a_dim = a_dim
         self.units = units
@@ -68,16 +68,17 @@ class DNN:
             # 从name的文件中读取网络
             self.actor_saver.restore(self.sess, self.model_path)
 
-    def learn_data(self,data,train_epi = 1000,batch_size = 200):
+    def learn_data(self,data,train_epi = 10000,batch_size = 2000):
         """
         对输入数据进行训练
         传入的数据需要是经过归一化的
         """
+        data_size = len(data)
         X = data[:, :self.s_dim].copy()
         Y = data[:, self.s_dim:].copy()
-        for epi in range(big_epis):
+        for epi in range(train_epi):
         # 随机选取样本进行训练
-            indexs = np.random.choice(total_size, size=self.batch_size)
+            indexs = np.random.choice(data_size, size=batch_size)
             X_samples = X[indexs, :]
             Y_samples = Y[indexs, :]
             _, loss = self.sess.run([self.train_op, self.loss],feed_dict={self.s: X_samples, self.areal: Y_samples})

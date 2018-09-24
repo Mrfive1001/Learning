@@ -13,30 +13,19 @@ from model import MountainCar
 np.random.seed(10)
 sns.set()
 
-class MountainCarIndirect:
-    """
-    MountainCar间接法来求解
-    """
+"""
+MountainCar间接法来求解
+"""
 
-    def __init__(self, random=False):
-        self.t = None
-        self.env = gym.make("MountainCarContinuous-v0")
-        self.state = None  # 与外界交互的变量
-        self.x = None  # 内部积分变量
-        self.simulation_step = 0.1  # 积分步长
-        self.random = random  # 是否随机初始化
-        self.net = DNN(1, 1, 50, name='Goodone', train=0)
+class MountainCarIndirect:
+    def __init__(self):
+        self.env = MountainCar()
+        self.state = None   # 系统状态变量
         self.reset()
         self.state_dim = len(self.state)
 
     def render(self):
         pass
-
-    def action_sample(self):
-        """
-        随机选取符合环境的动作
-        """
-        return self.env.action_space.sample()
 
     def reset(self):
         """
@@ -70,6 +59,7 @@ class MountainCarIndirect:
         x_goal = 0.45
 
         t_f = abs(t_f)
+        action[-1] = t_f
         # 微分方程
         X0 = np.hstack([self.state, lambda_0])
         t = np.linspace(0, t_f, 101)
@@ -87,7 +77,7 @@ class MountainCarIndirect:
         info['X'] = X.copy()
         info['t'] = t.copy()
         info['ceq'] = ceq
-        print(ceq,action)
+        # print(ceq,action)
 
 
         return self.state.copy(), ceq, done, info
@@ -114,13 +104,11 @@ class MountainCarIndirect:
 
         # dynamic equation
 
-        pred_ = float(self.net.predict(X[:1])[0,0])
-        pred_dot = float(self.net.predict_dot(X[:1])[0,0])
-        pred_1 = -a*math.cos(3*x)
-        pred_dot1 = 3*a*math.sin(3*x)
+        pred_ = float(self.env.net.predict(X[:1])[0,0])
+        pred_dot = float(self.env.net.predict_dot(X[:1])[0,0])
+        # pred_ = -a*math.cos(3*x)
+        # pred_dot = 3*a*math.sin(3*x)
 
-        if abs(pred_-pred_1) > 0.1:
-            print(111)
 
         # print(pred_dot,pred_dot1,pred_,pred_1)
         x_dot = v
@@ -149,7 +137,7 @@ class MountainCarIndirect:
             u = -u
         X = np.hstack((observation,lambda_x,lambda_v))
         X_dot = self.motionequation(X,0)
-        X += X_dot*self.simulation_step
+        X += X_dot*self.env.simulation_step
         return np.array([u]),X[2:]
 
 
@@ -171,42 +159,42 @@ if __name__ == '__main__':
             break
 
     # 应用到当前初始化的小车控制上
-    original_action = res.x
-    result_indirect = res.x
-    t = 0
-    env_net = MountainCar(train = 0,name = 'Goodone',net = env.net)
-    observation_record = []
-    observation_record2 = []
-    env_net.state = observation
-    observation2 = observation
-    while True:
-        observation_record.append(observation)
-        observation_record2.append(observation2)
-        action,result_indirect = env.choose_action(result_indirect,observation)
-        observation, _, done, info = env_net.step(action)
-        observation2, _, done2, info2 = env.env.step(action)
-        t += env.simulation_step
-        print(observation,observation2)
-        if done2:
-            break
-    observation_record = np.array(observation_record)
-    observation_record2 = np.array(observation_record2)
-    plt.figure(1)
-    plt.plot(observation_record[:,0],label = 'pre')
-    plt.plot(observation_record2[:,0],label = 'ture')
+    # original_action = res.x
+    # result_indirect = res.x
+    # t = 0
 
-    plt.xlabel('Time(s)')
-    plt.ylabel('Xposition')
-    plt.plot(0.45*np.ones(len(observation_record)),'r')
-    plt.legend()
+    # observation_record = []
+    # observation_record2 = []
+    # env_net.state = observation
+    # observation2 = observation
+    # while True:
+    #     observation_record.append(observation)
+    #     observation_record2.append(observation2)
+    #     action,result_indirect = env.choose_action(result_indirect,observation)
+    #     observation, _, done, info = env_net.step(action)
+    #     observation2, _, done2, info2 = env.env.step(action)
+    #     t += env.env.simulation_step
+    #     print(observation,observation2)
+    #     if done2:
+    #         break
+    # observation_record = np.array(observation_record)
+    # observation_record2 = np.array(observation_record2)
+    # plt.figure(1)
+    # plt.plot(observation_record[:,0],label = 'pre')
+    # plt.plot(observation_record2[:,0],label = 'ture')
 
-    plt.figure(2)
-    plt.plot((observation_record[:,1]),label = 'pre')
-    plt.plot((observation_record2[:,1]),label = 'ture')
-    plt.xlabel('Time(s)')
-    plt.ylabel('Vspeed')
-    plt.legend()
-    plt.show()
+    # plt.xlabel('Time(s)')
+    # plt.ylabel('Xposition')
+    # plt.plot(0.45*np.ones(len(observation_record)),'r')
+    # plt.legend()
+
+    # plt.figure(2)
+    # plt.plot((observation_record[:,1]),label = 'pre')
+    # plt.plot((observation_record2[:,1]),label = 'ture')
+    # plt.xlabel('Time(s)')
+    # plt.ylabel('Vspeed')
+    # plt.legend()
+    # plt.show()
 
 
     # t = 0

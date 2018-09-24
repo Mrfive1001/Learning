@@ -1,11 +1,13 @@
 import math
 import os
+
 import gym
-import numpy as np
-from sklearn import preprocessing
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
+from sklearn import preprocessing
+
 from dnn import DNN
 
 sns.set()
@@ -59,7 +61,7 @@ class MountainCar:
             observation = self.reset()
             for epi in range(10000):
                 if epi % change == 0:
-                    u = self.action_sample()
+                    u = self.action_sample()*3
                     print(big_epi, int(20 * epi / 3000) * '=')
                 observation_old = observation.copy()
                 observation, _, done, _ = self.env.step(u)
@@ -140,7 +142,7 @@ class MountainCar:
         """
         随机选取符合环境的动作
         """
-        return self.env.action_space.sample() * 3
+        return self.env.action_space.sample()
 
     def reset(self):
         """
@@ -201,5 +203,3 @@ if __name__ == '__main__':
 
     # 4 验证网络
     mc.verity_net()
-
-

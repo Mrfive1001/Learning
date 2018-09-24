@@ -26,7 +26,7 @@ class MountainCar:
     定义预测出来的模型
     """
 
-    def __init__(self, name='Goodone', net=None, verity = 0):
+    def __init__(self, name='Goodone', net=None, train = 0):
         """
         初始化
         net: 训练的神经网络
@@ -42,7 +42,7 @@ class MountainCar:
         if net:
             self.net = net
         else:
-            self.net = DNN(1, 1, self.units,train = verity, name=self.name)
+            self.net = DNN(1, 1, self.units,train = train, name=self.name)
 
 
     def save_samples(self, big_epis=100):
@@ -108,7 +108,7 @@ class MountainCar:
         """
 
         a = 0.0025
-        x_ = np.arange(-1.1, 0.6, 0.001)
+        x_ = np.arange(-1.1, 0.5, 0.001)
         y_tru = -a * np.cos(3 * x_)
         y_pre = self.net.predict(x_.reshape((-1, 1)))/self.ratio
         # 验证对所有的x的拟合情况
@@ -189,7 +189,7 @@ class MountainCar:
 
 
 if __name__ == '__main__':
-    mc = MountainCar(verity=0)
+    mc = MountainCar(train=0)
     # 1 生成数据
     # mc.save_samples()
 

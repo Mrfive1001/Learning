@@ -82,7 +82,7 @@ class DNN:
             X_samples = X[indexs, :]
             Y_samples = Y[indexs, :]
             _, loss = self.sess.run([self.train_op, self.loss],feed_dict={self.s: X_samples, self.areal: Y_samples})
-            print(loss)
+            print("Iteration: %s,Loss, %s"%(epi,loss))
 
     def store_net(self):
         """

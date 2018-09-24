@@ -15,6 +15,9 @@ sns.set()
 
 """
 MountainCar间接法来求解
+1 直接对原系统使用间接法来求解
+    1.1 将求解结果放到原系统中
+    1.2 将求解结果放到神经网络辨识得到的系统中
 """
 
 class MountainCarIndirect:
@@ -57,19 +60,17 @@ class MountainCarIndirect:
         lambda_0 = action[:-1]
         t_f = action[-1]
         x_goal = 0.45
-
         t_f = abs(t_f)
-        action[-1] = t_f
+
         # 微分方程
         X0 = np.hstack([self.state, lambda_0])
         t = np.linspace(0, t_f, 101)
-        X = odeint(self.motionequation, X0, t, rtol=1e-12, atol=1e-12)
+        # X = odeint(self.motionequation, X0, t, rtol=1e-12, atol=1e-12)
+        X = self.odeint(self.motionequation, X0, t)
 
         # 末端Hamilton函数值
         X_end = X[-1, :]
-
         H_end = self.motionequation(X_end, 0, end=True)
-
         ceq = np.array([H_end,X_end[0]-x_goal,X_end[3]])
         
         done = True
@@ -77,7 +78,6 @@ class MountainCarIndirect:
         info['X'] = X.copy()
         info['t'] = t.copy()
         info['ceq'] = ceq
-        # print(ceq,action)
 
 
         return self.state.copy(), ceq, done, info
@@ -89,38 +89,53 @@ class MountainCarIndirect:
         输入t
         输入end 是否求最终的几个值 
         """
-        constant = 1e-50
-        x = 0 if abs(X[0]) < constant else X[0]
-        v = 0 if abs(X[1]) < constant else X[1]
-        lambda_x = 0 if abs(X[2]) < constant else X[2]
-        lambda_v = 0 if abs(X[3]) < constant else X[3]
+        x = X[0]
+        v = X[1]
+        lambda_x = X[2]
+        lambda_v = X[3]
 
         a = 0.0025
         b = 0.0015
-
         u = 1
         if lambda_v > 0:
+            # 最优控制
             u = -u
 
-        # dynamic equation
+        original = 1  # 是否使用原系统进行求解
+        pred_ = -a * math.cos(3 * x)
+        pred_dot = 3 * a * math.sin(3 * x)
+        if original == 0:
+            pred_ = float(self.env.net.predict(X[:1])[0,0])
+            pred_dot = float(self.env.net.predict_dot(X[:1])[0,0])
 
-        pred_ = float(self.env.net.predict(X[:1])[0,0])
-        pred_dot = float(self.env.net.predict_dot(X[:1])[0,0])
-        # pred_ = -a*math.cos(3*x)
-        # pred_dot = 3*a*math.sin(3*x)
-
-
-        # print(pred_dot,pred_dot1,pred_,pred_1)
+        # 动态方程
         x_dot = v
         v_dot = b*u+pred_
         lambda_x_dot = -lambda_v*pred_dot
         lambda_v_dot = -lambda_x
-
         X_dot = [x_dot, v_dot, lambda_x_dot, lambda_v_dot]
         if end:
             H_end = 1 + lambda_x*v + lambda_v*(b*u+pred_)
             return H_end
         return np.array(X_dot)
+
+    def odeint(self,dot_fun,X0,t_list):
+        """
+        直接对dot_fun进行积分
+        :param dot_fun: 输入X得到X_dot
+        :param X0: 积分初值
+        :param t_list: 积分的中间值
+        :return: X_all
+        """
+        result = []
+        X = X0.copy()
+        result.append(X)
+        for t_index in range(1,len(t_list)):
+            t = t_list[t_index]-t_list[t_index-1]
+            dot = dot_fun(X,0)
+            X += dot*t
+            result.append(X)
+        return np.array(result)
 
 
     def choose_action(self,result_by_indirect,observation):
@@ -159,50 +174,51 @@ if __name__ == '__main__':
             break
 
     # 应用到当前初始化的小车控制上
-    # original_action = res.x
-    # result_indirect = res.x
-    # t = 0
+    original_action = res.x
+    result_indirect = res.x
 
-    # observation_record = []
-    # observation_record2 = []
-    # env_net.state = observation
-    # observation2 = observation
+    observation_record = []
+    observation_record_net = []
+
+    observation_net = observation # 神经网络系统
+    env.env.state = observation # 神经网络系统
+    while True:
+        observation_record.append(observation)
+        observation_record_net.append(observation_net)
+        action,result_indirect = env.choose_action(result_indirect,observation)
+        observation, _, done, info = env.env.env.step(action)
+        observation_net, _, done_net, info_net = env.env.step(action)
+        print(observation,observation_net)
+        if done:
+            break
+    observation_record = np.array(observation_record)
+    observation_record_net = np.array(observation_record_net)
+
+    # 显示x曲线和v曲线
+    plt.figure(1)
+    plt.plot(observation_record[:,0],label = 'x_ture')
+    plt.plot(observation_record_net[:,0],label = 'x_pre')
+
+    plt.xlabel('Time(s)')
+    plt.ylabel('Xposition')
+    plt.plot(0.45*np.ones(len(observation_record)),'r')
+    plt.legend()
+
+    plt.figure(2)
+    plt.plot((observation_record[:,1]),label = 'v_ture')
+    plt.plot((observation_record_net[:,1]),label = 'v_pre')
+    plt.xlabel('Time(s)')
+    plt.ylabel('Vspeed')
+    plt.legend()
+    plt.show()
+
+
+    # t = 0
     # while True:
-    #     observation_record.append(observation)
-    #     observation_record2.append(observation2)
+    #     env.env.env.render()
     #     action,result_indirect = env.choose_action(result_indirect,observation)
-    #     observation, _, done, info = env_net.step(action)
-    #     observation2, _, done2, info2 = env.env.step(action)
     #     t += env.env.simulation_step
-    #     print(observation,observation2)
-    #     if done2:
-    #         break
-    # observation_record = np.array(observation_record)
-    # observation_record2 = np.array(observation_record2)
-    # plt.figure(1)
-    # plt.plot(observation_record[:,0],label = 'pre')
-    # plt.plot(observation_record2[:,0],label = 'ture')
-
-    # plt.xlabel('Time(s)')
-    # plt.ylabel('Xposition')
-    # plt.plot(0.45*np.ones(len(observation_record)),'r')
-    # plt.legend()
-
-    # plt.figure(2)
-    # plt.plot((observation_record[:,1]),label = 'pre')
-    # plt.plot((observation_record2[:,1]),label = 'ture')
-    # plt.xlabel('Time(s)')
-    # plt.ylabel('Vspeed')
-    # plt.legend()
-    # plt.show()
-
-
-    # t = 0
-    # while True:
-    #     env.env.render()
-    #     action,result_indirect = env.choose_action(result_indirect,observation)
-    #     t += env.simulation_step
-    #     observation,_,done,info = env.env.step(action)
+    #     observation,_,done,info = env.env.env.step(action)
     #     if done:
     #         break
     #
@@ -210,8 +226,8 @@ if __name__ == '__main__':
     #
     # observation, ceq, done, info = env.step(original_action)
     # print('Result:',ceq,'Time',t)
-
-    # 展示结果
+    #
+    # # 展示结果
     # plt.figure(1)
     # plt.plot(info['t'], info['X'][:, 0])
     # plt.xlabel('Time(s)')

@@ -41,6 +41,7 @@ class MountainCar:
         self.simulation_step = 0.1
         self.units = 50
         self.ratio = 200
+        self.reset()
         if net:
             self.net = net
         else:

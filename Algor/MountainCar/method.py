@@ -104,7 +104,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 1  # 是否使用原系统进行求解
+        original = 0  # 是否使用原系统进行求解
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:

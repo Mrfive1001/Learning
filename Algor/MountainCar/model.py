@@ -159,7 +159,7 @@ class MountainCar:
         action = min(max(action, -1.0), 1.0)
         x, v = self.state
         # 神经网络得到的导数
-        dot = self._get_dot(self.state)
+        dot = self.get_dot(self.state)
         v_dot = 0.0015 * action + dot[0]
         v = v + v_dot * self.simulation_step
         v = min(max(v, -0.07), 0.07)
@@ -179,8 +179,11 @@ class MountainCar:
             done = True
         return self.state, reward, done, info
 
-    def _get_dot(self, X):
-        return self.net.predict(X[0:1])[0]
+    def get_dot(self, X):
+        return self.net.predict(X[0:1])[0]/self.ratio
+
+    def get_dot2(self, X):
+        return self.net.predict_dot(X[0:1])[0]/self.ratio
 
     def _get_target(self, X, X_new, u):
         """

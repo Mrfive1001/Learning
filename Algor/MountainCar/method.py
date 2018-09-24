@@ -16,8 +16,11 @@ sns.set()
 """
 MountainCar间接法来求解
 1 直接对原系统使用间接法来求解
-    1.1 将求解结果放到原系统中
-    1.2 将求解结果放到神经网络辨识得到的系统中
+    1.1 将求解结果放到原系统中 done
+    1.2 将求解结果放到神经网络辨识得到的系统中 done
+2 对神经网络辨识得到的结果使用间接法
+    1.1 将求解结果放到原系统中 done
+    1.2 将求解结果放到神经网络辨识得到的系统中 done
 """
 
 class MountainCarIndirect:
@@ -105,8 +108,8 @@ class MountainCarIndirect:
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
-            pred_ = float(self.env.net.predict(X[:1])[0,0])
-            pred_dot = float(self.env.net.predict_dot(X[:1])[0,0])
+            pred_ = float(self.env.get_dot(X[:1]))
+            pred_dot = float(self.env.get_dot2(X[:1]))
 
         # 动态方程
         x_dot = v
@@ -211,30 +214,3 @@ if __name__ == '__main__':
     plt.ylabel('Vspeed')
     plt.legend()
     plt.show()
-
-
-    # t = 0
-    # while True:
-    #     env.env.env.render()
-    #     action,result_indirect = env.choose_action(result_indirect,observation)
-    #     t += env.env.simulation_step
-    #     observation,_,done,info = env.env.env.step(action)
-    #     if done:
-    #         break
-    #
-    #
-    #
-    # observation, ceq, done, info = env.step(original_action)
-    # print('Result:',ceq,'Time',t)
-    #
-    # # 展示结果
-    # plt.figure(1)
-    # plt.plot(info['t'], info['X'][:, 0])
-    # plt.xlabel('Time(s)')
-    # plt.ylabel('Xposition')
-    # plt.plot(0.45*np.ones(int(info['t'].max()+2)),'r')
-    # plt.figure(2)
-    # plt.plot(info['t'], info['X'][:, 1])
-    # plt.xlabel('Time(s)')
-    # plt.ylabel('Vspeed')
-    # plt.show()

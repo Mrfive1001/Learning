@@ -186,9 +186,10 @@ if __name__ == '__main__':
     observation_net = observation # 神经网络系统
     env.env.state = observation # 神经网络系统
     while True:
+        env.env.env.render()
         observation_record.append(observation)
         observation_record_net.append(observation_net)
-        action,result_indirect = env.choose_action(result_indirect,observation)
+        action,result_indirect = env.choose_action(result_indirect,observation_net)
         observation, _, done, info = env.env.env.step(action)
         observation_net, _, done_net, info_net = env.env.step(action)
         print(observation,observation_net)

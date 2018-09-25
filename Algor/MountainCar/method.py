@@ -21,6 +21,7 @@ MountainCar间接法来求解
 2 对神经网络辨识得到的结果使用间接法
     1.1 将求解结果放到原系统中 done
     1.2 将求解结果放到神经网络辨识得到的系统中 done
+3 保存通过打靶法得到的数据
 """
 
 class MountainCarIndirect:
@@ -140,6 +141,71 @@ class MountainCarIndirect:
             result.append(X)
         return np.array(result)
 
+    def hit_target(self,X0):
+        """
+        间接法打靶方程
+        :param X0: 初始状态,赋值给self.state
+        :return: 打靶结果、中间状态
+        """
+        self.state = X0
+        for i in range(100):
+            lambda_n = np.random.randn(2) * 10
+            t_f = np.random.rand(1) * 100
+            corr = np.hstack([lambda_n, t_f])
+            res = self.get_result(corr)
+            print('step', i, 'fun', res.fun, '\n', 'corr', res.x)
+            if res.success:
+                print('sucess')
+                break
+        info = self.step(corr)[-1]
+        return corr,info,res.success
+
+    def verity_cor(self,X0,corr):
+        """
+        对神经网络系统和原始系统进行协态变量验证
+        :param X0: 初始状态
+        :param action: 协态变量
+        :return: 进行结果显示和返回打靶过程量
+        """
+        observation_record = []
+        observation_record_net = []
+        corr_record = []
+
+        observation_net = X0  # 神经网络系统
+        self.env.state = X0  # 神经网络系统
+        observation = X0 # 原系统
+        while True:
+            self.env.env.render()
+            observation_record.append(observation)
+            observation_record_net.append(observation_net)
+            corr_record.append(corr)
+            action, corr = self.choose_action(corr, observation_net)
+            observation, _, done, info = self.env.env.step(action)
+            observation_net, _, done_net, info_net = self.env.step(action)
+            # print(observation, observation_net)
+            if done_net:
+                break
+        observation_record = np.array(observation_record)
+        observation_record_net = np.array(observation_record_net)
+        corr_record = np.array(corr_record)
+        # 显示x曲线和v曲线
+        plt.figure(1)
+        plt.plot(observation_record[:, 0], label='x_ture')
+        plt.plot(observation_record_net[:, 0], label='x_pre')
+
+        plt.xlabel('Time(s)')
+        plt.ylabel('Xposition')
+        plt.plot(0.45 * np.ones(len(observation_record)), 'r')
+        plt.legend()
+
+        plt.figure(2)
+        plt.plot((observation_record[:, 1]), label='v_ture')
+        plt.plot((observation_record_net[:, 1]), label='v_pre')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Vspeed')
+        plt.legend()
+        plt.show()
+        return observation_record_net,corr_record
 
     def choose_action(self,result_by_indirect,observation):
         """
@@ -166,52 +232,6 @@ if __name__ == '__main__':
     env = MountainCarIndirect()
     observation = env.reset()
     # 求出间接法的结果
-    for i in range(100):
-        lambda_n = np.random.randn(2)*10
-        t_f = np.random.rand(1) * 100
-        action = np.hstack([lambda_n, t_f])
-        res = env.get_result(action)
-        print('step', i, 'fun', res.fun, '\n', 'action', res.x)
-        if res.success:
-            print('sucess')
-            break
-
+    corr,info,success = env.hit_target(observation.copy())
     # 应用到当前初始化的小车控制上
-    original_action = res.x
-    result_indirect = res.x
-
-    observation_record = []
-    observation_record_net = []
-
-    observation_net = observation # 神经网络系统
-    env.env.state = observation # 神经网络系统
-    while True:
-        env.env.env.render()
-        observation_record.append(observation)
-        observation_record_net.append(observation_net)
-        action,result_indirect = env.choose_action(result_indirect,observation_net)
-        observation, _, done, info = env.env.env.step(action)
-        observation_net, _, done_net, info_net = env.env.step(action)
-        print(observation,observation_net)
-        if done:
-            break
-    observation_record = np.array(observation_record)
-    observation_record_net = np.array(observation_record_net)
-
-    # 显示x曲线和v曲线
-    plt.figure(1)
-    plt.plot(observation_record[:,0],label = 'x_ture')
-    plt.plot(observation_record_net[:,0],label = 'x_pre')
-
-    plt.xlabel('Time(s)')
-    plt.ylabel('Xposition')
-    plt.plot(0.45*np.ones(len(observation_record)),'r')
-    plt.legend()
-
-    plt.figure(2)
-    plt.plot((observation_record[:,1]),label = 'v_ture')
-    plt.plot((observation_record_net[:,1]),label = 'v_pre')
-    plt.xlabel('Time(s)')
-    plt.ylabel('Vspeed')
-    plt.legend()
-    plt.show()
+    env.verity_cor(observation,corr)

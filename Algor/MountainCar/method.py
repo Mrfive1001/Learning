@@ -1,4 +1,6 @@
 import math
+import os
+import sys
 
 import gym
 import matplotlib.pyplot as plt
@@ -105,7 +107,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 0  # 是否使用原系统进行求解
+        original = 1  # 是否使用原系统进行求解
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
@@ -133,12 +135,12 @@ class MountainCarIndirect:
         """
         result = []
         X = X0.copy()
-        result.append(X)
+        result.append(X.copy())
         for t_index in range(1,len(t_list)):
             t = t_list[t_index]-t_list[t_index-1]
             dot = dot_fun(X,0)
             X += dot*t
-            result.append(X)
+            result.append(X.copy())
         return np.array(result)
 
     def hit_target(self,X0):
@@ -151,16 +153,16 @@ class MountainCarIndirect:
         for i in range(100):
             lambda_n = np.random.randn(2) * 10
             t_f = np.random.rand(1) * 100
-            corr = np.hstack([lambda_n, t_f])
-            res = self.get_result(corr)
-            print('step', i, 'fun', res.fun, '\n', 'corr', res.x)
+            coor = np.hstack([lambda_n, t_f])
+            res = self.get_result(coor)
+            print('step', i, 'fun', res.fun, '\n', 'coor', res.x)
             if res.success:
                 print('sucess')
                 break
-        info = self.step(corr)[-1]
-        return corr,info,res.success
+        info = self.step(res.x)[-1]
+        return res.x,info,res.success
 
-    def verity_cor(self,X0,corr):
+    def verity_cor(self,X0,coor):
         """
         对神经网络系统和原始系统进行协态变量验证
         :param X0: 初始状态
@@ -175,11 +177,11 @@ class MountainCarIndirect:
         self.env.state = X0  # 神经网络系统
         observation = X0 # 原系统
         while True:
-            self.env.env.render()
+            # self.env.env.render()
             observation_record.append(observation)
             observation_record_net.append(observation_net)
-            corr_record.append(corr)
-            action, corr = self.choose_action(corr, observation_net)
+            corr_record.append(coor)
+            action, coor = self.choose_action(coor, observation_net)
             observation, _, done, info = self.env.env.step(action)
             observation_net, _, done_net, info_net = self.env.step(action)
             # print(observation, observation_net)
@@ -224,6 +226,26 @@ class MountainCarIndirect:
         X += X_dot*self.env.simulation_step
         return np.array([u]),X[2:]
 
+    def get_samples(self,epis):
+        """
+        保存epis轮的打靶数据
+        :return: 保存到数据中
+        """
+        path = os.path.join(sys.path[0],'Data')
+        record_all = None
+        for epi in range(epis):
+            observation = self.reset()
+            print('-'*10,'Epi:',epi+1,',Begin!')
+            coor, info, success = self.hit_target(observation.copy())
+            print('-'*10,'Epi:',epi+1,',End!','Success:',success)
+            if success:
+                record = np.hstack((info['X'], info['t'].reshape((-1, 1))))
+                if record_all is None:
+                    record_all = record
+                else:
+                    record_all = np.vstack((record_all, record))
+        np.save(os.path.join(path,'all_samples.npy'))
+
 
 if __name__ == '__main__':
     """
@@ -232,6 +254,8 @@ if __name__ == '__main__':
     env = MountainCarIndirect()
     observation = env.reset()
     # 求出间接法的结果
-    corr,info,success = env.hit_target(observation.copy())
+    # coor,info,success = env.hit_target(observation.copy())
     # 应用到当前初始化的小车控制上
-    env.verity_cor(observation,corr)
+    # observation_record,coor_record = env.verity_cor(observation,coor)
+    # 保存打靶法得到的结果
+    env.get_samples(100)

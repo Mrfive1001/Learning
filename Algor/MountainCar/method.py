@@ -24,6 +24,7 @@ MountainCar间接法来求解
     1.1 将求解结果放到原系统中 done
     1.2 将求解结果放到神经网络辨识得到的系统中 done
 3 保存通过打靶法得到的数据
+4 验证得到的数据是否有效
 """
 
 class MountainCarIndirect:
@@ -107,7 +108,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 1  # 是否使用原系统进行求解
+        original = 0  # 是否使用原系统进行求解
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
@@ -173,6 +174,10 @@ class MountainCarIndirect:
         observation_record_net = []
         corr_record = []
 
+        # 是否使用gym
+        use_gym = 0
+
+
         observation_net = X0  # 神经网络系统
         self.env.state = X0  # 神经网络系统
         observation = X0 # 原系统
@@ -192,7 +197,8 @@ class MountainCarIndirect:
         corr_record = np.array(corr_record)
         # 显示x曲线和v曲线
         plt.figure(1)
-        plt.plot(observation_record[:, 0], label='x_ture')
+        if use_gym:
+            plt.plot(observation_record[:, 0], label='x_ture')
         plt.plot(observation_record_net[:, 0], label='x_pre')
 
         plt.xlabel('Time(s)')
@@ -201,7 +207,8 @@ class MountainCarIndirect:
         plt.legend()
 
         plt.figure(2)
-        plt.plot((observation_record[:, 1]), label='v_ture')
+        if use_gym:
+            plt.plot((observation_record[:, 1]), label='v_ture')
         plt.plot((observation_record_net[:, 1]), label='v_pre')
         plt.xlabel('Time(s)')
         plt.ylabel('Vspeed')
@@ -239,12 +246,24 @@ class MountainCarIndirect:
             coor, info, success = self.hit_target(observation.copy())
             print('-'*10,'Epi:',epi+1,',End!','Success:',success)
             if success:
-                record = np.hstack((info['X'], info['t'].reshape((-1, 1))))
+                record = np.hstack((info['X'], (info['t'][::-1]).reshape((-1, 1))))
                 if record_all is None:
                     record_all = record
                 else:
                     record_all = np.vstack((record_all, record))
-        np.save(os.path.join(path,'all_samples.npy'))
+        np.save(os.path.join(path,'all_samples_net.npy'),record_all)
+
+    def verity_sample(self,name):
+        """
+        验证Data中name文件的数据是否有效
+        :param name: 文件名称
+        """
+        path = os.path.join(sys.path[0], 'Data')
+        data = np.load(os.path.join(path,name))
+        index = np.random.choice(len(data),size=1)
+        samples = data[index,:]
+        for sample in samples:
+            self.verity_cor(sample[:2],sample[2:])
 
 
 if __name__ == '__main__':
@@ -258,4 +277,6 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(100)
+    # env.get_samples(2)
+    # 验证样本数据的有效性
+    env.verity_sample('all_samples_net.npy')

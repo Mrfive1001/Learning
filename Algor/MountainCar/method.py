@@ -12,7 +12,7 @@ from scipy.optimize import minimize, root
 from dnn import DNN
 from model import MountainCar
 
-np.random.seed(10)
+# np.random.seed(10)
 sns.set()
 
 """
@@ -108,7 +108,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 0  # 是否使用原系统进行求解
+        original = 1  # 是否使用原系统进行求解
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
@@ -251,7 +251,7 @@ class MountainCarIndirect:
                     record_all = record
                 else:
                     record_all = np.vstack((record_all, record))
-        np.save(os.path.join(path,'all_samples_net.npy'),record_all)
+        np.save(os.path.join(path,'all_samples_original.npy'),record_all)
 
     def verity_sample(self,name):
         """
@@ -260,7 +260,7 @@ class MountainCarIndirect:
         """
         path = os.path.join(sys.path[0], 'Data')
         data = np.load(os.path.join(path,name))
-        index = np.random.choice(len(data),size=1)
+        index = np.random.choice(len(data),size=2)
         samples = data[index,:]
         for sample in samples:
             self.verity_cor(sample[:2],sample[2:])
@@ -277,6 +277,6 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    # env.get_samples(2)
+    # env.get_samples(100)
     # 验证样本数据的有效性
-    env.verity_sample('all_samples_net.npy')
+    env.verity_sample('all_samples_original.npy')

@@ -237,6 +237,7 @@ class MountainCarIndirect:
         """
         保存epis轮的打靶数据
         :return: 保存到数据中
+        数据中 X,V,lambda0,lambda1,tf
         """
         path = os.path.join(sys.path[0],'Data')
         record_all = None

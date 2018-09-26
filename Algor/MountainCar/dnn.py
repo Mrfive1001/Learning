@@ -53,7 +53,7 @@ class DNN:
                 net2, self.units, name='l3', activation=my_actiivation)
             net4 = tf.layers.dense(
                 net3, self.units, name='l4', activation=my_actiivation)
-            self.apre = tf.layers.dense(net4, self.a_dim, name='apre')  # 输出线性
+            self.apre = tf.layers.dense(net4, self.a_dim, name='apre',activation=my_actiivation)  # 输出线性
             self.get_dot = tf.gradients(self.apre,self.s)
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(

@@ -260,7 +260,7 @@ class MountainCarIndirect:
         """
         path = os.path.join(sys.path[0], 'Data')
         data = np.load(os.path.join(path,name))
-        index = np.random.choice(len(data),size=2)
+        index = np.random.choice(len(data),size=4)
         samples = data[index,:]
         for sample in samples:
             self.verity_cor(sample[:2],sample[2:])

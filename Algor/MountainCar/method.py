@@ -161,7 +161,11 @@ class MountainCarIndirect:
                 print('sucess')
                 break
         info = self.step(res.x)[-1]
-        return res.x,info,res.success
+        data_x = info['X'][:,0]
+        success = res.success
+        if data_x.min() < -1.2 or data_x.max() > 0.6:
+            success = False
+        return res.x,info,success
 
     def verity_cor(self,X0,coor):
         """
@@ -261,7 +265,7 @@ class MountainCarIndirect:
         """
         path = os.path.join(sys.path[0], 'Data')
         data = np.load(os.path.join(path,name))
-        index = np.random.choice(len(data),size=4)
+        index = np.random.choice(len(data),size=5)
         samples = data[index,:]
         for sample in samples:
             self.verity_cor(sample[:2],sample[2:])

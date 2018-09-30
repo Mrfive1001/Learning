@@ -400,22 +400,22 @@ if __name__ == '__main__':
     read_position = [[500, 500, 200, 600], [1100, 460, 1150, 360], [500, 500, 500, 2500],
                      [2355, 2430, 2000, 4000], [1140, 1870, 820, 3200], [1500, 20, 2355, 2430]]
     # 起点终点备选
-    read =  4 # 规划数据，选择对那一组测试
+    read =  0 # 规划数据，选择对那一组测试
     start_point = read_position[read][: 2]
     end_point = read_position[read][2:]
     my_map = Map(map_data, start_point, end_point)
 
 
-    # 与蚁群算法对比
-    # 1 生成数据
-    map_data = get_data(40, 40, 0.1)
-    # 2 定义起始点和目标点生成图
-    start_point = [0, 0]
-    end_point = [38, 34]
-    my_map = Map(map_data, start_point, end_point)
+    # # 与蚁群算法对比
+    # # 1 生成数据
+    # map_data = get_data(40, 40, 0.1)
+    # # 2 定义起始点和目标点生成图
+    # start_point = [0, 0]
+    # end_point = [38, 34]
+    # my_map = Map(map_data, start_point, end_point)
 
     # 3 定义算法
-    model = GraphSearch(my_map, alg='D', mode=1)
+    model = GraphSearch(my_map, alg='B', mode=1)
 
     # 4 运行算法，得到结果展示
     time0 = time.time()

@@ -6,7 +6,7 @@ import gym
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from scipy.integrate import odeint, RK45
+from scipy.integrate import RK45, odeint
 from scipy.optimize import minimize, root
 
 from dnn import DNN

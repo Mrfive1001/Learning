@@ -18,7 +18,7 @@ class DNN:
     输入维度、输出维度、单元数、是否训练、名字
     """
 
-    def __init__(self, s_dim, a_dim, units, train=1, name=None, graph=None):
+    def __init__(self, s_dim, a_dim, units, train=1, name=None, graph=None,out_activation = 'linear'):
         self.s_dim = s_dim
         self.a_dim = a_dim
         self.units = units
@@ -53,7 +53,11 @@ class DNN:
                 net2, self.units, name='l3', activation=my_actiivation)
             net4 = tf.layers.dense(
                 net3, self.units, name='l4', activation=my_actiivation)
-            self.apre = tf.layers.dense(net4, self.a_dim, name='apre',activation=my_actiivation)  # 输出线性
+            if out_activation == 'linear':
+                self.apre = tf.layers.dense(net4, self.a_dim, name='apre')  # 输出线性
+            else:
+                self.apre = tf.layers.dense(net4, self.a_dim, name='apre',activation=my_actiivation)  # 输出tanh
+
             self.get_dot = tf.gradients(self.apre,self.s)
             self.mae = tf.reduce_mean(tf.abs(self.areal - self.apre))
             self.loss = tf.reduce_mean(

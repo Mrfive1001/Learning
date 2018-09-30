@@ -6,6 +6,8 @@ import numpy as np
 import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import preprocessing, svm
+import tensorflow as tf
+from method import MountainCarIndirect
 
 from dnn import DNN
 
@@ -57,12 +59,21 @@ if __name__ == '__main__':
     data = np.hstack((X, Y))
     # 训练或者进行测试网络
     train = 0
-    net = DNN(s_dim, a_dim, 100, train, name='coor', out_activation='tanh')
+    g1 = tf.Graph()
+    net = DNN(s_dim, a_dim, 100, train, name='coor',graph = g1, out_activation='tanh')
     if train:
         net.learn_data(data,train_epi=10000,batch_size=4096)
         net.store_net()
     else:
         Y_pre = y_scale.inverse_transform(net.predict(X))
         data_pre = np.hstack((X_ori,Y_pre))
+    # 使用预测得到的结果进行打靶
+    env = MountainCarIndirect()
+    for _ in range(10):
+        observation = env.reset()
+        coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
+        env.verity_cor(observation,coor)
+
+
 
 

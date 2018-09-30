@@ -6,7 +6,7 @@ import gym
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from scipy.integrate import odeint
+from scipy.integrate import odeint, RK45
 from scipy.optimize import minimize, root
 
 from dnn import DNN
@@ -72,12 +72,24 @@ class MountainCarIndirect:
         # 微分方程
         X0 = np.hstack([self.state, lambda_0])
         t = np.linspace(0, t_f, 101)
+        # Old API
         # X = odeint(self.motionequation, X0, t, rtol=1e-12, atol=1e-12)
-        X = self.odeint(self.motionequation, X0, t)
+
+        # New API
+        ode = RK45(self.motionequation,t[0],X0,t_f)
+        X = [X0]
+        while True:
+            ode.step()
+            X.append(ode.y)
+            if ode.status != 'running':
+                break
+        X = np.array(X)
+
+        # X = self.odeint(self.motionequation, X0, t)
 
         # 末端Hamilton函数值
         X_end = X[-1, :]
-        H_end = self.motionequation(X_end, 0, end=True)
+        H_end = self.motionequation(0,X_end, end=True)
         ceq = np.array([H_end,X_end[0]-x_goal,X_end[3]])
         
         done = True
@@ -89,7 +101,7 @@ class MountainCarIndirect:
 
         return self.state.copy(), ceq, done, info
 
-    def motionequation(self, X, t, end=False):
+    def motionequation(self, t, X, end=False):
         """
         状态方程的转移
         输入当前X，输出X_dot
@@ -167,7 +179,7 @@ class MountainCarIndirect:
             success = False
         return res.x,info,success
 
-    def verity_cor(self,X0,coor):
+    def verity_cor(self,X0,coor,show = True):
         """
         对神经网络系统和原始系统进行协态变量验证
         :param X0: 初始状态
@@ -177,6 +189,7 @@ class MountainCarIndirect:
         observation_record = []
         observation_record_net = []
         corr_record = []
+        time_record = []
 
         # 是否使用gym
         use_gym = 0
@@ -185,40 +198,45 @@ class MountainCarIndirect:
         observation_net = X0  # 神经网络系统
         self.env.state = X0  # 神经网络系统
         observation = X0 # 原系统
+        time = 0
         while True:
             # self.env.env.render()
             observation_record.append(observation)
             observation_record_net.append(observation_net)
-            corr_record.append(coor)
+            time_record.append(time)
+            corr_record.append(coor[:2])
             action, coor = self.choose_action(coor, observation_net)
             observation, _, done, info = self.env.env.step(action)
             observation_net, _, done_net, info_net = self.env.step(action)
+            time += self.env.simulation_step
             # print(observation, observation_net)
             if done_net:
                 break
         observation_record = np.array(observation_record)
         observation_record_net = np.array(observation_record_net)
         corr_record = np.array(corr_record)
-        # 显示x曲线和v曲线
-        plt.figure(1)
-        if use_gym:
-            plt.plot(observation_record[:, 0], label='x_ture')
-        plt.plot(observation_record_net[:, 0], label='x_pre')
+        time_record = np.array(time_record)
+        if show:
+            # 显示x曲线和v曲线
+            plt.figure(1)
+            if use_gym:
+                plt.plot(observation_record[:, 0], label='x_ture')
+            plt.plot(observation_record_net[:, 0], label='x_pre')
 
-        plt.xlabel('Time(s)')
-        plt.ylabel('Xposition')
-        plt.plot(0.45 * np.ones(len(observation_record)), 'r')
-        plt.legend()
+            plt.xlabel('Time(s)')
+            plt.ylabel('Xposition')
+            plt.plot(0.45 * np.ones(len(observation_record)), 'r')
+            plt.legend()
 
-        plt.figure(2)
-        if use_gym:
-            plt.plot((observation_record[:, 1]), label='v_ture')
-        plt.plot((observation_record_net[:, 1]), label='v_pre')
-        plt.xlabel('Time(s)')
-        plt.ylabel('Vspeed')
-        plt.legend()
-        plt.show()
-        return observation_record_net,corr_record
+            plt.figure(2)
+            if use_gym:
+                plt.plot((observation_record[:, 1]), label='v_ture')
+            plt.plot((observation_record_net[:, 1]), label='v_pre')
+            plt.xlabel('Time(s)')
+            plt.ylabel('Vspeed')
+            plt.legend()
+            plt.show()
+        return observation_record_net,corr_record,time_record
 
     def choose_action(self,result_by_indirect,observation):
         """
@@ -233,7 +251,7 @@ class MountainCarIndirect:
         if lambda_v > 0:
             u = -u
         X = np.hstack((observation,lambda_x,lambda_v))
-        X_dot = self.motionequation(X,0)
+        X_dot = self.motionequation(0,X)
         X += X_dot*self.env.simulation_step
         return np.array([u]),X[2:]
 
@@ -251,7 +269,9 @@ class MountainCarIndirect:
             coor, info, success = self.hit_target(observation.copy())
             print('-'*10,'Epi:',epi+1,',End!','Success:',success)
             if success:
-                record = np.hstack((info['X'], (info['t'][::-1]).reshape((-1, 1))))
+                observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=False)
+                X_record = np.hstack((observation_record,coor_record))
+                record = np.hstack((X_record, (time_record).reshape((-1, 1))))
                 if record_all is None:
                     record_all = record
                 else:
@@ -280,8 +300,8 @@ if __name__ == '__main__':
     # 求出间接法的结果
     # coor,info,success = env.hit_target(observation.copy())
     # 应用到当前初始化的小车控制上
-    # observation_record,coor_record = env.verity_cor(observation,coor)
+    # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    # env.get_samples(100)
+    env.get_samples(100)
     # 验证样本数据的有效性
     env.verity_sample('all_samples_original.npy')

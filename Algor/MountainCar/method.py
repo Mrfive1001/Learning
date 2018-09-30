@@ -120,7 +120,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 1  # 是否使用原系统进行求解
+        original = 0  # 是否使用原系统进行求解
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
@@ -212,6 +212,11 @@ class MountainCarIndirect:
             # print(observation, observation_net)
             if done_net:
                 break
+        observation_record.append(observation)
+        observation_record_net.append(observation_net)
+        time_record.append(time)
+        corr_record.append(coor[:2])
+
         observation_record = np.array(observation_record)
         observation_record_net = np.array(observation_record_net)
         corr_record = np.array(corr_record)
@@ -263,12 +268,14 @@ class MountainCarIndirect:
         """
         path = os.path.join(sys.path[0],'Data')
         record_all = None
+        success_times = 0
         for epi in range(epis):
             observation = self.reset()
             print('-'*10,'Epi:',epi+1,',Begin!')
             coor, info, success = self.hit_target(observation.copy())
             print('-'*10,'Epi:',epi+1,',End!','Success:',success)
             if success:
+                success_times += 1
                 observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=False)
                 X_record = np.hstack((observation_record,coor_record))
                 record = np.hstack((X_record, (time_record).reshape((-1, 1))))
@@ -276,7 +283,8 @@ class MountainCarIndirect:
                     record_all = record
                 else:
                     record_all = np.vstack((record_all, record))
-        np.save(os.path.join(path,'all_samples_original.npy'),record_all)
+        print('End!Successful target times:%d,successful rate:%f'%(success_times,success_times/epis))
+        np.save(os.path.join(path,'all_samples_net.npy'),record_all)
 
     def verity_sample(self,name):
         """
@@ -302,6 +310,6 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(100)
+    env.get_samples(200)
     # 验证样本数据的有效性
-    env.verity_sample('all_samples_original.npy')
+    env.verity_sample('all_samples_net.npy')

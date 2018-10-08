@@ -14,7 +14,10 @@ from model import MountainCar
 
 # np.random.seed(10)
 sns.set()
-
+original = 1  # 是否使用原系统进行求解
+data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
+# 是否使用gym来验证
+use_gym = 0
 """
 MountainCar间接法来求解
 1 直接对原系统使用间接法来求解
@@ -120,7 +123,7 @@ class MountainCarIndirect:
             # 最优控制
             u = -u
 
-        original = 0  # 是否使用原系统进行求解
+
         pred_ = -a * math.cos(3 * x)
         pred_dot = 3 * a * math.sin(3 * x)
         if original == 0:
@@ -190,10 +193,7 @@ class MountainCarIndirect:
         observation_record_net = []
         corr_record = []
         time_record = []
-
-        # 是否使用gym
-        use_gym = 0
-
+        # self.env.verity_net_2()
 
         observation_net = X0  # 神经网络系统
         self.env.state = X0  # 神经网络系统
@@ -240,7 +240,7 @@ class MountainCarIndirect:
             plt.xlabel('Time(s)')
             plt.ylabel('Vspeed')
             plt.legend()
-            plt.show()
+
         return observation_record_net,corr_record,time_record
 
     def choose_action(self,result_by_indirect,observation):
@@ -284,16 +284,16 @@ class MountainCarIndirect:
                 else:
                     record_all = np.vstack((record_all, record))
         print('End!Successful target times:%d,successful rate:%f'%(success_times,success_times/epis))
-        np.save(os.path.join(path,'all_samples_net.npy'),record_all)
+        np.save(os.path.join(path,data_name),record_all)
 
-    def verity_sample(self,name):
+    def verity_sample(self,name,num):
         """
         验证Data中name文件的数据是否有效
         :param name: 文件名称
         """
         path = os.path.join(sys.path[0], 'Data')
         data = np.load(os.path.join(path,name))
-        index = np.random.choice(len(data),size=5)
+        index = np.random.choice(len(data),size=num)
         samples = data[index,:]
         for sample in samples:
             self.verity_cor(sample[:2],sample[2:])
@@ -310,6 +310,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(200)
+    env.get_samples(50)
     # 验证样本数据的有效性
-    env.verity_sample('all_samples_net.npy')
+    # env.verity_sample(data_name,num = 10)
+    # plt.show()

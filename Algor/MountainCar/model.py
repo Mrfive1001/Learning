@@ -105,7 +105,7 @@ class MountainCar:
         self.net.store_net()
 
 
-    def verity_net(self):
+    def verity_net_1(self):
         """
         验证神经网络的正确性
         """
@@ -130,6 +130,55 @@ class MountainCar:
         plt.legend()
 
         plt.show()
+
+    def verity_net_2(self):
+        """
+        验证神经网络的正确性2
+        与真实系统的的比较
+        """
+        observation_record = []
+        observation_record_net = []
+        time_record = []
+        observation = self.reset()
+        observation_net = observation
+
+        change = 100
+        time = 0
+        epi = 0
+        while True:
+            observation_record.append(observation)
+            observation_record_net.append(observation_net)
+            time_record.append(time)
+            if epi % change == 0:
+                action = self.action_sample() * 3
+            epi += 1
+            observation, _, done, info = self.env.step(action)
+            observation_net, _, done_net, info_net = self.step(action)
+            time += self.simulation_step
+            print(observation, observation_net)
+            if done_net:
+                break
+
+        observation_record = np.array(observation_record)
+        observation_record_net = np.array(observation_record_net)
+        time_record = np.array(time_record)
+
+        plt.figure(1)
+        plt.plot(time_record,observation_record[:, 0], label='x_ture')
+        plt.plot(time_record,observation_record_net[:, 0], label='x_pre')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Xposition')
+        plt.plot(time_record,0.45 * np.ones(len(observation_record)), 'r')
+        plt.legend()
+
+        plt.figure(2)
+        plt.plot(time_record,observation_record[:, 1], label='v_ture')
+        plt.plot(time_record,observation_record_net[:, 1], label='v_pre')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Vspeed')
+        plt.legend()
+        plt.show()
+
 
     def _load_data(self):
         """
@@ -206,4 +255,7 @@ if __name__ == '__main__':
     # mc.train_model()
 
     # 4 验证网络
-    mc.verity_net()
+    mc.verity_net_1()
+
+    # 5 验证网络2
+    mc.verity_net_2()

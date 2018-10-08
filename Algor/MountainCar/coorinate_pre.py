@@ -61,30 +61,33 @@ if __name__ == '__main__':
     # 4 训练或者进行测试网络
     train = 0
     g1 = tf.Graph()
-    net = DNN(s_dim, a_dim, 100, train, name='coor',graph = g1, out_activation='tanh')
+    net = DNN(s_dim, a_dim, 100, train, name='Coor',graph = g1, out_activation='tanh')
     if train:
         net.learn_data(data,train_epi=10000,batch_size=4096)
         net.store_net()
     else:
         Y_pre = y_scale.inverse_transform(net.predict(X))
         data_pre = np.hstack((X_ori,Y_pre))
-    # 5 使用预测得到的结果进行打靶
     env = MountainCarIndirect()
-    for _ in range(2):
+    # 5 使用预测得到的结果进行打靶 使用自己神经网络的系统
+    for i in range(10):
+        print('Epi: %d'%(i+1))
         observation = env.reset()
         coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
         env.verity_cor(observation,coor)
     plt.show()
     # 6 使用神经网络进行数据测试
     car = env.env.env
-    observation = car.reset()
-    coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
-    while True:
-        car.render()
-        action,coor = env.choose_action(coor,observation)
-        observation,_,done,info = car.step(action)
-        if done:
-            break
+    for _ in range(10):
+        observation = car.reset()
+        coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
+        while True:
+            car.render()
+            action,coor = env.choose_action(coor,observation)
+            observation,_,done,info = car.step(action)
+            print(observation)
+            if done:
+                break
 
 
 

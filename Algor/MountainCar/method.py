@@ -14,7 +14,7 @@ from model import MountainCar
 
 # np.random.seed(10)
 sns.set()
-original = 0  # 是否使用原系统进行求解
+original = 1  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
 # 是否使用gym来验证
 use_gym = 0

@@ -70,25 +70,43 @@ if __name__ == '__main__':
         data_pre = np.hstack((X_ori,Y_pre))
     env = MountainCarIndirect()
     # 5 使用预测得到的结果进行打靶 使用自己神经网络的系统
-    for i in range(10):
-        print('Epi: %d'%(i+1))
-        observation = env.reset()
-        coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
-        env.verity_cor(observation,coor)
-    plt.show()
+    # for i in range(10):
+    #     print('Epi: %d'%(i+1))
+    #     observation = env.reset()
+    #     coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
+    #     env.verity_cor(observation,coor)
+    # plt.show()
     # 6 使用神经网络进行数据测试
     car = env.env.env
     for _ in range(10):
         observation = car.reset()
+        time = 0
+        observation_record = [observation]
+        time_record = [time]
         coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
         while True:
-            car.render()
+            # car.render()
+
             action,coor = env.choose_action(coor,observation)
             observation,_,done,info = car.step(action)
+            observation_record.append(observation)
+            time_record.append(time)
+            time += env.env.simulation_step
             print(observation)
             if done:
                 break
 
-
+        plt.figure(1)
+        observation_record = np.array(observation_record)
+        time_record = np.array(time_record)
+        plt.plot(time_record, observation_record[:, 0], label='x_ture')
+        plt.plot(time_record, 0.45 * np.ones(len(observation_record)), 'r')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Xposition')
+        plt.figure(2)
+        plt.plot(time_record, observation_record[:, 1], label='v_ture')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Vspeed')
+    plt.show()
 
 

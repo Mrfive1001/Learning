@@ -7,14 +7,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from scipy.integrate import RK45, odeint
-from scipy.optimize import minimize, root
+from scipy.optimize import minimize, root, fsolve
 
 from dnn import DNN
 from model import MountainCar
 
 # np.random.seed(10)
 sns.set()
-original = 1  # 是否使用原系统进行求解
+original = 0  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
 # 是否使用gym来验证
 use_gym = 0
@@ -52,6 +52,7 @@ class MountainCarIndirect:
         看结果的符合情况
         """
         _, ceq, _, _ = self.step(action)
+        ceq = np.array([np.linalg.norm(ceq,2),0,0])
         return ceq
 
     def get_result(self, action_ini):

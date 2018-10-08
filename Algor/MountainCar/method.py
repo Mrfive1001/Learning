@@ -14,7 +14,7 @@ from model import MountainCar
 
 # np.random.seed(10)
 sns.set()
-original = 1  # 是否使用原系统进行求解
+original = 0  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
 # 是否使用gym来验证
 use_gym = 0
@@ -225,18 +225,18 @@ class MountainCarIndirect:
             # 显示x曲线和v曲线
             plt.figure(1)
             if use_gym:
-                plt.plot(observation_record[:, 0], label='x_ture')
-            plt.plot(observation_record_net[:, 0], label='x_pre')
+                plt.plot(time_record,observation_record[:, 0], label='x_ture')
+            plt.plot(time_record, observation_record_net[:, 0], label='x_ture')
 
             plt.xlabel('Time(s)')
             plt.ylabel('Xposition')
-            plt.plot(0.45 * np.ones(len(observation_record)), 'r')
+            plt.plot(time_record, 0.45 * np.ones(len(observation_record)), 'r')
             plt.legend()
 
             plt.figure(2)
             if use_gym:
-                plt.plot((observation_record[:, 1]), label='v_ture')
-            plt.plot((observation_record_net[:, 1]), label='v_pre')
+                plt.plot(time_record, observation_record[:, 1], label='v_ture')
+            plt.plot(time_record, observation_record_net[:, 1], label='v_pre')
             plt.xlabel('Time(s)')
             plt.ylabel('Vspeed')
             plt.legend()
@@ -260,14 +260,21 @@ class MountainCarIndirect:
         X += X_dot*self.env.simulation_step
         return np.array([u]),X[2:]
 
-    def get_samples(self,epis):
+    def get_samples(self,epis,load = True):
         """
         保存epis轮的打靶数据
         :return: 保存到数据中
         数据中 X,V,lambda0,lambda1,tf
         """
         path = os.path.join(sys.path[0],'Data')
-        record_all = None
+        if load:
+            try:
+                record_all = np.load(os.path.join(path,data_name))
+            except Exception:
+                record_all = None
+        else:
+            record_all = None
+
         success_times = 0
         for epi in range(epis):
             observation = self.reset()
@@ -310,7 +317,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(50)
+    env.get_samples(10)
     # 验证样本数据的有效性
-    # env.verity_sample(data_name,num = 10)
-    # plt.show()
+    env.verity_sample(data_name,num = 2)
+    plt.show()

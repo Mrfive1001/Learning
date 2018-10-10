@@ -48,7 +48,10 @@ def build_model(input_dim,out_dim,units_lists = None):
     model.summary()
     return model
 
-def plot_history(history):  
+def plot_history(history):
+    """
+    画出训练之后得到的结果
+    """
     plt.figure()  
     plt.xlabel('Epoch')  
     plt.ylabel('Mean Abs Error')
@@ -57,20 +60,37 @@ def plot_history(history):
     plt.legend()
 
 
+def get_gradients(model,trainingExample):
+    """
+    得到模型在trainingExample对输入的梯度
+    """
+    outputTensor = model.output
+    gradients = tf.gradients(outputTensor, model.input)
+    sess = tf.InteractiveSession()
+    sess.run(tf.global_variables_initializer())
+    evaluated_gradients = sess.run(gradients,feed_dict={model.input:trainingExample})
+    return evaluated_gradients
+
 if __name__ == '__main__':
     data = load_data()
     X,Y = data['X'],data['Y']
-    # 建立模型
-    model = build_model(X.shape[1],Y.shape[1])
-    model.summary()
-    keras.utils.plot_model(model, to_file=os.path.join(sys.path[0],'Net/model.png'))
-    
-    # 设置训练方式
-    model.compile(tf.train.RMSPropOptimizer(0.01),loss=tf.losses.mean_squared_error,metrics=['mae'])
-    
-    # 进行训练
-    early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=50) # 20代测试误差没有改进就退出
-    history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1,callbacks = [early_stop])
-    model.save(os.path.join(sys.path[0],'Net/model1.h5'))
 
-    
+    train = 0
+    if train:
+        model = build_model(X.shape[1], Y.shape[1])
+        model.summary()
+        keras.utils.plot_model(model, to_file=os.path.join(sys.path[0], 'DNN_Net/model.png'))
+        # 设置训练方式
+        model.compile(tf.train.RMSPropOptimizer(0.01), loss=tf.losses.mean_squared_error, metrics=['mae'])
+
+        # 进行训练
+        early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=50)  # 20代测试误差没有改进就退出
+        history = model.fit(X, Y, batch_size=1024, epochs=1000, validation_split=0.1, callbacks=[early_stop])
+        model.save(os.path.join(sys.path[0], 'Net/model1.h5'))
+        # 训练结果展示
+        plot_history(history)
+        plt.show()
+    else:
+        model = keras.models.load_model(os.path.join(sys.path[0], 'Net/model1.h5'))
+        model.summary()
+        print(get_gradients(model,X))

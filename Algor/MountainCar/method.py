@@ -8,6 +8,7 @@ import numpy as np
 import seaborn as sns
 from scipy.integrate import RK45, odeint
 from scipy.optimize import minimize, root, fsolve
+import requests
 
 from dnn import DNN
 from model import MountainCar
@@ -169,7 +170,7 @@ class MountainCarIndirect:
         self.state = X0
         for i in range(100):
             lambda_n = np.random.randn(2) * 10
-            t_f = np.random.rand(1) * 100
+            t_f = np.random.rand(1) * 50 +30
             coor = np.hstack([lambda_n, t_f])
             res = self.get_result(coor)
             print('step', i, 'fun', res.fun, '\n', 'coor', res.x)
@@ -296,7 +297,7 @@ class MountainCarIndirect:
                     record_all = record
                 else:
                     record_all = np.vstack((record_all, record))
-            if epi %100 == 0 or epi == epis-1:
+            if epi %10 == 0 or epi == epis-1:
                 text = 'Epi : %d !Successful target times:%d,successful rate:%.2f' % (epi+1,success_times, success_times / (epi+1))
                 message(text)
         np.save(os.path.join(path,data_name),record_all)
@@ -320,9 +321,9 @@ def message(text):
     import requests
     url = 'https://sc.ftqq.com/SCU7896Td21f33141f474e9dfec81d7da26daacc5900906769c16.send'
 
-    text = 'Message!'
+    tex = 'Message!'
     desp = text
-    data = {'text': text, 'desp': desp}
+    data = {'text': tex, 'desp': desp}
 
     req = requests.post(url, data=data)
 

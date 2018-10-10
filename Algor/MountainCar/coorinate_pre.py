@@ -1,22 +1,39 @@
 import os
 import sys
 
+import gym
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import tensorflow as tf
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn import preprocessing, svm
-import tensorflow as tf
-from method import MountainCarIndirect
-import gym
+from tensorflow import keras
 
 from dnn import DNN
+from method import MountainCarIndirect
 
 '''
 构建神经网络来预测协态变量和时间
 '''
 original = 1  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
+
+def build_model(input_dim,out_dim,units_lists = None):
+    """
+    建立一个4层神经层的model
+    """
+    inputs = keras.Input(shape=(input_dim,))
+    if units_lists is None:
+        units_lists = [100,200,100,100]
+    x = inputs
+    for units in units_lists:
+        x = keras.layers.Dense(units,activation='relu')(x)
+    predictions = keras.layers.Dense(out_dim, activation='tanh')(x)
+    # predictions_dot = tf.gradients(predictions,inputs)
+    model = keras.Model(inputs,predictions)
+    model.summary()
+    return model
 
 def load_data():
     path = os.path.join(sys.path[0], 'Data')
@@ -63,74 +80,84 @@ def check_data(data):
     ax.scatter(x, y, z, c='y')  # 绘制数据点
     plt.show()
 
+def plot_history(history):  
+    plt.figure()  
+    plt.xlabel('Epoch')  
+    plt.ylabel('Mean Abs Error')
+    plt.plot(history.epoch, np.array(history.history['mean_absolute_error']),label='Train Loss')
+    plt.plot(history.epoch, np.array(history.history['val_mean_absolute_error']), label = 'Val loss')
+    plt.legend()
+
 
 if __name__ == '__main__':
     # 1 读取数据
-    data_ori = original
+    data_ori = load_data()
     # 2 检查数据分布是否正确
-    check_data(data_ori)
+    # check_data(data_ori)
     # 3 数据预处理
-    # X_ori = data_ori[:, :2].copy()
-    # Y_ori = data_ori[:, 2:].copy()
-    # s_dim = len(X_ori[0])
-    # a_dim = len(Y_ori[0])
-    # size = len(X_ori)
-    #
-    # x_scale = preprocessing.MinMaxScaler()
-    # y_scale = preprocessing.MinMaxScaler()
-    # X = x_scale.fit_transform(X_ori)
-    # Y = y_scale.fit_transform(Y_ori)
-    #
-    # data = np.hstack((X, Y))
-    # # 4 训练或者进行测试网络
-    # train = 0
-    # g1 = tf.Graph()
-    # net = DNN(s_dim, a_dim, 100, train, name='Coor',graph = g1, out_activation='tanh')
-    # if train:
-    #     net.learn_data(data,train_epi=10000,batch_size=4096)
-    #     net.store_net()
-    # else:
-    #     Y_pre = y_scale.inverse_transform(net.predict(X))
-    #     data_pre = np.hstack((X_ori,Y_pre))
-    # env = MountainCarIndirect()
+    X_ori = data_ori[:, :2].copy()
+    Y_ori = data_ori[:, 2:].copy()
+
+    x_scale = preprocessing.MinMaxScaler()
+    y_scale = preprocessing.MinMaxScaler()
+    X = x_scale.fit_transform(X_ori)
+    Y = y_scale.fit_transform(Y_ori)
+    env = MountainCarIndirect()
+    # 4 建立模型
+    train = 0
+    if train:
+        model = build_model(X.shape[1],Y.shape[1])
+        model.summary()
+        keras.utils.plot_model(model, to_file=os.path.join(sys.path[0],'DNN_Net/model.png'))
+        # 设置训练方式
+        model.compile(tf.train.RMSPropOptimizer(0.01),loss=tf.losses.mean_squared_error,metrics=['mae'])
+    
+        # 进行训练
+        early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=50) # 20代测试误差没有改进就退出
+        history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1,callbacks = [early_stop])
+        model.save(os.path.join(sys.path[0],'DNN_Net/model1.h5'))
+        # 训练结果展示
+        plot_history(history)
+        plt.show()
+    else:
+        model = keras.models.load_model(os.path.join(sys.path[0],'DNN_Net/model1.h5'))    
+
     # # 5 使用预测得到的结果进行打靶 使用自己神经网络的系统
-    # # for i in range(10):
-    # #     print('Epi: %d'%(i+1))
-    # #     observation = env.reset()
-    # #     coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
-    # #     env.verity_cor(observation,coor)
-    # # plt.show()
-    # # 6 使用神经网络进行数据测试
-    # car = env.env.env
-    # for _ in range(10):
-    #     observation = car.reset()
-    #     time = 0
-    #     observation_record = [observation]
-    #     time_record = [time]
-    #     coor = y_scale.inverse_transform(net.predict(x_scale.transform(observation.reshape((-1, s_dim))))).reshape((-1))
-    #     while True:
-    #         # car.render()
-    #
-    #         action,coor = env.choose_action(coor,observation)
-    #         observation,_,done,info = car.step(action)
-    #         observation_record.append(observation)
-    #         time_record.append(time)
-    #         time += env.env.simulation_step
-    #         print(observation)
-    #         if done:
-    #             break
-    #
-    #     plt.figure(1)
-    #     observation_record = np.array(observation_record)
-    #     time_record = np.array(time_record)
-    #     plt.plot(time_record, observation_record[:, 0], label='x_ture')
-    #     plt.plot(time_record, 0.45 * np.ones(len(observation_record)), 'r')
-    #     plt.xlabel('Time(s)')
-    #     plt.ylabel('Xposition')
-    #     plt.figure(2)
-    #     plt.plot(time_record, observation_record[:, 1], label='v_ture')
-    #     plt.xlabel('Time(s)')
-    #     plt.ylabel('Vspeed')
+    # for i in range(10):
+    #     print('Epi: %d'%(i+1))
+    #     observation = env.reset()
+    #     coor = y_scale.inverse_transform(model.predict(x_scale.transform(observation.reshape((-1, 2))))).reshape((-1))
+    #     env.verity_cor(observation,coor)
     # plt.show()
-
-
+    # 6 使用神经网络进行数据测试
+    car = env.env.env
+    for _ in range(10):
+        observation = car.reset()
+        time = 0
+        observation_record = [observation]
+        time_record = [time]
+        coor = y_scale.inverse_transform(model.predict(x_scale.transform(observation.reshape((-1, 2))))).reshape((-1))
+        while True:
+            # car.render()
+    
+            action,coor = env.choose_action(coor,observation)
+            observation,_,done,info = car.step(action)
+            observation_record.append(observation)
+            time_record.append(time)
+            time += env.env.simulation_step
+            print(observation)
+            if done:
+                break
+    
+        plt.figure(1)
+        observation_record = np.array(observation_record)
+        time_record = np.array(time_record)
+        plt.plot(time_record, observation_record[:, 0], label='x_ture')
+        plt.plot(time_record, 0.45 * np.ones(len(observation_record)), 'r')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Xposition')
+        plt.figure(2)
+        plt.plot(time_record, observation_record[:, 1], label='v_ture')
+        plt.xlabel('Time(s)')
+        plt.ylabel('Vspeed')
+    plt.show()

@@ -69,9 +69,7 @@ if __name__ == '__main__':
     model.compile(tf.train.RMSPropOptimizer(0.01),loss=tf.losses.mean_squared_error,metrics=['mae'])
     
     # 进行训练
-    history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1)
+    early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=50) # 20代测试误差没有改进就退出
+    history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1,callbacks = [early_stop])
     model.save(os.path.join(sys.path[0],'Net/model1.h5'))
 
-    # 训练结果展示
-    plot_history(history)
-    plt.show()

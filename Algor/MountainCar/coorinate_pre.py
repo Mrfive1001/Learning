@@ -139,12 +139,13 @@ if __name__ == '__main__':
         coor = y_scale.inverse_transform(model.predict(x_scale.transform(observation.reshape((-1, 2))))).reshape((-1))
         while True:
             # car.render()
-    
-            action,coor = env.choose_action(coor,observation)
+
+            action,_ = env.choose_action(coor,observation)
             observation,_,done,info = car.step(action)
             observation_record.append(observation)
             time_record.append(time)
             time += env.env.simulation_step
+            coor = y_scale.inverse_transform(model.predict(x_scale.transform(observation.reshape((-1, 2))))).reshape((-1))
             print(observation)
             if done:
                 break

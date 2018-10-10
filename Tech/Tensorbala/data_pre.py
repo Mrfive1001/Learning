@@ -66,8 +66,9 @@ def get_gradients(model,trainingExample):
     """
     outputTensor = model.output
     gradients = tf.gradients(outputTensor, model.input)
-    sess = tf.InteractiveSession()
-    sess.run(tf.global_variables_initializer())
+    # sess = tf.InteractiveSession()
+    # sess.run(tf.global_variables_initializer())
+    sess = keras.backend.get_session()
     evaluated_gradients = sess.run(gradients,feed_dict={model.input:trainingExample})
     return evaluated_gradients
 
@@ -93,4 +94,5 @@ if __name__ == '__main__':
     else:
         model = keras.models.load_model(os.path.join(sys.path[0], 'Net/model1.h5'))
         model.summary()
-        print(get_gradients(model,X))
+        for _ in range(100):
+            print(get_gradients(model,X))

@@ -52,7 +52,7 @@ class MountainCarIndirect:
         看结果的符合情况
         """
         _, ceq, _, _ = self.step(action)
-        ceq = np.array([np.linalg.norm(ceq,2),0,0])
+        # ceq = np.array([np.linalg.norm(ceq,2),0,0])
         return ceq
 
     def get_result(self, action_ini):
@@ -179,7 +179,7 @@ class MountainCarIndirect:
         info = self.step(res.x)[-1]
         data_x = info['X'][:,0]
         success = res.success
-        if data_x.min() < -1.2 or data_x.max() > 0.6:
+        if data_x.min() < -1 or data_x.max() > 0.6:
             success = False
         return res.x,info,success
 
@@ -211,6 +211,8 @@ class MountainCarIndirect:
             observation_net, _, done_net, info_net = self.env.step(action)
             time += self.env.simulation_step
             # print(observation, observation_net)
+            if time/self.env.simulation_step > 2000:
+                break
             if done_net:
                 break
         observation_record.append(observation)
@@ -318,7 +320,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(10)
+    # env.get_samples(500,load=False)
     # 验证样本数据的有效性
-    env.verity_sample(data_name,num = 2)
+    env.verity_sample(data_name,num = 10)
     plt.show()

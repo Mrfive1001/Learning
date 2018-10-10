@@ -16,7 +16,7 @@ def load_data():
     返回读取的文件中的数据，并进行归一化
     """
     path = os.path.join(sys.path[0], 'Data')
-    path_data = os.path.join(path, 'all_samples.npy')
+    path_data = os.path.join(path, 'all_samples_original.npy')
 
     data_ori = np.load(path_data)
     X_ori = data_ori[:, :2].copy()
@@ -38,11 +38,12 @@ def build_model(input_dim,out_dim,units_lists = None):
     """
     inputs = keras.Input(shape=(input_dim,))
     if units_lists is None:
-        units_lists = [100,200,100]
+        units_lists = [100,200,100,100]
     x = inputs
     for units in units_lists:
         x = keras.layers.Dense(units,activation='relu')(x)
     predictions = keras.layers.Dense(out_dim, activation='tanh')(x)
+    # predictions_dot = tf.gradients(predictions,inputs)
     model = keras.Model(inputs,predictions)
     model.summary()
     return model
@@ -68,9 +69,9 @@ if __name__ == '__main__':
     model.compile(tf.train.RMSPropOptimizer(0.01),loss=tf.losses.mean_squared_error,metrics=['mae'])
     
     # 进行训练
-    history = model.fit(X,Y,batch_size=100,epochs=100,validation_split=0.1)
+    history = model.fit(X,Y,batch_size=100,epochs=1000,validation_split=0.1)
     model.save(os.path.join(sys.path[0],'Net/model1.h5'))
-    
+
     # 训练结果展示
     plot_history(history)
     plt.show()

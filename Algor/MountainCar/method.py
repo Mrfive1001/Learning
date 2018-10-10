@@ -14,7 +14,7 @@ from model import MountainCar
 
 # np.random.seed(10)
 sns.set()
-original = 1  # 是否使用原系统进行求解
+original = 0  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
 # 是否使用gym来验证
 use_gym = 0
@@ -286,14 +286,19 @@ class MountainCarIndirect:
             print('-'*10,'Epi:',epi+1,',End!','Success:',success)
             if success:
                 success_times += 1
-                observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=False)
+                observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=True)
                 X_record = np.hstack((observation_record,coor_record))
                 record = np.hstack((X_record, (time_record).reshape((-1, 1))))
+                if observation_record[:,0].min() <= -1:
+                    success_times -= 1
+                    continue
                 if record_all is None:
                     record_all = record
                 else:
                     record_all = np.vstack((record_all, record))
-        print('End!Successful target times:%d,successful rate:%f'%(success_times,success_times/epis))
+            if epi %100 == 0 or epi == epis-1:
+                text = 'Epi : %d !Successful target times:%d,successful rate:%.2f' % (epi+1,success_times, success_times / (epi+1))
+                message(text)
         np.save(os.path.join(path,data_name),record_all)
 
     def verity_sample(self,name,num):
@@ -308,6 +313,18 @@ class MountainCarIndirect:
         for sample in samples:
             self.verity_cor(sample[:2],sample[2:])
 
+def message(text):
+    """
+    Server酱来通过微信提醒
+    """
+    import requests
+    url = 'https://sc.ftqq.com/SCU7896Td21f33141f474e9dfec81d7da26daacc5900906769c16.send'
+
+    text = 'Message!'
+    desp = text
+    data = {'text': text, 'desp': desp}
+
+    req = requests.post(url, data=data)
 
 if __name__ == '__main__':
     """
@@ -320,7 +337,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    # env.get_samples(500,load=False)
+    env.get_samples(500,load=False)
     # 验证样本数据的有效性
     env.verity_sample(data_name,num = 10)
     plt.show()

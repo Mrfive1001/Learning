@@ -73,3 +73,4 @@ if __name__ == '__main__':
     history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1,callbacks = [early_stop])
     model.save(os.path.join(sys.path[0],'Net/model1.h5'))
 
+    

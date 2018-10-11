@@ -288,7 +288,7 @@ class MountainCarIndirect:
             print('-'*10,'Epi:',epi+1,',End!','Success:',success)
             if success:
                 success_times += 1
-                observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=True)
+                observation_record, coor_record, time_record = self.verity_cor(observation, coor,show=False)
                 X_record = np.hstack((observation_record,coor_record))
                 record = np.hstack((X_record, (time_record).reshape((-1, 1))))
                 if observation_record[:,0].min() <= -1:
@@ -342,7 +342,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(100,load=True)
+    env.get_samples(100)
     # 验证样本数据的有效性
     env.verity_sample(data_name,num = 10)
     plt.show()

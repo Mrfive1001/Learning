@@ -16,8 +16,9 @@ from method import MountainCarIndirect
 '''
 构建神经网络来预测协态变量和时间
 '''
-original = 1  # 是否使用原系统进行求解
+original = 0  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
+out_put_name = 'model2'
 
 def build_model(input_dim,out_dim,units_lists = None):
     """
@@ -30,7 +31,6 @@ def build_model(input_dim,out_dim,units_lists = None):
     for units in units_lists:
         x = keras.layers.Dense(units,activation='relu')(x)
     predictions = keras.layers.Dense(out_dim, activation='tanh')(x)
-    # predictions_dot = tf.gradients(predictions,inputs)
     model = keras.Model(inputs,predictions)
     model.summary()
     return model
@@ -108,19 +108,19 @@ if __name__ == '__main__':
     if train:
         model = build_model(X.shape[1],Y.shape[1])
         model.summary()
-        keras.utils.plot_model(model, to_file=os.path.join(sys.path[0],'DNN_Net/model.png'))
+        keras.utils.plot_model(model, to_file=os.path.join(sys.path[0],'DNN_Net/%s.png'%out_put_name))
         # 设置训练方式
         model.compile(tf.train.RMSPropOptimizer(0.01),loss=tf.losses.mean_squared_error,metrics=['mae'])
-    
+
         # 进行训练
         early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=50) # 20代测试误差没有改进就退出
         history = model.fit(X,Y,batch_size=1024,epochs=1000,validation_split=0.1,callbacks = [early_stop])
-        model.save(os.path.join(sys.path[0],'DNN_Net/model1.h5'))
+        model.save(os.path.join(sys.path[0],'DNN_Net/%s.h5'%out_put_name))
         # 训练结果展示
         plot_history(history)
         plt.show()
     else:
-        model = keras.models.load_model(os.path.join(sys.path[0],'DNN_Net/model1.h5'))    
+        model = keras.models.load_model(os.path.join(sys.path[0],'DNN_Net/%s.h5'%out_put_name))
 
     # # 5 使用预测得到的结果进行打靶 使用自己神经网络的系统
     # for i in range(10):
@@ -149,7 +149,7 @@ if __name__ == '__main__':
             print(observation)
             if done:
                 break
-    
+
         plt.figure(1)
         observation_record = np.array(observation_record)
         time_record = np.array(time_record)

@@ -43,7 +43,6 @@ def build_model(input_dim,out_dim,units_lists = None):
     for units in units_lists:
         x = keras.layers.Dense(units,activation='relu')(x)
     predictions = keras.layers.Dense(out_dim, activation='tanh')(x)
-    # predictions_dot = tf.gradients(predictions,inputs)
     model = keras.Model(inputs,predictions)
     model.summary()
     return model

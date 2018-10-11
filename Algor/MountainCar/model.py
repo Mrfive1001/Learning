@@ -228,6 +228,33 @@ class MountainCar:
             done = True
         return self.state, reward, done, info
 
+    def step_true(self, action):
+        """
+        利用原进行模型辨识
+        """
+        action = min(max(action, -1.0), 1.0)
+        x, v = self.state
+        # 神经网络得到的导数
+        # dot = self.get_dot(self.state)
+        v_dot = 0.0015 * action -0.0025 * math.cos(3*x)
+        v = v + v_dot * self.simulation_step
+        v = min(max(v, -0.07), 0.07)
+
+        # 通过v计算x
+        x = x + self.simulation_step * v
+        x = min(max(x, -1.2), 0.6)
+        X = np.array([x, v])
+        if X.ndim == 2:
+            X = X.reshape((2,))
+        self.state = X
+        # 返回参数
+        info = {}
+        done = {}
+        reward = {}
+        if x >= 0.45:
+            done = True
+        return self.state, reward, done, info
+
     def get_dot(self, X):
         return self.net.predict(X[0:1])[0]/self.ratio
 

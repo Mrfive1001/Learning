@@ -13,7 +13,6 @@ import requests
 from dnn import DNN
 from model import MountainCar
 
-# np.random.seed(10)
 sns.set()
 original = 0  # 是否使用原系统进行求解
 data_name = 'all_samples_original.npy' if original else 'all_samples_net.npy'
@@ -133,6 +132,8 @@ class MountainCarIndirect:
             pred_dot = float(self.env.get_dot2(X[:1]))
 
         # 动态方程
+        v = min(max(v, -0.07), 0.07)
+        x = min(max(x, -1.2), 0.6)
         x_dot = v
         v_dot = b*u+pred_
         lambda_x_dot = -lambda_v*pred_dot
@@ -209,7 +210,7 @@ class MountainCarIndirect:
             corr_record.append(coor[:2])
             action, coor = self.choose_action(coor, observation_net)
             observation, _, done, info = self.env.env.step(action)
-            observation_net, _, done_net, info_net = self.env.step(action)
+            observation_net, _, done_net, info_net = self.env.step_true(action)
             time += self.env.simulation_step
             # print(observation, observation_net)
             if time/self.env.simulation_step > 2000:
@@ -299,7 +300,10 @@ class MountainCarIndirect:
                     record_all = np.vstack((record_all, record))
             if epi %10 == 0 or epi == epis-1:
                 text = 'Epi : %d !Successful target times:%d,successful rate:%.2f' % (epi+1,success_times, success_times / (epi+1))
-                message(text)
+                try:
+                    message(text)
+                except Exception:
+                    continue
         np.save(os.path.join(path,data_name),record_all)
 
     def verity_sample(self,name,num):
@@ -338,7 +342,7 @@ if __name__ == '__main__':
     # 应用到当前初始化的小车控制上
     # observation_record,coor_record,time_record = env.verity_cor(observation,coor)
     # 保存打靶法得到的结果
-    env.get_samples(500,load=False)
+    env.get_samples(100,load=True)
     # 验证样本数据的有效性
     env.verity_sample(data_name,num = 10)
     plt.show()

@@ -65,8 +65,6 @@ def get_gradients(model,trainingExample):
     """
     outputTensor = model.output
     gradients = tf.gradients(outputTensor, model.input)
-    # sess = tf.InteractiveSession()
-    # sess.run(tf.global_variables_initializer())
     sess = keras.backend.get_session()
     evaluated_gradients = sess.run(gradients,feed_dict={model.input:trainingExample})
     return evaluated_gradients
